@@ -1,17 +1,65 @@
-\documentclass[]{article}
+\documentclass[11pt,a4paper]{article}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[ngerman]{babel}
 
 %opening
-\title{Game Design Document}
-\author{Alexandra Zarkh, Sui Yin Zhang, Lennart Leggewie, Stefan Glorch, Alexander Schallenberg}
+\title{\Huge\textbf{Game Design Document}}
+
+\author{Alexandra Zarkh, Sui Yin Zhang, Lennart Leggewie,\\ Stefan Glorch, Alexander Schallenberg}
+
+\makeatletter
+\def\@maketitle{%
+	\newpage
+	\null
+	\vskip 2em%
+	\begin{center}%
+		\let \footnote \thanks
+		{\LARGE \@title \par}%
+		\vskip 1em%
+		{\Large Game Development ``Städtebau''\par}%
+		\vskip 1.5em%
+		{\large
+			\lineskip .5em%
+			\begin{tabular}[t]{c}%
+				\@author
+			\end{tabular}\par}%
+		\vskip 1em%
+		{\large \@date}%
+	\end{center}%
+	\par
+	\vskip 1.5em}
+\makeatother
+
+
+
 
 \begin{document}
+\begin{titlepage}
+	\maketitle
+\end{titlepage}
 
-\maketitle
 
-\begin{abstract}
+\tableofcontents
+\pagebreak
 
-\end{abstract}
+\section{Spieler (Zielgruppe)}
 
-\section{}
+\section{Gestand \& Ziel des Spiels}
+
+\section{Abläufe}
+
+\section{Regeln}
+
+\section{Ressourcen}
+
+\section{(potentielle) Konflikte, absehbare Schwierigkeiten}
+
+\section{Rahmenbedingungen}
+
+\section{Ergebnisse}
+
+\section{Referenzen}
 
 \end{document}
