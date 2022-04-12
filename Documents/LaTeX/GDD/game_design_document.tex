@@ -1,13 +1,23 @@
-\documentclass[11pt,a4paper]{article}
+\documentclass[paper=A4,pagesize=auto,12pt,headinclude=true,footinclude=true,BCOR=0mm,DIV=calc]{scrartcl}
 
 \usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc}
 \usepackage[ngerman]{babel}
+\usepackage{lmodern}
+\usepackage[hidelinks]{hyperref}
+\usepackage{setspace}
+\usepackage[left=25mm, right=25mm, top=25mm, bottom=25mm]{geometry}
+\usepackage[backend=biber, style=ieee, citestyle=ieee]{biblatex}
+\usepackage[nottoc,numbib]{tocbibind}
+\onehalfspacing
 
-%opening
-\title{\Huge\textbf{Game Design Document}}
+\bibliography{game_design_document}
+
+% Title
+\title{Game Design Document}
 
 \author{Alexandra Zarkh, Sui Yin Zhang, Lennart Leggewie,\\ Stefan Glorch, Alexander Schallenberg}
+
 
 \makeatletter
 \def\@maketitle{%
@@ -16,16 +26,18 @@
 	\vskip 2em%
 	\begin{center}%
 		\let \footnote \thanks
-		{\LARGE \@title \par}%
-		\vskip 1em%
-		{\Large Game Development ``Städtebau''\par}%
+		{\Huge \textbf{\@title} \par}%
 		\vskip 1.5em%
+		{\Large Game Development ``Städtebau''\par}%
+		\vskip 3em%
 		{\large
 			\lineskip .5em%
 			\begin{tabular}[t]{c}%
 				\@author
 			\end{tabular}\par}%
-		\vskip 1em%
+		\vskip 2em%
+		{\large Hochschule Bonn-Rhein-Sieg, Fachbereich Informatik, D-53757\par}%
+		\vskip 2em%
 		{\large \@date}%
 	\end{center}%
 	\par
@@ -33,33 +45,51 @@
 \makeatother
 
 
+% Commands
+\newcommand{\sectionspace}{
+	\vspace{0.5cm}
+}
+
+
 
 
 \begin{document}
+	
 \begin{titlepage}
 	\maketitle
 \end{titlepage}
 
 
 \tableofcontents
-\pagebreak
+\newpage
 
-\section{Spieler (Zielgruppe)}
+\section{Spieler (Zielgruppe)}\label{sec:Spieler}
 
-\section{Gestand \& Ziel des Spiels}
+\sectionspace
+\section{Gegenstand \& Ziel des Spiels}\label{sec:Gegenstand}
 
-\section{Abläufe}
+\sectionspace
+\section{Abläufe}\label{sec:Ablaeufe}
 
-\section{Regeln}
+\sectionspace
+\section{Regeln}\label{sec:Regeln}
 
-\section{Ressourcen}
+\sectionspace
+\section{Ressourcen}\label{sec:Ressourcen}
 
-\section{(potentielle) Konflikte, absehbare Schwierigkeiten}
+\sectionspace
+\section{(potentielle) Konflikte, absehbare Schwierigkeiten}\label{sec:Konflikte}
 
-\section{Rahmenbedingungen}
+\sectionspace
+\section{Rahmenbedingungen}\label{sec:Rahmenbedingungen}
 
-\section{Ergebnisse}
+\sectionspace
+\section{Ergebnisse}\label{sec:Ergebnisse}
 
-\section{Referenzen}
+\sectionspace
+\section{Referenzen}\label{sec:Referenzen}
+
+\newpage
+\printbibliography[heading=bibnumbered]
 
 \end{document}
