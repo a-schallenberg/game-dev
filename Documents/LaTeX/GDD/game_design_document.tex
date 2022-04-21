@@ -1,13 +1,23 @@
-\documentclass[11pt,a4paper]{article}
+\documentclass[paper=A4,pagesize=auto,12pt,headinclude=true,footinclude=true,BCOR=0mm,DIV=calc]{scrartcl}
 
 \usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc}
 \usepackage[ngerman]{babel}
+\usepackage{lmodern}
+\usepackage[hidelinks]{hyperref}
+\usepackage{setspace}
+\usepackage[left=25mm, right=25mm, top=25mm, bottom=25mm]{geometry}
+\usepackage[backend=biber, style=ieee, citestyle=ieee]{biblatex}
+\usepackage[nottoc,numbib]{tocbibind}
+\onehalfspacing
 
-%opening
-\title{\Huge\textbf{Game Design Document}}
+\bibliography{game_design_document}
 
-\author{Alexandra Zarkh, Sui Yin Zhang, Lennart Leggewie,\\ Stefan Glorch, Alexander Schallenberg}
+% Title
+\title{Game Design Document}
+
+\author{Alexandra Zarkh, Sui Yin Elisabeth Zhang, Lennart Leggewie,\\ Stefan Glorch, Alexander Markus Schallenberg}
+
 
 \makeatletter
 \def\@maketitle{%
@@ -16,16 +26,18 @@
 	\vskip 2em%
 	\begin{center}%
 		\let \footnote \thanks
-		{\LARGE \@title \par}%
-		\vskip 1em%
-		{\Large Game Development ``Städtebau''\par}%
+		{\Huge \textbf{\@title} \par}%
 		\vskip 1.5em%
+		{\Large Game Development: \textit{\gametitle} \par}%
+		\vskip 3em%
 		{\large
 			\lineskip .5em%
 			\begin{tabular}[t]{c}%
 				\@author
 			\end{tabular}\par}%
-		\vskip 1em%
+		\vskip 2em%
+		{\large Hochschule Bonn-Rhein-Sieg, Fachbereich Informatik, D-53757\par}%
+		\vskip 2em%
 		{\large \@date}%
 	\end{center}%
 	\par
@@ -33,33 +45,153 @@
 \makeatother
 
 
+% Commands
+\newcommand{\sectionspace}{
+	\vspace{0.5cm}
+}
+
+\newcommand{\gametitle}{Chance of Hell}
+
+
 
 
 \begin{document}
+	
 \begin{titlepage}
 	\maketitle
 \end{titlepage}
 
 
 \tableofcontents
-\pagebreak
+\newpage
 
-\section{Spieler (Zielgruppe)}
+\section{Hintergrund}\label{sec:Hintergrund}
+%Simples Spiel (leicht/schnell zu Entwickeln). Beliebig erweiterbar.
+%=> Zu möglichst vielen Zeitpunkten ein funktionierendes Spiel.
 
-\section{Gestand \& Ziel des Spiels}
+%Aufbauspiel, weil Spieler muss mitdenken (Nicht stumpfes hin und her klicken)
+%Spieler muss sich aktiv beteiligen
 
-\section{Abläufe}
+%=> Kein Multiplayerspiel, da es zu viel Zeit einnehmen würde
 
-\section{Regeln}
+%Spielinspiration: Mewnbase, Stardew Valley, Minecraft Mine Colonies
 
-\section{Ressourcen}
+Die ersten Überlegungen im Rahmen der Ideenfindung bezogen sich auf den Aufwand der Entwicklung und Umsetzung. Wichtige Aspekte, die hierbei beachtet wurden, waren unter anderem die Schlichtheit und die Modularität des Spiels, sodass eine schnelle Entwicklung stattfinden kann und zu möglichst vielen Zeitpunkten eine lauffähige Spielversion existiert. Zusätzlich besteht Konsens in der Gruppe, dass die in \hyperref[sec:Rahmenbedingungen]{"`Rahmenbedingungen"'} festgesetzten Grenzen nicht überschritten werden. Dazu gehört zum Beispiel die Entscheidung gegen ein Mehrspielerkonzept aufgrund des zeitlichen Mehraufwands.\\
+Die oben genannten Aspekte können in dem Spielgenre "`Aufbau-Strategiespiel"' geeignet umgesetzt werden. Ein weiteres Kriterium, das für dieses Genre spricht, ist die Notwendigkeit, dass die spielende Person sich aktiv am Spielgeschehen beteiligt und mitdenkt. Daraus folgt, dass das Spiel nicht nur aus stumpfem Klicken besteht.\\
+Als Spielinspiration dient unter anderem das Spiel "`Mewnbase"' \hyperref{https://cairn4.itch.io/mewnbase}{}{}{\textit{(itch.io)}}  aufgrund seiner orthographischen Perspektive und des ähnlichen Spielkonzepts. Die Unterschiede zu "`Chance of Hell"' sind die Kulisse und ein weniger auf Überleben sondern mehr auf Aufbau einer Siedlung konzentriertes Spielgeschehen.\\
+Ergänzend dazu dient auch "`Stardew Valley"' \hyperref{https://www.stardewvalley.net/}{}{}{\textit{(stardewvalley.net)}} als Inspiration in Bezug auf den Aspekt der Erweiterung und Erforschung der Siedlung.
 
-\section{(potentielle) Konflikte, absehbare Schwierigkeiten}
 
-\section{Rahmenbedingungen}
+\sectionspace
+\section{Formale Elemente}\label{sec:Formale_Elemente}
+Im folgenden werden formale Elemente vorgestellt, die wichtig für die Vorstellung des Spiels sind.
 
-\section{Ergebnisse}
+\sectionspace
+\subsection{Spielende (Zielgruppe)}\label{sec:Spieler}
+Die spielende Person spielt einen ins Spielgeschehen aktiv eingebundenen Avatar, mit der sie zunächst überwiegend bauen, im späteren Spielverlauf zum großen Teil managen, aber immer aktiv mit der Spielwelt interagieren soll. Die Top-Down Perspektive mit dem Avatar im Mittelpunkt soll der spielenden Person die nötige nähe des Charakters vermitteln, dennoch genügend Abstand bieten, um das Umfeld im Blick zu behalten. Das Spiel wird ausschließlich im Einzelspieler-Modus spielbar sein, in welchem die spielende Person gegen Herausforderungen des Spiels antritt. Je nach eingestelltem Schwierigkeitsgrad sind diese leichter bzw. schwieriger und treten seltener bzw. häufiger auf. Dadurch entstehen teilweise kurze Spannungsmomente, die den Handlungsdruck kurzzeitig erhöhen. Dieser wird jedoch durch das ruhige Spielgeschehen außerhalb der Spannungsmomente abgeschwächt. Die Grafik, welche im Gegensatz zur Realität eine deutlich geminderte Auflösung besitzt, trägt dazu bei, dass auch junge Spielende leicht Abstand zum Spiel nehmen können.\\
+Da es sich bei diesem Spiel um ein Aufbau-Strategiespiel handelt, welches recht friedlich, in gewissen Situationen dennoch anspruchsvoll ist, eignet sich das Spiel nicht für jede Altersgruppe, kann aber auch von jungen Spielenden verstanden und gespielt werden. Die in Deutschland für die Altersfreigabe von Videospielen verantwortliche Stelle "`Unterhaltungssoftware Selbstkontrolle"' (kurz USK) stuft Aufbau-Strategiespiele meistens unter USK ab 6 Jahren \cite{usk_6} ein. Durch die oben genannten Aspekte wie realitätsdistanzierte Grafik würde dies auch für dieses Spiel eine angemessene Altersgrenze darstellen. \\ 
+Für ältere Spielende eignet sich das Spiel ebenso. Hierbei muss jedoch beachtet werden, dass bestimmte mentale Fähigkeiten wie die Hand-Auge-Koordination in gewissem Ausmaß gefordert sind, die bei der spielenden Person vorhanden sein müssen. Sind diese bei jungen Personen ab 6 Jahren noch nicht oder bei Älteren nicht mehr vorhanden, ist das Spiel für sie ungeeignet.
 
-\section{Referenzen}
+\sectionspace
+\subsection{Gegenstand \& Ziel des Spiels}\label{sec:Gegenstand}
+"`\gametitle"' \space ist ein Aufbau-Strategiespiel, das in der Moderne stattfindet und in dem es darum geht, eine eigene Siedlung aufzubauen. Dabei wird das strategische Denken und die eigene Kreativität gefördert. Es werden einem verschiedene Herausforderungen gestellt, die man zu bewältigen hat, um die Siedlung weiterhin unter Kontrolle zu haben. Eine weitere Herausforderung, die es ständig zu bewältigen gilt, ist, die Zufriedenheit der Siedler aufrechtzuerhalten. \\
+Im Spiel hat man viele Freiheiten und zahlreiche Möglichkeiten, seine Kreativität auszuleben, durch zum Beispiel die Personalisierung der Farbe der Gebäude. Die einzelnen Bauwerke können nach Belieben platziert werden, man muss dabei genug Abstand zwischen ihnen lassen, damit diese noch erreichbar sind und man als spielende Person Platz hat, sich seinen Weg durch die Siedlung zu bahnen. \\
+Die Fundamente der Bauwerke werden in einem Gebäude produziert, welches "`Workshop"' heißt, dessen genauere Funktion in \hyperref[sec:Ablaeufe]{"`Abläufe"'} erläutert wird.\\
+Außerdem muss man als spielende Person Herausforderungen bewältigen, die einem vom in der Vorgeschichte, welche in \hyperref[sec:Ablaeufe]{"`Abläufe"'} zu finden ist, erwähnten Antagonisten "`Teufel"' gestellt werden. Diese Herausforderungen können vom Schwierigkeitsgrad unterschiedlich groß sein, das heißt, sie reichen von kleineren Aufgaben, wie zum Beispiel "`Sammle mir x Steine innerhalb der nächsten y Stunden!"', wobei sich die Stunden hier auf die Zeitstunden im Spiel beziehen und nicht die der Realität, bis hin zu "`Rette deine Siedler vor der Flut"'. \\
+Wenn man seine Siedler nicht vor einer größeren Katastrophe retten kann, werden dabei deren Zuhause so weit beschädigt, dass nur noch Fundamente übrig bleiben und man diese wieder aufbauen muss. \\
+Sollte es so weit kommen, dass man den Bitten des Teufels nicht nachkommen kann, dann fühlt sich der Teufel genötigt, eine Naturkatastrophe als Strafe heraufzubeschwören.
+Daraus folgt, dass ein mögliches Ziel des Spiels ist, die Siedlung intakt zu halten und die % TODO vgl. Ergebnisse
+ Zufriedenheit der Siedler hochzuhalten, damit diese die Siedlung nicht verlassen und auch weiterhin ihren Beitrag zum alltäglichen Leben leisten. Die Effizienz der Arbeit, die die Siedler verrichten, hängt von deren Zufriedenheit ab. \\
+Einige von ihnen sind Holzfäller, die die spielende Person dabei unterstützen, Holz zu sammeln und zu verarbeiten. Andere sind Feuerwehrleute, die bei Bränden zum Einsatz kommen und ansonsten einem anderen Beruf nachgehen.
+
+\sectionspace
+\subsection{Abläufe}\label{sec:Ablaeufe}
+Das Spiel beginnt mit einer Vorgeschichte, die erklärt, wie es zu der eigentlichen Spielidee gekommen ist. \\
+Der zu spielende Avatar lebte in einer Stadt namens Inrith. Im Traum begegnete er dem Teufel, der ihn vor einer Katastrophe warnt und ihm einen Pakt vorschlägt: der Teufel hilft dem Avatar diese Katastrophe zu überleben und im Gegenzug wird er später im Spiel Forderungen des Teufels erfüllen und eine neue Siedlung selbst aufbauen müssen. Der Avatar stimmte diesem Vorschlag zu und erwachte dann plötzlich von Lärm. \\
+Dieser wurde durch den Vulkan Arglodon in der Nähe von Inrith ausgelöst, welcher eines Tages plötzlich ausbrach und die ganze Siedlung verwüstete. Doch der Avatar konnte mit Hilfe eines Floßes, welches der Teufel ihm an der Küste hinterließ, fliehen und überlebte so, so wie es anfangs schien, als einzige Person der Stadt. Auf der Überfahrt verlor der Avatar das Bewusstsein und wachte dann an einem unbekannten Ort auf, wo er beschloss, diesen zu seinem neuen Zuhause zu gestalten. \\
+Diese Vorgeschichte dient als Einleitung in das Geschehen und wird erläutert als Einblendung von verschiedenen Bildern, die mit Text erweitert wurden, um das Geschehen detaillierter erklären zu können. \\
+Nachdem man als Avatar aufwacht, hat man als spielende Person die Möglichkeit, sich endlich aktiv am Spiel zu beteiligen. Man findet im eigenen Inventar schon einige Ressourcen, die einem als Hilfestellung dienen sollen. Darunter befinden sich Holz und Stein. Dieses Inventar hat nur eine begrenzte Kapazität, es werden aber im Laufe des Spiels weitere Möglichkeiten dazukommen, wo man sein Hab und Gut lagern kann.\\
+Am Anfang des Spiels hat man als spielende Person noch viel selbst zu erledigen, wie zum Beispiel das Ansammeln von Ressourcen oder das Bauen von Gebäuden. Jedoch lassen sich viele Prozesse im Verlaufe des Spiels durch verschiedene Hilfsfaktoren automatisieren. Darunter zählt zum Beispiel eine Holzfällerhütte. In ihr werden Holzfäller leben, die einen dabei unterstützen, Holz zu sammeln. \\
+Die Holzfäller sind Siedler, die vorher in die Siedlung aufgenommen werden müssen. Wie sich herausstellt, handelt es sich hierbei auch um Überlebende des Vulkanausbruchs. Es gibt zudem Feuerwehrleute, die einem dann bei Löschung eines Brandes helfen. Darüber hinaus befindet sich in der Siedlung ein Lagerhaus, welches eine weit größere Kapazität hat, als das Inventar der spielenden Person, wodurch man seine Ressourcen besser lagern kann. \\
+Im Verlauf des Spiels kommen immer mehr neue Bewohner dazu, die einem dann bei den verschiedenen Quests, die einem der Teufel ab und zu stellt, helfen sollen. Dadurch erweitert man seine Siedlung und man hat die Möglichkeit, mit mehr Bewohnern auch mehr Gebäude zu platzieren. \\
+Im Spiel hat man viele Freiheiten, aber es geht nicht nur darum, eine eigene Siedlung zu bauen, sondern diese auch verwalten und sichern zu können, wie zum Beispiel vor Katastrophen. Zu diesen können Feuer, Fluten oder Pandemien gehören. Wenn man als spielende Person die Kontrolle über seine Siedlung verliert, dann kommt der Teufel vorbei und erklärt einem, dass das Spiel nun vorbei ist und die Siedlung, die man sich aufgebaut hat, zerstört, damit man erneut von vorne anfangen muss. \\
+Dementsprechend gibt es in diesem Spiel, wie in \hyperref[sec:Ergebnisse]{"'Ergebnisse"'} dargestellt, kein definiertes Ende des Spiels. % TODO vgl. Ergebnisse
+
+
+\sectionspace
+\subsection{Regeln}\label{sec:Regeln}
+Der spielenden Person ist es möglich, den Avatar in einem begrenzten Gebiet frei umherzubewegen. In diesem Gebiet ist es ihr möglich, Gebäude zu platzieren, die jeweils einen speziellen Nutzen haben oder einfach nur dekorativ sind. Das einzige Gebäude, welches von Anfang an freigeschaltet ist, ist der Workshop. Dieser dient einerseits dazu, einen Überblick über die baubaren Gebäude zu bieten und anderseits das Freischalten von neuen Gebäuden zu ermöglichen. \\
+Das Platzieren der Gebäude erfolgt nicht direkt. Vielmehr stellt die spielende Person ein Grundgerüst im Workshop her, was dann vor dem Avatar in der Spielwelt platziert wird. Das einzige Gebäude, was direkt platziert werden kann, ist der Workshop selbst, da er mit genügend Ressourcen im Inventar des Avatars hergestellt werden kann.
+Ist im Fortschrittsbaum des Workshops eine bestimmte Stufe erreicht worden, so wird es möglich sein, eine Verbesserung des Workshops zu einem Forschungslabor freizuschalten, die wiederum das Erforschen von fortgeschritteneren Gebäuden erlaubt. \\
+Die im weiteren Spielverlauf auftauchenden Nicht-Spieler-Charaktere (NPCs) müssen durch Annehmlichkeiten wie Dekoration und dem vorsorglichen Schutz vor auftretenden negativen Spielereignissen zufrieden gehalten werden. Sinkt die Zufriedenheit eines NPCs unter den Grenzwert von 30 \%, besteht die Gefahr, dass der NPC sich ein neues Zuhause sucht und nicht länger Bewohner der Siedlung ist. \\ % (30 % noch diskutierbar, bislang arbiträrer Wert)
+Die Zufriedenheit eines NPCs hat des Weiteren auch Auswirkung auf die Arbeitseffizienz. Bei geringerer Effizienz wird auch eine geringere Anzahl an Ressourcen generiert.
+
+% TODO Ende (vgl. Ergebnisse)
+
+
+\sectionspace
+\subsection{Ressourcen}\label{sec:Ressourcen}
+In "`\gametitle"' gibt es viele verschiedene Materialien  aus denen die spielende Person Bauwerke zusammensetzen kann, welche das Leben in der Siedlung vereinfachen, bzw. verbessern.\\
+Außerdem gibt es verschiedene Möglichkeiten seine Siedlung so zu gestalten, wie man es gerne hat. 
+
+\subsubsection{Materialien}
+Die Startressource in diesem Spiel wird ein wenig Holz sein. Weiteres Holz erhält man durch das Fällen von Bäumen oder durch eine Holzfällerhütte, die jedoch erst später im Spiel errichtet werden kann. Zusätzlich gibt es Stein und Eisen, welche man aus Minen bekommt, die allerdings zuerst erforscht und dann erbaut werden müssen.\\
+Über die ganze Welt sind Blumen verteilt, die zur Erstellung von Farben benutzt werden können.\\
+Zudem findet man verschiedene Gräser, von denen man Samen zum Anpflanzen von Gemüse erhalten kann. 
+
+\subsubsection{Gebäude}
+Als erstes gibt es einen Workshop, in dem man mit den gesammelten Materialien verschiedene Bauwerke oder weiteres zusammensetzen kann, unter anderem ein Lagerhaus, welches das Inventar des Avatars erweitert. Außerdem gibt es, wie oben erwähnt, eine Holzfällerhütte die man in der Nähe eines Waldes platziert. Um das gesammelte Holz zu verarbeiten, gibt es zudem ein Sägewerk.\\
+Ein weiteres Gebäude ist die Mine, die für das Erhalten von Rohstoffen wie Eisen und Stein benötigt wird.\\
+Des Weiteren existiert eine Farm, die zum Anbauen von Gemüse benutzt werden kann.
+
+\subsubsection{Dekorationen}
+Um seine Insel zu verschönern, stehen der spielenden Person Brücken, Lampen, Wege und Ähnliches zum zusammensetzen im Workshop zur Verfügung.\\
+Die aus den Blumen gewonnenen Farben können zur Färbung von Gebäuden verwendet werden.
+
+\subsubsection{Katastrophen Kontrolle}
+Damit die spielende Person ihre Siedlung vor verschiedenen Katastrophen schützen kann, sind Konstruktionen wie ein Blitzableiter vorhanden, der die Gebäude in einem bestimmten Bereich vor Blitzen schützt oder eine Feuerwehrwache für das löschen von Bränden.\\
+Zur Vorsorge für Pandemien, lässt sich eine Apotheke errichten, in der man aus verschiedenen Pflanzen Heilmittel herstellen kann. 
+
+\subsubsection{Siedler (NPCs)}
+Die Siedler der Siedlung haben zwar keine Lebenspunkte, jedoch hat jeder Bewohner eine Zufriedenheit, die die spielende Person aufrechterhalten muss, da die Siedler sonst die Siedlung verlassen.\\
+Diese Zufriedenheit ergibt sich daraus, ob die Siedlung sicher vor Katastrophen ist.
+
+\sectionspace
+\subsection{(potentielle) Konflikte, absehbare Schwierigkeiten}\label{sec:Konflikte}
+
+Im Spiel können gewisse Hindernisse und Dilemmata auftreten, die zum Spielspaß beitragen sollen.\\
+
+Am Anfang wird das größte Hindernis erst einmal sein, als spielende Person selber zu überleben.
+Durch das Erkunden der Umgebung kann die spielende Person Essen und andere Ressourcen finden, um den eigenen Hunger zu stillen, sowie einen warmen Ort für sich aufzubauen.\\
+Wenn die spielende Person an einen Standpunkt gekommen ist, wo sie genug Erfahrung und Materialien gesammelt hat, werden nun NPCs erscheinen, die in der Siedlung leben wollen, die nun auch verwaltet werden müssen.\\
+Man soll als spielende Person jetzt das eigene Überleben sowie das der NPCs sichern, dennoch können auch Dilemmata und Katastrophen innerhalb der nun aufgebauten Siedlung auftreten und sich (teilweise durch das Verhalten der NPCs) ausbreiten können.\\
+Zunächst könnte sich in der Siedlung eine Seuche verbreiten, die nur die spielende Person aufhalten kann, in dem sie ein Gegenmittel entwickelt, welche durch das Erkunden von der Umgebung und neuen Ressourcen entdeckt werden kann.\\
+Außerdem können auch gängige Naturkatastrophen auftreten, wie z.B. eine Flut, die ein gewissen Siedlungsteil überschwemmt. In diesen Überschwemmten Siedlungsteilen muss man Zeit investieren, um sie wiederherzustellen und dann zu optimieren, damit eine zukünftige Flut keine größeren Schäden mehr hinterlässt.\\
+Die Siedler können jedoch auch selber Schäden verursachen durch alltägliche Unfälle, darunter zählen etwa Brände. Ein solcher Brand kann durch ein nicht erloschenes Lagerfeuer entstehen. Folglich muss die spielende Person entweder das Lagerfeuer vorher selbst auslöschen oder Bewohnern eine Rolle zuweisen, die sich auf solche Unfälle spezialisieren, wie etwa eine Feuerwache. \\
+Es können mehrere Hindernisse und Katastrophen aufkommen, welche die spielende Person parallel verhindern muss. Wenn sie diese nicht bewältigen kann oder ignoriert, können sich daraus weitere Hindernisse bilden. Ein Lebensmittelmangel führt beispielsweise zur Hungersnot.
+
+\sectionspace
+\subsection{Rahmenbedingungen}\label{sec:Rahmenbedingungen}
+Im Folgenden wird auf die verschiedenen Rahmenbedingungen eingegangen, denen das Projekt unterliegt. Es findet dabei eine Einteilung in die Kategorien technische, juristische und zeitliche Rahmenbedingungen statt. % still room for improvement
+
+\subsubsection{Technische Rahmenbedingungen}
+Die wohl elementarste Grenze der technischen Möglichkeiten bilden die Grenzen der verwendeten Engine \textit{Unity}. Diese ist zwar durch sogenannte "`Packages"' fast beliebig erweiterbar, aber etwa Erweiterungen, die das Schreiben eines Mehrspielerspiels ermöglichen, setzen ein entsprechend angepasstes Programmierkonzept voraus, welches den zeitlichen Rahmen dieses Projekts sprengen würde.
+
+\subsubsection{Juristische Rahmenbedingungen}
+Um etwaige juristische Probleme zu vermeiden, wird bei der Auswahl der verwendeten Assets, seien es Texturen, Sounds, Schriftarten, etc., darauf geachtet, dass diese eine Verwendung im Rahmen des Projekts erlauben. Bevorzugt werden diese, die entweder in der Public Domain oder aber unter einer Lizenz wie der Creative Commons \cite{cc_licenses} oder ähnlichen veröffentlicht wurden. Quellen für solche sind in diesem Fall etwa der \hyperref{https://assetstore.unity.com/}{}{}{Unity Asset Store \textit{(assetstore.unity.com)}} oder Online-Marktplätze wie \hyperref{https://itch.io/}{}{}{\textit{itch.io}}. Dort, wo es zeitlich und technisch möglich ist, werden jedoch Assets aus eigener Produktion verwendet.
+
+\subsubsection{Zeitliche Rahmenbedingungen}
+Aufgrund des zeitlichen Rahmens findet eine Einteilung der geplanten Spielelemente in verschieden Prioritätskategorien statt. Gleichzeitig wird die Implementierung des Spiels möglichst modular gehalten, sodass bei eventuellem Zeitdruck Spielelemente mit niedriger Priorität ausgelassen werden können, ohne die Stabilität der restlichen Spielelemente zu gefährden. Elemente wie Karte (Tilemap), Spielstandsicherung und das GUI haben beispielsweise eine sehr hohe Priorität.
+
+\newpage
+\subsection{Ergebnisse}\label{sec:Ergebnisse}
+Die Story in "`\gametitle"' endet, wenn der Teufel so beeindruckt von der Siedlung ist, dass er dem Avatar einen Großteil der Schuld bei ihm erlässt. Dies geschieht zu dem Zeitpunkt, an dem erstmals die höchste Stufe bestimmter Bauwerke erreicht wurde und die Zufriedenheit aller Bewohner im oberen Viertel liegt. Damit ist die Story gewonnen, jedoch hat die spielende Person die Möglichkeit, das Spiel ohne Story fortzusetzen.\\ 
+Das Spiel ist dementsprechend ein Endlosspiel, dessen einzige Grenze der Platz auf der Karte ist. Ist die Karte in Gänze verbaut, ist es der spielenden Person lediglich möglich, alte Gebäude abzureißen und Neue zu bauen. Die spielende Person kann weiterhin jederzeit durch Katastrophen oder Bedürfnisse des Avatars, denen nicht ausreichend entgegengewirkt wird, gegen das Spiel verlieren.\\
+Das Abfragen mehrerer Bedingungen kann sowohl dazu führen, dass die spielende Person gegen das Spiel verliert, als auch dazu, dass die Story durch Erreichen der Ziele abgeschlossen ist. Die spielende Person kann nur in gewissen Situationen, wie die erfolgreiche Bekämpfung von Katastrophen, gegen das Spiel gewinnen, jedoch nicht so, dass das Spiel danach beendet wäre.
+
+
+\sectionspace
+\newpage
+\printbibliography[heading=bibnumbered, title=Referenzen]\label{sec:Referenzen}
 
 \end{document}

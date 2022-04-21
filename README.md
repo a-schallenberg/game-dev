@@ -1,2 +1,2 @@
-# "Game name here"
+# Chance of Hell (WIP)
   "Our game descrption here"
