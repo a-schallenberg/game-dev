@@ -7,8 +7,8 @@ using UnityEngine.Tilemaps;
 /// <summary>
 /// This class handles all structures for placing them on the grid.
 /// </summary>
-public class GridComponentHandler : MonoBehaviour {
-    public static GridComponentHandler Instance { get; private set; }
+public class StructureHandler : MonoBehaviour {
+    public static StructureHandler Instance { get; private set; }
 
     private static readonly Dictionary<TileType, TileBase> TileBases = new();
 
@@ -18,7 +18,7 @@ public class GridComponentHandler : MonoBehaviour {
     public Tilemap TempTilemap;
 
 
-    private GridComponent _tempComponent;
+    private Structure _tempComponent;
     private Vector3 _prevMousePos;
     private BoundsInt _prevArea;
 
@@ -104,7 +104,7 @@ public class GridComponentHandler : MonoBehaviour {
     
     #endregion
 
-    #region GridComponent Placement
+    #region Structure Placement
 
     public void OnInstantiateButtonClicked(GameObject gridComponent) {
         if (!IsInPlacing()) {
@@ -112,7 +112,7 @@ public class GridComponentHandler : MonoBehaviour {
         }
     }
     private void StartPlacing(GameObject gridComponent) {
-        _tempComponent = Instantiate(gridComponent, Vector3.zero, Quaternion.identity).GetComponent<GridComponent>();
+        _tempComponent = Instantiate(gridComponent, Vector3.zero, Quaternion.identity).GetComponent<Structure>();
         FollowBuilding();
     }
 
