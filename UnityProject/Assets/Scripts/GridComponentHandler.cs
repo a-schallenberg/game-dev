@@ -4,6 +4,9 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.Tilemaps;
 
+/// <summary>
+/// This class handles all structures for placing them on the grid.
+/// </summary>
 public class GridComponentHandler : MonoBehaviour {
     public static GridComponentHandler Instance { get; private set; }
 
