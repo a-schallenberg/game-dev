@@ -42,8 +42,7 @@ public class StructureHandler : MonoBehaviour {
         }
         
         FollowCursor();
-
-
+        
         if (Input.GetMouseButton(0)) {
             if (_tempComponent.CanBePlaced()) {
                 _tempComponent.Place();
