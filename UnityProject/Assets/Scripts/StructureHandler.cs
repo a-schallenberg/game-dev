@@ -43,21 +43,21 @@ public class StructureHandler : MonoBehaviour {
         
         FollowCursor();
         
-        if (Input.GetMouseButton(0)) {
+        if (Input.GetAxis("Submit") > 1) {
             if (_tempComponent.CanBePlaced()) {
                 _tempComponent.Place();
                 _tempComponent = null;
             }
         }
-        else if (Input.GetKeyDown(KeyCode.Escape) || Input.GetMouseButtonDown(1)) {
+        else if (Input.GetAxis("Cancel") > 1) {
             StopPlacing();
         }
     }
     
     private void FollowCursor() {
-        if (EventSystem.current.IsPointerOverGameObject(0)) {
-            return;
-        }
+        // if (EventSystem.current.IsPointerOverGameObject(0)) {
+        //     return;
+        // }
 
         if (!_tempComponent.Placed) {
             var cellPos = GridLayout.LocalToCell(Camera.main.ScreenToWorldPoint(Input.mousePosition));
