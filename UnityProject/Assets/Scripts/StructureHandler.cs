@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-using UnityEngine.EventSystems;
 using UnityEngine.Tilemaps;
 
 /// <summary>
@@ -16,51 +15,93 @@ public class StructureHandler : MonoBehaviour {
     public GridLayout GridLayout;
     public Tilemap MainTilemap;
     public Tilemap TempTilemap;
+    public TileBase WhiteTile;
+    public TileBase GreenTile;
+    public TileBase RedTile;
 
-
+    private GameInputActions.BuildingActions _building;
     private Structure _tempComponent;
     private Vector3 _prevMousePos;
     private BoundsInt _prevArea;
 
     #region Unity Methods
 
+    private void OnEnable() {
+        _building.Enable();
+    }
+
+    private void OnDisable() {
+        _building.Disable();
+    }
+
     private void Awake() {
         Instance = this;
+        _building = Util.InputAction.Building;
+
+        _building.Submit.performed += _ => Submit();
+        _building.Cancel.performed += _ => Cancel();
+        _building.MousePosition.performed += context => MousePosition(context.ReadValue<Vector2>());
     }
 
     private void Start() {
-        const string tilePath = @"Tiles/";
         TileBases.Add(TileType.Emtpy, null);
-        TileBases.Add(TileType.White, Resources.Load<TileBase>(tilePath + "White"));
-        TileBases.Add(TileType.Green, Resources.Load<TileBase>(tilePath + "Green"));
-        TileBases.Add(TileType.Red, Resources.Load<TileBase>(tilePath + "Red"));
+        TileBases.Add(TileType.White, WhiteTile);
+        TileBases.Add(TileType.Green, GreenTile);
+        TileBases.Add(TileType.Red, RedTile);
     }
     
-    private void Update() {
-        if (!_tempComponent) {
-            return;
-        }
-        
-        FollowCursor();
-        
-        if (Input.GetAxis("Submit") > 1) {
-            if (_tempComponent.CanBePlaced()) {
-                _tempComponent.Place();
-                _tempComponent = null;
-            }
-        }
-        else if (Input.GetAxis("Cancel") > 1) {
-            StopPlacing();
-        }
-    }
+    // private void Update() {
+    //     if (!_tempComponent) {
+    //         return;
+    //     }
+    //     
+    //     //FollowCursor();
+    //     
+    //     // if (Input.GetAxis("Submit") > 1) {
+    //     //     if (_tempComponent.CanBePlaced()) {
+    //     //         _tempComponent.Place();
+    //     //         _tempComponent = null;
+    //     //     }
+    //     // }
+    //     // else if (Input.GetAxis("Cancel") > 1) {
+    //     //     StopPlacing();
+    //     // }
+    // }
     
-    private void FollowCursor() {
-        // if (EventSystem.current.IsPointerOverGameObject(0)) {
-        //     return;
-        // }
+    // private void FollowCursor() {
+    //     // if (EventSystem.current.IsPointerOverGameObject(0)) {
+    //     //     return;
+    //     // }
+    //
+    //     if (!_tempComponent.Placed) {
+    //         var cellPos = GridLayout.LocalToCell(Camera.main.ScreenToWorldPoint(Input.mousePosition));
+    //
+    //         if (_prevMousePos != cellPos) {
+    //             _tempComponent.transform.localPosition = GridLayout.CellToLocalInterpolated(cellPos + new Vector3(.5f, .5f, 0f));
+    //             _prevMousePos = cellPos;
+    //             FollowBuilding();
+    //         }
+    //     }
+    // }
+    
+    #endregion
 
+    #region Input Actions
+
+    private void Submit() {
+        if (_tempComponent.CanBePlaced()) {
+            _tempComponent.Place();
+            _tempComponent = null;
+        }
+    }
+
+    private void Cancel() {
+        StopPlacing();
+    }
+
+    private void MousePosition(Vector2 pos) {
         if (!_tempComponent.Placed) {
-            var cellPos = GridLayout.LocalToCell(Camera.main.ScreenToWorldPoint(Input.mousePosition));
+            var cellPos = GridLayout.LocalToCell(Camera.main.ScreenToWorldPoint(pos));
 
             if (_prevMousePos != cellPos) {
                 _tempComponent.transform.localPosition = GridLayout.CellToLocalInterpolated(cellPos + new Vector3(.5f, .5f, 0f));
@@ -70,8 +111,9 @@ public class StructureHandler : MonoBehaviour {
         }
     }
     
-    #endregion
 
+    #endregion
+    
     #region Tilemap Utils
 
     private static TileBase[] GetTilesBlock(BoundsInt area, Tilemap tilemap) {
