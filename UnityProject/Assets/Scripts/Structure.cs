@@ -8,6 +8,7 @@ using UnityEngine;
 public class Structure : MonoBehaviour {
     public bool Placed { get; private set; }
     public BoundsInt Area;
+    public Canvas menu;
 
     #region Placing
 
@@ -24,5 +25,9 @@ public class Structure : MonoBehaviour {
         return new BoundsInt(StructureHandler.Instance.GridLayout.LocalToCell(transform.position), Area.size);
     }
 
+    #endregion
+
+    #region Menu
+        
     #endregion
 }
