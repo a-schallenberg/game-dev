@@ -10,6 +10,14 @@ public class Structure : MonoBehaviour {
     public BoundsInt Area;
     public Canvas menu;
 
+    #region Unity Methods
+    
+    private void Awake() {
+        menu.enabled = false;
+    }
+
+    #endregion
+
     #region Placing
 
     public bool CanBePlaced() {
@@ -28,6 +36,10 @@ public class Structure : MonoBehaviour {
     #endregion
 
     #region Menu
-        
+        private void EnableMenu() {
+            if(!Placed) {return;}
+
+            // TODO
+        }
     #endregion
 }

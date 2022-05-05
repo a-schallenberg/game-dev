@@ -49,6 +49,7 @@ MonoBehaviour:
   Area:
     m_Position: {x: 0, y: 0, z: 0}
     m_Size: {x: 2, y: 2, z: 1}
+  menu: {fileID: 6400215191660359612}
 --- !u!1 &9070566925004322062
 GameObject:
   m_ObjectHideFlags: 0
@@ -230,6 +231,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ceff0a866b5713341ac34b552e2b3246, type: 3}
+--- !u!223 &6400215191660359612 stripped
+Canvas:
+  m_CorrespondingSourceObject: {fileID: 5507360720158770293, guid: ceff0a866b5713341ac34b552e2b3246, type: 3}
+  m_PrefabInstance: {fileID: 1494124890024422345}
+  m_PrefabAsset: {fileID: 0}
 --- !u!224 &8932997079848600403 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 8017624668091705498, guid: ceff0a866b5713341ac34b552e2b3246, type: 3}
