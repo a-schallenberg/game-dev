@@ -50,45 +50,13 @@ public class StructureHandler : MonoBehaviour {
         TileBases.Add(TileType.Red, RedTile);
     }
     
-    // private void Update() {
-    //     if (!_tempComponent) {
-    //         return;
-    //     }
-    //     
-    //     //FollowCursor();
-    //     
-    //     // if (Input.GetAxis("Submit") > 1) {
-    //     //     if (_tempComponent.CanBePlaced()) {
-    //     //         _tempComponent.Place();
-    //     //         _tempComponent = null;
-    //     //     }
-    //     // }
-    //     // else if (Input.GetAxis("Cancel") > 1) {
-    //     //     StopPlacing();
-    //     // }
-    // }
-    
-    // private void FollowCursor() {
-    //     // if (EventSystem.current.IsPointerOverGameObject(0)) {
-    //     //     return;
-    //     // }
-    //
-    //     if (!_tempComponent.Placed) {
-    //         var cellPos = GridLayout.LocalToCell(Camera.main.ScreenToWorldPoint(Input.mousePosition));
-    //
-    //         if (_prevMousePos != cellPos) {
-    //             _tempComponent.transform.localPosition = GridLayout.CellToLocalInterpolated(cellPos + new Vector3(.5f, .5f, 0f));
-    //             _prevMousePos = cellPos;
-    //             FollowBuilding();
-    //         }
-    //     }
-    // }
-    
     #endregion
 
     #region Input Actions
 
     private void Submit() {
+        if(_tempComponent == null) {return;}
+
         if (_tempComponent.CanBePlaced()) {
             _tempComponent.Place();
             _tempComponent = null;
@@ -96,10 +64,14 @@ public class StructureHandler : MonoBehaviour {
     }
 
     private void Cancel() {
+        if(_tempComponent == null) {return;}
+
         StopPlacing();
     }
 
     private void MousePosition(Vector2 pos) {
+        if(_tempComponent == null) {return;}
+
         if (!_tempComponent.Placed) {
             var cellPos = GridLayout.LocalToCell(Camera.main.ScreenToWorldPoint(pos));
 
