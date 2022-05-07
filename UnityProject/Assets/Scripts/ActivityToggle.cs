@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Events;
 
 /// <summary>
 /// This script is for the activity toggling.
@@ -9,9 +10,12 @@ using UnityEngine;
 /// on which the script is placed.
 /// </summary>
 public class ActivityToggle : MonoBehaviour {
-    public GameObject GameObject;
+    [SerializeField]
+    private UnityEvent onToggle;
+
 
     public void ToggleActivity() {
-        GameObject.SetActive(!GameObject.activeSelf);
+        gameObject.SetActive(!gameObject.activeSelf);
+        onToggle.Invoke();
     }
 }

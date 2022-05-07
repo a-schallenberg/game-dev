@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -13,12 +12,17 @@ public class StructureHandler : MonoBehaviour {
     private static readonly Dictionary<TileType, TileBase> TileBases = new();
 
     //Unity attributes
-    public GridLayout GridLayout;
-    public Tilemap MainTilemap;
-    public Tilemap TempTilemap;
-    public TileBase WhiteTile;
-    public TileBase GreenTile;
-    public TileBase RedTile;
+    public GridLayout gridLayout;
+    [SerializeField]
+    private Tilemap mainTilemap;
+    [SerializeField]
+    private Tilemap tempTilemap;
+    [SerializeField]
+    private TileBase whiteTile;
+    [SerializeField]
+    private TileBase greenTile;
+    [SerializeField]
+    private TileBase redTile;
 
     private GameInputActions.BuildingActions _building;
     private Structure _tempComponent;
@@ -46,9 +50,9 @@ public class StructureHandler : MonoBehaviour {
 
     private void Start() {
         TileBases.Add(TileType.Emtpy, null);
-        TileBases.Add(TileType.White, WhiteTile);
-        TileBases.Add(TileType.Green, GreenTile);
-        TileBases.Add(TileType.Red, RedTile);
+        TileBases.Add(TileType.White, whiteTile);
+        TileBases.Add(TileType.Green, greenTile);
+        TileBases.Add(TileType.Red, redTile);
     }
     
     #endregion
@@ -74,10 +78,10 @@ public class StructureHandler : MonoBehaviour {
         if(_tempComponent == null) {return;}
 
         if (!_tempComponent.Placed) {
-            var cellPos = GridLayout.LocalToCell(Camera.main.ScreenToWorldPoint(pos));
+            var cellPos = gridLayout.LocalToCell(Camera.main.ScreenToWorldPoint(pos));
 
             if (_prevMousePos != cellPos) {
-                _tempComponent.transform.localPosition = GridLayout.CellToLocalInterpolated(cellPos + new Vector3(.5f, .5f, 0f));
+                _tempComponent.transform.localPosition = gridLayout.CellToLocalInterpolated(cellPos + new Vector3(.5f, .5f, 0f));
                 _prevMousePos = cellPos;
                 FollowBuilding();
             }
@@ -142,22 +146,22 @@ public class StructureHandler : MonoBehaviour {
     private void ClearArea() {
         var toClear = new TileBase[_prevArea.size.x * _prevArea.size.y * _prevArea.size.z];
         FillTilesBlock(toClear, TileType.Emtpy);
-        TempTilemap.SetTilesBlock(_prevArea, toClear);
+        tempTilemap.SetTilesBlock(_prevArea, toClear);
     }
 
     private void FollowBuilding() {
         ClearArea();
 
-        _tempComponent.Area.position = GridLayout.WorldToCell(_tempComponent.gameObject.transform.position);
-        var placingArea = _tempComponent.Area;
+        _tempComponent.area.position = gridLayout.WorldToCell(_tempComponent.gameObject.transform.position);
+        var placingArea = _tempComponent.area;
 
-        var isTilesBlockWhite = IsTilesBlockOfType(GetTilesBlock(placingArea, MainTilemap), TileType.White);
-        SetTilesBlock(placingArea, isTilesBlockWhite ? TileType.Green : TileType.Red, TempTilemap);
+        var isTilesBlockWhite = IsTilesBlockOfType(GetTilesBlock(placingArea, mainTilemap), TileType.White);
+        SetTilesBlock(placingArea, isTilesBlockWhite ? TileType.Green : TileType.Red, tempTilemap);
         _prevArea = placingArea;
     }
 
     public bool CanTakeArea(BoundsInt area) {
-        if (IsTilesBlockOfType(GetTilesBlock(area, MainTilemap), TileType.White)) {
+        if (IsTilesBlockOfType(GetTilesBlock(area, mainTilemap), TileType.White)) {
             return true;
         }
         
@@ -166,8 +170,8 @@ public class StructureHandler : MonoBehaviour {
     }
 
     public void TakeArea(BoundsInt area) {
-        SetTilesBlock(area, TileType.Emtpy, TempTilemap);
-        SetTilesBlock(area, TileType.Green, MainTilemap);
+        SetTilesBlock(area, TileType.Emtpy, tempTilemap);
+        SetTilesBlock(area, TileType.Green, mainTilemap);
     }
 
     private bool IsInPlacing() {
@@ -175,7 +179,6 @@ public class StructureHandler : MonoBehaviour {
     }
     
     #endregion
-    
 }
 
 public enum TileType {

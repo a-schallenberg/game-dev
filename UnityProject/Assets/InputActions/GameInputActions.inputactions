@@ -103,6 +103,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
+                },
+                {
+                    "name": "BuildMenu",
+                    "type": "Button",
+                    "id": "2abb6de0-140f-43d3-8933-83c4677c04ad",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -160,6 +169,17 @@
                     "action": "Movement",
                     "isComposite": false,
                     "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "1c45b996-8a21-488b-9569-11d2bb8d6f1e",
+                    "path": "<Keyboard>/B",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard",
+                    "action": "BuildMenu",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         }

@@ -7,8 +7,9 @@ using UnityEngine;
 /// </summary>
 public class Structure : MonoBehaviour {
     public bool Placed { get; private set; }
-    public BoundsInt Area;
-    public Canvas menu;
+    public BoundsInt area;
+    [SerializeField]
+    private Canvas menu;
 
     #region Unity Methods
     
@@ -30,7 +31,7 @@ public class Structure : MonoBehaviour {
     }
 
     private BoundsInt GetTempArea() {
-        return new BoundsInt(StructureHandler.Instance.GridLayout.LocalToCell(transform.position), Area.size);
+        return new BoundsInt(StructureHandler.Instance.gridLayout.LocalToCell(transform.position), area.size);
     }
 
     #endregion

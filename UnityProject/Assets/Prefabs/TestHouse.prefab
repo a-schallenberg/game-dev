@@ -46,7 +46,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 748fef3c38cb843d883c8c192c7190a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Area:
+  area:
     m_Position: {x: 0, y: 0, z: 0}
     m_Size: {x: 2, y: 2, z: 1}
   menu: {fileID: 6400215191660359612}
