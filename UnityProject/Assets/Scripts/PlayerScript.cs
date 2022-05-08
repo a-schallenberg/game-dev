@@ -1,14 +1,15 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
+using Button = UnityEngine.UI.Button;
 
 public class PlayerScript : MonoBehaviour {
     public static PlayerScript Instance { get; private set; }
-    
+
+    public List<Button> foundations;
     [SerializeField]
     private float movementSpeed = 5f;
-    
-    public readonly List<Sprite> Foundations = new();
-    
+
     private GameInputActions.PlayerActions _playerActions;
     private Vector2 _move = Vector2.zero;
     
@@ -23,7 +24,7 @@ public class PlayerScript : MonoBehaviour {
 
     private void Awake() {
         Instance = this;
-        
+
         _playerActions = Util.InputAction.Player;
 
         //Movement
