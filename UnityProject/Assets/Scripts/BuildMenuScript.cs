@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -18,7 +17,6 @@ public class BuildMenuScript : MonoBehaviour {
 	}
 
 	public void UpdateFoundationSlots() {
-		_items = new();
 		foreach (var foundation in PlayerScript.Instance.foundations) {
 			if (!_items.ContainsKey(foundation)) {
 				_items.Add(foundation, new FoundationItemSlot(button, foundation, foundationView));
@@ -26,6 +24,10 @@ public class BuildMenuScript : MonoBehaviour {
 			_items[foundation].Add();
 		}
 
+		UpdateFoundationViewSize();
+	}
+
+	private void UpdateFoundationViewSize() {
 		var buttonWidthSum = ((RectTransform) button.transform).rect.width * _items.Count;
 		var width          = group.padding.left + group.padding.right + buttonWidthSum + (_items.Count - 1) * group.spacing;
 		foundationView.sizeDelta = new Vector2(width, 0);
@@ -41,7 +43,7 @@ public class BuildMenuScript : MonoBehaviour {
 		if (_items[structure].IsEmpty()) {
 			_items[structure].DestroyButton();
 			_items.Remove(structure);
-			UpdateFoundationSlots();
+			UpdateFoundationViewSize();
 		}
 	}
 
