@@ -2656,7 +2656,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ed99ab3baa573fc5a130ffb0bcc2e00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  foundations: []
+  foundations:
+  - {fileID: 2041848607962388109, guid: 288ff4f5a788bc2d19ee4abd5c6dfea2, type: 3}
+  - {fileID: 2041848607962388109, guid: 288ff4f5a788bc2d19ee4abd5c6dfea2, type: 3}
+  - {fileID: 2041848607962388109, guid: 288ff4f5a788bc2d19ee4abd5c6dfea2, type: 3}
+  - {fileID: 2041848607962388109, guid: 288ff4f5a788bc2d19ee4abd5c6dfea2, type: 3}
+  - {fileID: 2041848607962388109, guid: 288ff4f5a788bc2d19ee4abd5c6dfea2, type: 3}
   movementSpeed: 5
 --- !u!4 &167225659
 Transform:
@@ -2979,6 +2984,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f3c06a6f590635bdbbb0ee5f1288840b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  button: {fileID: 2711097412994975878, guid: 3c57b8c6dc6d128619484aa18de2ad53, type: 3}
   foundationView: {fileID: 772146919}
   group: {fileID: 772146920}
 --- !u!1 &519420028
