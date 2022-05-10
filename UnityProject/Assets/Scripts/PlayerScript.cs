@@ -4,7 +4,8 @@ using UnityEngine;
 public class PlayerScript : MonoBehaviour {
 	public static PlayerScript Instance { get; private set; }
 
-	public List<Structure> foundations;
+	[SerializeField] public List<Structure> foundations;
+
 
 	[SerializeField] private float movementSpeed = 5f;
 
@@ -22,8 +23,8 @@ public class PlayerScript : MonoBehaviour {
 
 	private void Awake() {
 		Instance = this;
-
-		_playerActions = Util.InputAction.Player;
+		
+		_playerActions  = Util.InputAction.Player;
 
 		//Movement
 		_playerActions.Movement.performed += context => _move = context.ReadValue<Vector2>();
@@ -42,4 +43,11 @@ public class PlayerScript : MonoBehaviour {
 	}
 
 	private void BuildMenu() { }
+
+	public void AddFoundation(Structure structure) {
+		foundations.Add(structure);
+	}
+	public void RemoveFoundation(Structure structure) {
+		foundations.Remove(structure);
+	}
 }

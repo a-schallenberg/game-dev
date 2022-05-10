@@ -2660,8 +2660,6 @@ MonoBehaviour:
   - {fileID: 2041848607962388109, guid: 288ff4f5a788bc2d19ee4abd5c6dfea2, type: 3}
   - {fileID: 2041848607962388109, guid: 288ff4f5a788bc2d19ee4abd5c6dfea2, type: 3}
   - {fileID: 2041848607962388109, guid: 288ff4f5a788bc2d19ee4abd5c6dfea2, type: 3}
-  - {fileID: 2041848607962388109, guid: 288ff4f5a788bc2d19ee4abd5c6dfea2, type: 3}
-  - {fileID: 2041848607962388109, guid: 288ff4f5a788bc2d19ee4abd5c6dfea2, type: 3}
   movementSpeed: 5
 --- !u!4 &167225659
 Transform:

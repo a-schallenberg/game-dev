@@ -8,6 +8,7 @@ using UnityEngine;
 public class Structure : MonoBehaviour {
 	public bool      Placed { get; private set; }
 	public BoundsInt area;
+	public string    structureName;
 
 	[SerializeField] private Canvas menu;
 
@@ -28,6 +29,8 @@ public class Structure : MonoBehaviour {
 	public void Place() {
 		Placed = true;
 		StructureHandler.Instance.TakeArea(GetTempArea());
+
+		BuildMenuScript.Instance.RemoveFoundationItem(this);
 	}
 
 	private BoundsInt GetTempArea() {
@@ -44,6 +47,34 @@ public class Structure : MonoBehaviour {
 		}
 
 		// TODO
+	}
+
+	#endregion
+
+	#region Operators
+
+	public static bool operator ==(Structure s1, Structure s2) {
+		if (ReferenceEquals(s1, null) && ReferenceEquals(s2, null)) {
+			return true;
+		}
+
+		if (ReferenceEquals(s1, null) || ReferenceEquals(s2, null)) {
+			return false;
+		}
+
+		return s1.name == s2.name;
+	}
+
+	public static bool operator !=(Structure s1, Structure s2) {
+		return !(s1 == s2);
+	}
+
+	public override bool Equals(object obj) {
+		return obj != null && obj.GetType() == typeof(Structure) && structureName.Equals(((Structure) obj).structureName);
+	}
+
+	public override int GetHashCode() {
+		return structureName.GetHashCode();
 	}
 
 	#endregion
