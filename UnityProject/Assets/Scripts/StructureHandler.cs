@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-using UnityEngine.EventSystems;
 using UnityEngine.Tilemaps;
 
 /// <summary>
@@ -13,65 +12,85 @@ public class StructureHandler : MonoBehaviour {
     private static readonly Dictionary<TileType, TileBase> TileBases = new();
 
     //Unity attributes
-    public GridLayout GridLayout;
-    public Tilemap MainTilemap;
-    public Tilemap TempTilemap;
+    public GridLayout gridLayout;
+    [SerializeField]
+    private Tilemap mainTilemap;
+    [SerializeField]
+    private Tilemap tempTilemap;
+    [SerializeField]
+    private TileBase whiteTile;
+    [SerializeField]
+    private TileBase greenTile;
+    [SerializeField]
+    private TileBase redTile;
 
-
+    private GameInputActions.BuildingActions _building;
     private Structure _tempComponent;
     private Vector3 _prevMousePos;
     private BoundsInt _prevArea;
 
     #region Unity Methods
 
+    private void OnEnable() {
+        _building.Enable();
+    }
+
+    private void OnDisable() {
+        _building.Disable();
+    }
+
     private void Awake() {
         Instance = this;
+        _building = Util.InputAction.Building;
+
+        _building.Submit.performed += _ => Submit();
+        _building.Cancel.performed += _ => Cancel();
+        _building.MousePosition.performed += context => MousePosition(context.ReadValue<Vector2>());
     }
 
     private void Start() {
-        const string tilePath = @"Tiles/";
         TileBases.Add(TileType.Emtpy, null);
-        TileBases.Add(TileType.White, Resources.Load<TileBase>(tilePath + "White"));
-        TileBases.Add(TileType.Green, Resources.Load<TileBase>(tilePath + "Green"));
-        TileBases.Add(TileType.Red, Resources.Load<TileBase>(tilePath + "Red"));
+        TileBases.Add(TileType.White, whiteTile);
+        TileBases.Add(TileType.Green, greenTile);
+        TileBases.Add(TileType.Red, redTile);
     }
     
-    private void Update() {
-        if (!_tempComponent) {
-            return;
-        }
-        
-        FollowCursor();
-        
-        if (Input.GetMouseButton(0)) {
-            if (_tempComponent.CanBePlaced()) {
-                _tempComponent.Place();
-                _tempComponent = null;
-            }
-        }
-        else if (Input.GetKeyDown(KeyCode.Escape) || Input.GetMouseButtonDown(1)) {
-            StopPlacing();
+    #endregion
+
+    #region Input Actions
+
+    private void Submit() {
+        if(_tempComponent == null) {return;}
+
+        if (_tempComponent.CanBePlaced()) {
+            _tempComponent.Place();
+            _tempComponent = null;
         }
     }
-    
-    private void FollowCursor() {
-        if (EventSystem.current.IsPointerOverGameObject(0)) {
-            return;
-        }
+
+    private void Cancel() {
+        if(_tempComponent == null) {return;}
+
+        StopPlacing();
+    }
+
+    private void MousePosition(Vector2 pos) {
+        if(_tempComponent == null) {return;}
 
         if (!_tempComponent.Placed) {
-            var cellPos = GridLayout.LocalToCell(Camera.main.ScreenToWorldPoint(Input.mousePosition));
+            var cellPos = gridLayout.LocalToCell(Camera.main.ScreenToWorldPoint(pos));
 
             if (_prevMousePos != cellPos) {
-                _tempComponent.transform.localPosition = GridLayout.CellToLocalInterpolated(cellPos + new Vector3(.5f, .5f, 0f));
+                _tempComponent.transform.localPosition = gridLayout.CellToLocalInterpolated(cellPos + new Vector3(.5f, .5f, 0f));
                 _prevMousePos = cellPos;
                 FollowBuilding();
             }
         }
     }
     
-    #endregion
 
+    #endregion
+    
     #region Tilemap Utils
 
     private static TileBase[] GetTilesBlock(BoundsInt area, Tilemap tilemap) {
@@ -127,22 +146,22 @@ public class StructureHandler : MonoBehaviour {
     private void ClearArea() {
         var toClear = new TileBase[_prevArea.size.x * _prevArea.size.y * _prevArea.size.z];
         FillTilesBlock(toClear, TileType.Emtpy);
-        TempTilemap.SetTilesBlock(_prevArea, toClear);
+        tempTilemap.SetTilesBlock(_prevArea, toClear);
     }
 
     private void FollowBuilding() {
         ClearArea();
 
-        _tempComponent.Area.position = GridLayout.WorldToCell(_tempComponent.gameObject.transform.position);
-        var placingArea = _tempComponent.Area;
+        _tempComponent.area.position = gridLayout.WorldToCell(_tempComponent.gameObject.transform.position);
+        var placingArea = _tempComponent.area;
 
-        var isTilesBlockWhite = IsTilesBlockOfType(GetTilesBlock(placingArea, MainTilemap), TileType.White);
-        SetTilesBlock(placingArea, isTilesBlockWhite ? TileType.Green : TileType.Red, TempTilemap);
+        var isTilesBlockWhite = IsTilesBlockOfType(GetTilesBlock(placingArea, mainTilemap), TileType.White);
+        SetTilesBlock(placingArea, isTilesBlockWhite ? TileType.Green : TileType.Red, tempTilemap);
         _prevArea = placingArea;
     }
 
     public bool CanTakeArea(BoundsInt area) {
-        if (IsTilesBlockOfType(GetTilesBlock(area, MainTilemap), TileType.White)) {
+        if (IsTilesBlockOfType(GetTilesBlock(area, mainTilemap), TileType.White)) {
             return true;
         }
         
@@ -151,8 +170,8 @@ public class StructureHandler : MonoBehaviour {
     }
 
     public void TakeArea(BoundsInt area) {
-        SetTilesBlock(area, TileType.Emtpy, TempTilemap);
-        SetTilesBlock(area, TileType.Green, MainTilemap);
+        SetTilesBlock(area, TileType.Emtpy, tempTilemap);
+        SetTilesBlock(area, TileType.Green, mainTilemap);
     }
 
     private bool IsInPlacing() {
@@ -160,7 +179,6 @@ public class StructureHandler : MonoBehaviour {
     }
     
     #endregion
-    
 }
 
 public enum TileType {

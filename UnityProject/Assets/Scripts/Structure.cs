@@ -6,23 +6,45 @@ using UnityEngine;
 /// X and Y are for the length and width of the structure in tiles.
 /// </summary>
 public class Structure : MonoBehaviour {
-    public bool Placed { get; private set; }
-    public BoundsInt Area;
+	public bool      Placed { get; private set; }
+	public BoundsInt area;
 
-    #region Placing
+	[SerializeField] private Canvas menu;
 
-    public bool CanBePlaced() {
-        return StructureHandler.Instance.CanTakeArea(GetTempArea());
-    }
+	#region Unity Methods
 
-    public void Place() {
-        Placed = true;
-        StructureHandler.Instance.TakeArea(GetTempArea());
-    }
+	private void Awake() {
+		menu.enabled = false;
+	}
 
-    private BoundsInt GetTempArea() {
-        return new BoundsInt(StructureHandler.Instance.GridLayout.LocalToCell(transform.position), Area.size);
-    }
+	#endregion
 
-    #endregion
+	#region Placing
+
+	public bool CanBePlaced() {
+		return StructureHandler.Instance.CanTakeArea(GetTempArea());
+	}
+
+	public void Place() {
+		Placed = true;
+		StructureHandler.Instance.TakeArea(GetTempArea());
+	}
+
+	private BoundsInt GetTempArea() {
+		return new BoundsInt(StructureHandler.Instance.gridLayout.LocalToCell(transform.position), area.size);
+	}
+
+	#endregion
+
+	#region Menu
+
+	private void EnableMenu() {
+		if (!Placed) {
+			return;
+		}
+
+		// TODO
+	}
+
+	#endregion
 }

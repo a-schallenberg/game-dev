@@ -38,7 +38,10 @@ TagManager:
   - 
   - 
   m_SortingLayers:
-  - name: Background
+  - name: Texture
+    uniqueID: 2295320287
+    locked: 0
+  - name: Build
     uniqueID: 626948253
     locked: 0
   - name: Default
