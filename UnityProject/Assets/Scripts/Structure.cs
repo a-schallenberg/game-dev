@@ -6,41 +6,45 @@ using UnityEngine;
 /// X and Y are for the length and width of the structure in tiles.
 /// </summary>
 public class Structure : MonoBehaviour {
-    public bool Placed { get; private set; }
-    public BoundsInt area;
-    [SerializeField]
-    private Canvas menu;
+	public bool      Placed { get; private set; }
+	public BoundsInt area;
 
-    #region Unity Methods
-    
-    private void Awake() {
-        menu.enabled = false;
-    }
+	[SerializeField] private Canvas menu;
 
-    #endregion
+	#region Unity Methods
 
-    #region Placing
+	private void Awake() {
+		menu.enabled = false;
+	}
 
-    public bool CanBePlaced() {
-        return StructureHandler.Instance.CanTakeArea(GetTempArea());
-    }
+	#endregion
 
-    public void Place() {
-        Placed = true;
-        StructureHandler.Instance.TakeArea(GetTempArea());
-    }
+	#region Placing
 
-    private BoundsInt GetTempArea() {
-        return new BoundsInt(StructureHandler.Instance.gridLayout.LocalToCell(transform.position), area.size);
-    }
+	public bool CanBePlaced() {
+		return StructureHandler.Instance.CanTakeArea(GetTempArea());
+	}
 
-    #endregion
+	public void Place() {
+		Placed = true;
+		StructureHandler.Instance.TakeArea(GetTempArea());
+	}
 
-    #region Menu
-        private void EnableMenu() {
-            if(!Placed) {return;}
+	private BoundsInt GetTempArea() {
+		return new BoundsInt(StructureHandler.Instance.gridLayout.LocalToCell(transform.position), area.size);
+	}
 
-            // TODO
-        }
-    #endregion
+	#endregion
+
+	#region Menu
+
+	private void EnableMenu() {
+		if (!Placed) {
+			return;
+		}
+
+		// TODO
+	}
+
+	#endregion
 }

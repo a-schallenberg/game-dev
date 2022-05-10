@@ -10,12 +10,10 @@ using UnityEngine.Events;
 /// on which the script is placed.
 /// </summary>
 public class ActivityToggle : MonoBehaviour {
-    [SerializeField]
-    private UnityEvent onToggle;
+	[SerializeField] private UnityEvent onToggle;
 
-
-    public void ToggleActivity() {
-        gameObject.SetActive(!gameObject.activeSelf);
-        onToggle.Invoke();
-    }
+	public void ToggleActivity() {
+		gameObject.SetActive(!gameObject.activeSelf);
+		onToggle.Invoke();
+	}
 }
