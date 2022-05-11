@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 /// <summary>
@@ -6,7 +7,7 @@ using UnityEngine;
 /// X and Y are for the length and width of the structure in tiles.
 /// </summary>
 public class Structure : MonoBehaviour {
-	public bool      Placed { get; private set; }
+	public bool      placed;
 	public BoundsInt area;
 	public string    structureName;
 
@@ -15,7 +16,16 @@ public class Structure : MonoBehaviour {
 	#region Unity Methods
 
 	private void Awake() {
-		menu.enabled = false;
+		if (!placed) {
+			menu.enabled = false;
+			foreach (var collider in GetComponentsInChildren<Collider2D>()) {
+				collider.enabled = false;
+			}
+		}
+	}
+
+	private void OnMouseOver() {
+		print("pressed: " + gameObject.name);
 	}
 
 	#endregion
@@ -27,10 +37,15 @@ public class Structure : MonoBehaviour {
 	}
 
 	public void Place() {
-		Placed = true;
+		placed = true;
 		StructureHandler.Instance.TakeArea(GetTempArea());
 
 		BuildMenuScript.Instance.RemoveFoundationItem(this);
+		
+		menu.enabled = true;
+		foreach (var collider in GetComponentsInChildren<Collider2D>()) {
+			collider.enabled = true;
+		}
 	}
 
 	private BoundsInt GetTempArea() {
@@ -42,7 +57,7 @@ public class Structure : MonoBehaviour {
 	#region Menu
 
 	private void EnableMenu() {
-		if (!Placed) {
+		if (!placed) {
 			return;
 		}
 

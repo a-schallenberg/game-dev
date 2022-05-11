@@ -21,14 +21,28 @@ public class FoundationItemSlot {
 		_button.onClick.AddListener(() => StructureHandler.Instance.OnInstantiateButtonClicked(_structurePrefab.gameObject));
 	}
 
-	public void Add(int number = 1) {
-		NumberOfStructures = Math.Min(SlotCapacity, NumberOfStructures + number);
+	public bool Add(int number = 1) {
+		var num = NumberOfStructures + number;
+		
+		if (num > SlotCapacity) {
+			return false;
+		}
+		
+		NumberOfStructures = num;
 		UpdateButtonText();
+		return true;
 	}
 
-	public void Remove(int number = 1) {
-		NumberOfStructures = Math.Max(0, NumberOfStructures - number);
+	public bool Remove(int number = 1) {
+		var num = NumberOfStructures - number;
+		
+		if (num < 0) {
+			return false;
+		}
+		
+		NumberOfStructures = num;
 		UpdateButtonText();
+		return true;
 	}
 
 	public bool IsEmpty() {
