@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -16,6 +15,7 @@ public class StructureHandler : MonoBehaviour {
 	public                   GridLayout gridLayout;
 	[SerializeField] private Tilemap    mainTilemap;
 	[SerializeField] private Tilemap    tempTilemap;
+	[SerializeField] private Transform    structureParent;
 	[SerializeField] private TileBase   whiteTile;
 	[SerializeField] private TileBase   greenTile;
 	[SerializeField] private TileBase   redTile;
@@ -119,7 +119,7 @@ public class StructureHandler : MonoBehaviour {
 	}
 
 	private void StartPlacing(GameObject gridComponent) {
-		_tempComponent = Instantiate(gridComponent, Vector3.zero, Quaternion.identity).GetComponent<Structure>();
+		_tempComponent = Instantiate(gridComponent, Vector3.zero, Quaternion.identity, structureParent).GetComponent<Structure>();
 		FollowBuilding();
 	}
 
