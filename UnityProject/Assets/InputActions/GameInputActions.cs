@@ -134,6 +134,15 @@ public partial class @GameInputActions : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Interaction"",
+                    ""type"": ""Button"",
+                    ""id"": ""6e569fc0-8d44-4b76-a0dd-9fc8a72393d0"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -202,6 +211,17 @@ public partial class @GameInputActions : IInputActionCollection2, IDisposable
                     ""action"": ""BuildMenu"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""48a8a3cc-39e7-4765-898d-50b75c1ec310"",
+                    ""path"": ""<Keyboard>/E"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard"",
+                    ""action"": ""Interaction"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -223,6 +243,7 @@ public partial class @GameInputActions : IInputActionCollection2, IDisposable
         m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
         m_Player_Movement = m_Player.FindAction("Movement", throwIfNotFound: true);
         m_Player_BuildMenu = m_Player.FindAction("BuildMenu", throwIfNotFound: true);
+        m_Player_Interaction = m_Player.FindAction("Interaction", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -333,12 +354,14 @@ public partial class @GameInputActions : IInputActionCollection2, IDisposable
     private IPlayerActions m_PlayerActionsCallbackInterface;
     private readonly InputAction m_Player_Movement;
     private readonly InputAction m_Player_BuildMenu;
+    private readonly InputAction m_Player_Interaction;
     public struct PlayerActions
     {
         private @GameInputActions m_Wrapper;
         public PlayerActions(@GameInputActions wrapper) { m_Wrapper = wrapper; }
         public InputAction @Movement => m_Wrapper.m_Player_Movement;
         public InputAction @BuildMenu => m_Wrapper.m_Player_BuildMenu;
+        public InputAction @Interaction => m_Wrapper.m_Player_Interaction;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -354,6 +377,9 @@ public partial class @GameInputActions : IInputActionCollection2, IDisposable
                 @BuildMenu.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnBuildMenu;
                 @BuildMenu.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnBuildMenu;
                 @BuildMenu.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnBuildMenu;
+                @Interaction.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnInteraction;
+                @Interaction.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnInteraction;
+                @Interaction.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnInteraction;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -364,6 +390,9 @@ public partial class @GameInputActions : IInputActionCollection2, IDisposable
                 @BuildMenu.started += instance.OnBuildMenu;
                 @BuildMenu.performed += instance.OnBuildMenu;
                 @BuildMenu.canceled += instance.OnBuildMenu;
+                @Interaction.started += instance.OnInteraction;
+                @Interaction.performed += instance.OnInteraction;
+                @Interaction.canceled += instance.OnInteraction;
             }
         }
     }
@@ -387,5 +416,6 @@ public partial class @GameInputActions : IInputActionCollection2, IDisposable
     {
         void OnMovement(InputAction.CallbackContext context);
         void OnBuildMenu(InputAction.CallbackContext context);
+        void OnInteraction(InputAction.CallbackContext context);
     }
 }
