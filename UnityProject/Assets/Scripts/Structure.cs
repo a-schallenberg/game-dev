@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 /// <summary>
@@ -11,16 +10,11 @@ public class Structure : MonoBehaviour {
 	public BoundsInt area;
 	public string    structureName;
 
-	[SerializeField] private Canvas menu;
-
 	#region Unity Methods
 
 	private void Awake() {
-		if (!placed) {
-			menu.enabled = false;
-			foreach (var collider in GetComponentsInChildren<Collider2D>()) {
-				collider.enabled = false;
-			}
+		foreach (var collider in GetComponentsInChildren<Collider2D>()) {
+			collider.enabled = placed;
 		}
 	}
 
@@ -42,7 +36,6 @@ public class Structure : MonoBehaviour {
 
 		BuildMenuScript.Instance.RemoveFoundationItem(this);
 		
-		menu.enabled = true;
 		foreach (var collider in GetComponentsInChildren<Collider2D>()) {
 			collider.enabled = true;
 		}

@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -7,8 +6,7 @@ public class PlayerScript : MonoBehaviour {
 
 	[SerializeField] public List<Structure> foundations;
 
-
-	[SerializeField] private float movementSpeed = 5f;
+	[SerializeField] private float          movementSpeed = 5f;
 	[SerializeField] private ActivityToggle buildMenuActivityToggle;
 
 	private GameInputActions.PlayerActions _playerActions;
@@ -49,20 +47,21 @@ public class PlayerScript : MonoBehaviour {
 
 	private void Awake() {
 		Instance = this;
-		
-		_playerActions  = Util.InputAction.Player;
+
+		_playerActions = Util.InputAction.Player;
 
 		//Movement
 		_playerActions.Movement.performed += context => _move = context.ReadValue<Vector2>();
 		_playerActions.Movement.canceled  += _ => _move       = Vector2.zero;
 
 		//Hotkeys
-		_playerActions.BuildMenu.performed += _ => BuildMenu();
+		_playerActions.BuildMenu.performed   += _ => BuildMenu();
 		_playerActions.Interaction.performed += _ => Interact();
 	}
 
-	public void LoadStartFoundations() { 
-		foreach (var foundation in foundations) { 
+	public void LoadStartFoundations()
+	{
+		foreach (var foundation in foundations) {
 			BuildMenuScript.Instance.AddFoundationItem(foundation);
 		}
 	}
@@ -79,13 +78,12 @@ public class PlayerScript : MonoBehaviour {
 		buildMenuActivityToggle.ToggleActivity();
 	}
 
-	private void Interact() {
-		
-	}
+	private void Interact() { }
 
 	public bool AddFoundation(Structure structure) {
 		return BuildMenuScript.Instance.AddFoundationItem(structure);
 	}
+
 	public bool RemoveFoundation(Structure structure) {
 		return BuildMenuScript.Instance.RemoveFoundationItem(structure);
 	}

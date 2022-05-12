@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -21,18 +20,6 @@ public class BuildMenuScript : MonoBehaviour {
 	private void OnDisable() {
 		_building.Disable();
 	}
-
-	// public void UpdateFoundationSlots() {
-	// 	foreach (var foundation in PlayerScript.Instance.foundations) {
-	// 		if (!_items.ContainsKey(foundation)) {
-	// 			_items.Add(foundation, new FoundationItemSlot(button, foundation, foundationView));
-	// 		}
-	//
-	// 		_items[foundation].Add();
-	// 	}
-	//
-	// 	UpdateFoundationViewSize();
-	// }
 
 	private void UpdateFoundationViewSize() {
 		var buttonWidthSum = ((RectTransform) button.transform).rect.width * _items.Count;
@@ -75,7 +62,5 @@ public class BuildMenuScript : MonoBehaviour {
 		_building.Submit.performed        += _ => StructureHandler.Instance.Submit();
 		_building.Cancel.performed        += _ => StructureHandler.Instance.Cancel();
 		_building.MousePosition.performed += context => StructureHandler.Instance.MousePosition(context.ReadValue<Vector2>());
-		
-		//UpdateFoundationSlots();
 	}
 }
