@@ -49,6 +49,7 @@ MonoBehaviour:
   area:
     m_Position: {x: 0, y: 0, z: 0}
     m_Size: {x: 2, y: 2, z: 1}
+  structureName: TestHouse
   menu: {fileID: 6400215191660359612}
 --- !u!1 &9070566925004322062
 GameObject:
