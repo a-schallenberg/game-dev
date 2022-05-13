@@ -2898,7 +2898,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 318429600}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 770467870}
+        m_TargetAssemblyTypeName: StructureInteractionMenu, Assembly-CSharp
+        m_MethodName: OnRemoveClicked
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &318429600
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3020,7 +3032,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 353866514}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 770467870}
+        m_TargetAssemblyTypeName: StructureInteractionMenu, Assembly-CSharp
+        m_MethodName: OnMoveClicked
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &353866514
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3071,7 +3095,7 @@ GameObject:
   - component: {fileID: 419917406}
   - component: {fileID: 419917405}
   m_Layer: 0
-  m_Name: Text (TMP)
+  m_Name: StructureName
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5225,14 +5249,14 @@ GameObject:
   - component: {fileID: 770467869}
   - component: {fileID: 770467868}
   - component: {fileID: 770467867}
-  - component: {fileID: 770467866}
+  - component: {fileID: 770467870}
   m_Layer: 0
   m_Name: StructureInteractionMenu
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &770467865
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5254,21 +5278,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
---- !u!114 &770467866
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 770467864}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 355d07f8de2b81ad1b445042b58bedd3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  onToggle:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!114 &770467867
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5330,6 +5339,20 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
+--- !u!114 &770467870
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 770467864}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 03b4fc5a9b1084b3e8e8ff9142e65493, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  structureName: {fileID: 419917405}
+  structureSpecificPanel: {fileID: 2083749118}
 --- !u!1 &772146918
 GameObject:
   m_ObjectHideFlags: 0
@@ -5926,7 +5949,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 2.1051626, y: 1}
+    m_SensorSize: {x: 2.1091955, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -6372,10 +6395,10 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 770467864}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
+      - m_Target: {fileID: 770467870}
+        m_TargetAssemblyTypeName: StructureInteractionMenu, Assembly-CSharp
+        m_MethodName: Disable
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -6818,7 +6841,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0, b: 0, a: 0.22745098}
+  m_Color: {r: 1, g: 0, b: 0, a: 0}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1

@@ -96,7 +96,7 @@ GameObject:
   - component: {fileID: 6206660429389352291}
   m_Layer: 0
   m_Name: Workshop
-  m_TagString: Untagged
+  m_TagString: Structure
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -134,4 +134,4 @@ MonoBehaviour:
     m_Position: {x: 0, y: 0, z: 0}
     m_Size: {x: 2, y: 2, z: 1}
   structureName: Workshop
-  menu: {fileID: 5507360720158770293, guid: ceff0a866b5713341ac34b552e2b3246, type: 3}
+  id: workshop

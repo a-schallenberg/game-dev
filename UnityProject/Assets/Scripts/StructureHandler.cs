@@ -66,7 +66,7 @@ public class StructureHandler : MonoBehaviour {
 			return;
 		}
 
-		if (!_tempComponent.placed) {
+		if (!_tempComponent.Placed) {
 			var cellPos = gridLayout.LocalToCell(Camera.main.ScreenToWorldPoint(pos));
 
 			if (_prevMousePos != cellPos) {
@@ -120,15 +120,17 @@ public class StructureHandler : MonoBehaviour {
 
 	private void StartPlacing(GameObject gridComponent) {
 		_tempComponent = Instantiate(gridComponent, Vector3.zero, Quaternion.identity, structureParent).GetComponent<Structure>();
+		BuildMenuScript.Instance.RemoveFoundationItem(_tempComponent);
 		FollowBuilding();
 	}
 
 	private void StopPlacing() {
 		ClearArea();
-		if (!_tempComponent.placed) {
+		if (!_tempComponent.Placed) {
 			Destroy(_tempComponent.gameObject);
+			BuildMenuScript.Instance.AddFoundationItem(_tempComponent);
 		}
-
+		
 		_tempComponent = null;
 	}
 
@@ -166,6 +168,23 @@ public class StructureHandler : MonoBehaviour {
 	private bool IsInPlacing() {
 		return _tempComponent != null;
 	}
+
+	#endregion
+
+	#region Structure Tools
+
+	public void Move(Structure structure) {
+		if (!BuildMenuScript.Instance.gameObject.activeSelf) {
+			BuildMenuScript.Instance.gameObject.GetComponent<ActivityToggle>().ToggleActivity();
+		}
+
+		SetTilesBlock(structure.area, TileType.White, mainTilemap);
+		_tempComponent = structure;
+	}
+
+	public void Remove(BoundsInt area) {
+		SetTilesBlock(area, TileType.White, mainTilemap);
+	} 
 
 	#endregion
 }

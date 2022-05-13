@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5695054573492537118}
   m_Layer: 0
   m_Name: Warehouse
-  m_TagString: Untagged
+  m_TagString: Structure
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -50,7 +50,7 @@ MonoBehaviour:
     m_Position: {x: 0, y: 0, z: 0}
     m_Size: {x: 2, y: 2, z: 1}
   structureName: Warehouse
-  menu: {fileID: 5507360720158770293, guid: ceff0a866b5713341ac34b552e2b3246, type: 3}
+  id: warehouse
 --- !u!1 &4384212562687321858
 GameObject:
   m_ObjectHideFlags: 0
