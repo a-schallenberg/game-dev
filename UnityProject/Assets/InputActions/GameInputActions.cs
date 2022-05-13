@@ -224,6 +224,62 @@ public partial class @GameInputActions : IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""Game"",
+            ""id"": ""5998d237-1948-4d00-ba0d-78a5d9dc33d4"",
+            ""actions"": [
+                {
+                    ""name"": ""Pause"",
+                    ""type"": ""Button"",
+                    ""id"": ""1e767169-7147-4e94-8765-3aff7a8e32b6"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""f7a6f25e-9b34-43a2-b181-829cd8729dd9"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Pause"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
+        },
+        {
+            ""name"": ""PauseMenu"",
+            ""id"": ""58ad6830-0eb0-4896-9b6b-bdfe4229bc4e"",
+            ""actions"": [
+                {
+                    ""name"": ""Resume"",
+                    ""type"": ""Button"",
+                    ""id"": ""ecc22374-e60d-4ab9-9b9e-4730fd6f2e86"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""1d1b01cd-b328-4e77-8a46-1960961593fa"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Resume"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": [
@@ -244,6 +300,12 @@ public partial class @GameInputActions : IInputActionCollection2, IDisposable
         m_Player_Movement = m_Player.FindAction("Movement", throwIfNotFound: true);
         m_Player_BuildMenu = m_Player.FindAction("BuildMenu", throwIfNotFound: true);
         m_Player_Interaction = m_Player.FindAction("Interaction", throwIfNotFound: true);
+        // Game
+        m_Game = asset.FindActionMap("Game", throwIfNotFound: true);
+        m_Game_Pause = m_Game.FindAction("Pause", throwIfNotFound: true);
+        // PauseMenu
+        m_PauseMenu = asset.FindActionMap("PauseMenu", throwIfNotFound: true);
+        m_PauseMenu_Resume = m_PauseMenu.FindAction("Resume", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -397,6 +459,72 @@ public partial class @GameInputActions : IInputActionCollection2, IDisposable
         }
     }
     public PlayerActions @Player => new PlayerActions(this);
+
+    // Game
+    private readonly InputActionMap m_Game;
+    private IGameActions m_GameActionsCallbackInterface;
+    private readonly InputAction m_Game_Pause;
+    public struct GameActions
+    {
+        private @GameInputActions m_Wrapper;
+        public GameActions(@GameInputActions wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Pause => m_Wrapper.m_Game_Pause;
+        public InputActionMap Get() { return m_Wrapper.m_Game; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(GameActions set) { return set.Get(); }
+        public void SetCallbacks(IGameActions instance)
+        {
+            if (m_Wrapper.m_GameActionsCallbackInterface != null)
+            {
+                @Pause.started -= m_Wrapper.m_GameActionsCallbackInterface.OnPause;
+                @Pause.performed -= m_Wrapper.m_GameActionsCallbackInterface.OnPause;
+                @Pause.canceled -= m_Wrapper.m_GameActionsCallbackInterface.OnPause;
+            }
+            m_Wrapper.m_GameActionsCallbackInterface = instance;
+            if (instance != null)
+            {
+                @Pause.started += instance.OnPause;
+                @Pause.performed += instance.OnPause;
+                @Pause.canceled += instance.OnPause;
+            }
+        }
+    }
+    public GameActions @Game => new GameActions(this);
+
+    // PauseMenu
+    private readonly InputActionMap m_PauseMenu;
+    private IPauseMenuActions m_PauseMenuActionsCallbackInterface;
+    private readonly InputAction m_PauseMenu_Resume;
+    public struct PauseMenuActions
+    {
+        private @GameInputActions m_Wrapper;
+        public PauseMenuActions(@GameInputActions wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Resume => m_Wrapper.m_PauseMenu_Resume;
+        public InputActionMap Get() { return m_Wrapper.m_PauseMenu; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(PauseMenuActions set) { return set.Get(); }
+        public void SetCallbacks(IPauseMenuActions instance)
+        {
+            if (m_Wrapper.m_PauseMenuActionsCallbackInterface != null)
+            {
+                @Resume.started -= m_Wrapper.m_PauseMenuActionsCallbackInterface.OnResume;
+                @Resume.performed -= m_Wrapper.m_PauseMenuActionsCallbackInterface.OnResume;
+                @Resume.canceled -= m_Wrapper.m_PauseMenuActionsCallbackInterface.OnResume;
+            }
+            m_Wrapper.m_PauseMenuActionsCallbackInterface = instance;
+            if (instance != null)
+            {
+                @Resume.started += instance.OnResume;
+                @Resume.performed += instance.OnResume;
+                @Resume.canceled += instance.OnResume;
+            }
+        }
+    }
+    public PauseMenuActions @PauseMenu => new PauseMenuActions(this);
     private int m_KeyboardSchemeIndex = -1;
     public InputControlScheme KeyboardScheme
     {
@@ -417,5 +545,13 @@ public partial class @GameInputActions : IInputActionCollection2, IDisposable
         void OnMovement(InputAction.CallbackContext context);
         void OnBuildMenu(InputAction.CallbackContext context);
         void OnInteraction(InputAction.CallbackContext context);
+    }
+    public interface IGameActions
+    {
+        void OnPause(InputAction.CallbackContext context);
+    }
+    public interface IPauseMenuActions
+    {
+        void OnResume(InputAction.CallbackContext context);
     }
 }
