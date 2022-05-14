@@ -99,7 +99,7 @@ GameObject:
   - component: {fileID: 1830882768880424967}
   m_Layer: 0
   m_Name: CharacterHouse
-  m_TagString: Untagged
+  m_TagString: Structure
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -136,7 +136,9 @@ MonoBehaviour:
   area:
     m_Position: {x: 0, y: 0, z: 0}
     m_Size: {x: 2, y: 2, z: 1}
+  id: character_house
   structureName: CharacterHouse
+  menuPanel: {fileID: 9005709574178899881, guid: e3d5769ac8e5d0cd998c5f96d9182f41, type: 3}
 --- !u!61 &1498903204284929478
 BoxCollider2D:
   m_ObjectHideFlags: 0

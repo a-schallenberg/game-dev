@@ -11,6 +11,7 @@ public class PlayerScript : MonoBehaviour {
 
 	private GameInputActions.PlayerActions _playerActions;
 	private Vector2                        _move = Vector2.zero;
+	private Collider2D                           _trigger; // null if the player isn't in a trigger
 
 
 	private void OnEnable() {
@@ -21,28 +22,16 @@ public class PlayerScript : MonoBehaviour {
 		_playerActions.Disable();
 	}
 
-	private void OnCollisionEnter2D(Collision2D col) {
-		print("Enter Collision");
-	}
-
-	private void OnCollisionStay2D(Collision2D collision) {
-		print("Stay Collision");
-	}
-
-	private void OnCollisionExit2D(Collision2D other) {
-		print("Leave Collision");
-	}
-
 	private void OnTriggerEnter2D(Collider2D col) {
-		print("Enter Trigger");
-	}
-
-	private void OnTriggerStay2D(Collider2D other) {
-		print("Stay Trigger");
+		_trigger = col;
 	}
 
 	private void OnTriggerExit2D(Collider2D other) {
-		print("Leave Trigger");
+		_trigger = null;
+
+		if (StructureInteractionMenu.Instance.gameObject.activeSelf) {
+			StructureInteractionMenu.Instance.Disable();
+		}
 	}
 
 	private void Awake() {
@@ -78,7 +67,14 @@ public class PlayerScript : MonoBehaviour {
 		buildMenuActivityToggle.ToggleActivity();
 	}
 
-	private void Interact() { }
+	private void Interact() {
+		if (_trigger == null) {
+			return;
+		}
+
+		var structure = _trigger.gameObject.GetComponent<Structure>();
+		StructureInteractionMenu.Instance.Enable(structure);
+	}
 
 	public bool AddFoundation(Structure structure) {
 		return BuildMenuScript.Instance.AddFoundationItem(structure);
