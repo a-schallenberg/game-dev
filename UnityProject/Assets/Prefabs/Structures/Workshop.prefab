@@ -138,7 +138,7 @@ MonoBehaviour:
   placed: 0
   id: workshop
   structureName: Workshop
-  menuPanel: {fileID: 0}
+  menuPanel: {fileID: 9005709574178899881, guid: 6eee6759af47254f9bea1ac0cbd274db, type: 3}
 --- !u!61 &5323791891641186094
 BoxCollider2D:
   m_ObjectHideFlags: 0

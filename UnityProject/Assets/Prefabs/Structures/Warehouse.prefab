@@ -54,7 +54,7 @@ MonoBehaviour:
   placed: 0
   id: warehouse
   structureName: Warehouse
-  menuPanel: {fileID: 0}
+  menuPanel: {fileID: 7767080227306837736, guid: 5b2e48142f4a6dd5082296c0f63854e1, type: 3}
 --- !u!61 &2539600661824949773
 BoxCollider2D:
   m_ObjectHideFlags: 0

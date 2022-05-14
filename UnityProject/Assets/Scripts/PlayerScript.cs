@@ -28,6 +28,10 @@ public class PlayerScript : MonoBehaviour {
 
 	private void OnTriggerExit2D(Collider2D other) {
 		_trigger = null;
+
+		if (StructureInteractionMenu.Instance.gameObject.activeSelf) {
+			StructureInteractionMenu.Instance.Disable();
+		}
 	}
 
 	private void Awake() {
