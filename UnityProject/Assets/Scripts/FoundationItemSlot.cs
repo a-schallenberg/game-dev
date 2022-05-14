@@ -3,7 +3,7 @@ using UnityEngine.UI;
 using Object = UnityEngine.Object;
 
 public class FoundationItemSlot {
-	public const int SlotCapacity = 100;
+	private const int SlotCapacity = 100;
 
 	private readonly Button    _buttonPrefab;
 	private readonly Structure _structurePrefab;
