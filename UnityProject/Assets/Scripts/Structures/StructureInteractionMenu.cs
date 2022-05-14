@@ -23,22 +23,36 @@ public class StructureInteractionMenu : MonoBehaviour {
 
 		gameObject.SetActive(true);
 		structure.OnMenuEnabled();
+		
+		InputActions.DisableAll();
+		InputActions.SIMenu.Enable();
 	}
 
+	
 	public void Disable() {
+		Disable(() => {
+					InputActions.Game.Enable();
+					Reset();
+				});
+	}
+	private void Disable(Action action) {
 		gameObject.SetActive(false);
 		_currentStructure.OnMenuDisabled();
 
 		Destroy(_currentStructurePanel.gameObject);
 
-		_currentStructure      = null;
-		_currentStructurePanel = null;
+		InputActions.DisableAll();
+		action.Invoke();
 	}
 
 	public void OnMoveClicked() {
 		try {
+			Disable(() => {
+						InputActions.Building.Enable();
+						InputActions.Game.Movement.Enable();
+					});
 			_currentStructure.Move();
-			Disable();
+			Reset();
 		} catch (NullReferenceException) { }
 	}
 	
@@ -47,5 +61,10 @@ public class StructureInteractionMenu : MonoBehaviour {
 			_currentStructure.Remove();
 			Disable();
 		} catch (NullReferenceException) { }
+	}
+
+	private void Reset() {
+		_currentStructure      = null;
+		_currentStructurePanel = null;
 	}
 }

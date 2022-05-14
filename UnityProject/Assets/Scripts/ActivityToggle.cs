@@ -16,4 +16,9 @@ public class ActivityToggle : MonoBehaviour {
 		gameObject.SetActive(!gameObject.activeSelf);
 		onToggle.Invoke();
 	}
+
+	public void SetActivity(bool active) {
+		gameObject.SetActive(active);
+		onToggle.Invoke();
+	}
 }

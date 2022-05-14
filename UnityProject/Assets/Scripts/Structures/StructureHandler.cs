@@ -118,13 +118,13 @@ public class StructureHandler : MonoBehaviour {
 		}
 	}
 
-	private void StartPlacing(GameObject gridComponent) {
+	public void StartPlacing(GameObject gridComponent) {
 		_tempComponent = Instantiate(gridComponent, Vector3.zero, Quaternion.identity, structureParent).GetComponent<Structure>();
 		BuildMenuScript.Instance.RemoveFoundationItem(_tempComponent);
 		FollowBuilding();
 	}
 
-	private void StopPlacing() {
+	public void StopPlacing() {
 		ClearArea();
 		if (!_tempComponent.Placed) {
 			Destroy(_tempComponent.gameObject);
@@ -165,7 +165,7 @@ public class StructureHandler : MonoBehaviour {
 		SetTilesBlock(area, TileType.Green, mainTilemap);
 	}
 
-	private bool IsInPlacing() {
+	public bool IsInPlacing() {
 		return _tempComponent != null;
 	}
 

@@ -1,4 +1,6 @@
+using System;
 using System.Collections.Generic;
+using System.Threading;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -11,14 +13,40 @@ public class BuildMenuScript : MonoBehaviour {
 	[SerializeField] private HorizontalLayoutGroup group;
 
 	private readonly Dictionary<Structure, FoundationItemSlot> _items = new();
-	private          GameInputActions.BuildingActions          _building;
 
-	private void OnEnable() {
-		_building.Enable();
+	public BuildMenuScript() {
+		Instance = this;
 	}
 
-	private void OnDisable() {
-		_building.Disable();
+	public void OnBuildMenuButtonPressed() {
+		if (gameObject.activeSelf) {
+			Disable(true);
+		} else {
+			Enable();
+		}
+	}
+	
+	public void Enable() {
+		gameObject.GetComponent<ActivityToggle>().SetActivity(true);
+		
+		InputActions.DisableAll();
+		InputActions.Building.Enable();
+		InputActions.Game.Movement.Enable();
+	}
+
+	public void Disable(bool hard) {
+		if (StructureHandler.Instance.IsInPlacing()) {
+			if (hard) {
+				StructureHandler.Instance.StopPlacing();
+			} else {
+				return;
+			}
+		}
+		
+		gameObject.GetComponent<ActivityToggle>().SetActivity(false);
+		
+		InputActions.DisableAll();
+		InputActions.Game.Enable();
 	}
 
 	private void UpdateFoundationViewSize() {
@@ -50,17 +78,5 @@ public class BuildMenuScript : MonoBehaviour {
 		
 		UpdateFoundationViewSize();
 		return _items[structure].Add();
-	}
-
-	private void Awake() {
-		Instance = this;
-		PlayerScript.Instance.LoadStartFoundations();
-
-		_building = Util.InputAction.Building;
-		_building.Disable();
-
-		_building.Submit.performed        += _ => StructureHandler.Instance.Submit();
-		_building.Cancel.performed        += _ => StructureHandler.Instance.Cancel();
-		_building.MousePosition.performed += context => StructureHandler.Instance.MousePosition(context.ReadValue<Vector2>());
 	}
 }

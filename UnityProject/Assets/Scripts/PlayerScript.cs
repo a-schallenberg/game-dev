@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -7,20 +8,16 @@ public class PlayerScript : MonoBehaviour {
 	[SerializeField] public List<Structure> foundations;
 
 	[SerializeField] private float          movementSpeed = 5f;
-	[SerializeField] private ActivityToggle buildMenuActivityToggle;
 
-	private GameInputActions.PlayerActions _playerActions;
-	private Vector2                        _move = Vector2.zero;
-	private Collider2D                           _trigger; // null if the player isn't in a trigger
+	private                Vector2    _move = Vector2.zero;
+	private Collider2D _trigger; // null if the player isn't in a trigger
 
-
-	private void OnEnable() {
-		_playerActions.Enable();
+	public PlayerScript() {
+		Instance = this;
+		
 	}
-
-	private void OnDisable() {
-		_playerActions.Disable();
-	}
+	
+	#region Unity Methods
 
 	private void OnTriggerEnter2D(Collider2D col) {
 		_trigger = col;
@@ -35,24 +32,7 @@ public class PlayerScript : MonoBehaviour {
 	}
 
 	private void Awake() {
-		Instance = this;
-
-		_playerActions = Util.InputAction.Player;
-
-		//Movement
-		_playerActions.Movement.performed += context => _move = context.ReadValue<Vector2>();
-		_playerActions.Movement.canceled  += _ => _move       = Vector2.zero;
-
-		//Hotkeys
-		_playerActions.BuildMenu.performed   += _ => BuildMenu();
-		_playerActions.Interaction.performed += _ => Interact();
-	}
-
-	public void LoadStartFoundations()
-	{
-		foreach (var foundation in foundations) {
-			BuildMenuScript.Instance.AddFoundationItem(foundation);
-		}
+		LoadStartFoundations();
 	}
 
 	private void Update() {
@@ -63,11 +43,14 @@ public class PlayerScript : MonoBehaviour {
 		}
 	}
 
-	private void BuildMenu() {
-		buildMenuActivityToggle.ToggleActivity();
+	#endregion
+
+	#region Input Actions
+	public void Move(Vector2 vec) {
+		_move = vec;
 	}
 
-	private void Interact() {
+	public void Interact() {
 		if (_trigger == null) {
 			return;
 		}
@@ -76,6 +59,17 @@ public class PlayerScript : MonoBehaviour {
 		StructureInteractionMenu.Instance.Enable(structure);
 	}
 
+	#endregion
+
+	#region Foundation handling
+
+	public void LoadStartFoundations()
+	{
+		foreach (var foundation in foundations) {
+			BuildMenuScript.Instance.AddFoundationItem(foundation);
+		}
+	}
+	
 	public bool AddFoundation(Structure structure) {
 		return BuildMenuScript.Instance.AddFoundationItem(structure);
 	}
@@ -83,4 +77,7 @@ public class PlayerScript : MonoBehaviour {
 	public bool RemoveFoundation(Structure structure) {
 		return BuildMenuScript.Instance.RemoveFoundationItem(structure);
 	}
+
+	#endregion
+	
 }

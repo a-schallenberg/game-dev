@@ -4,33 +4,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class PauseMenu : MonoBehaviour
-{
-    
+public class PauseMenu : MonoBehaviour {
+    public static PauseMenu Instance { get; private set; }
+    public static bool      IsPaused { get; private set; }
+
     [SerializeField] 
     private GameObject pauseMenu;
     
-    public static bool IsPaused { get; private set; }
-
-    private GameInputActions.GameActions _gameActions;
-    private GameInputActions.PauseMenuActions _pauseMenuActions;
-
-    private void Awake()
-    {
-        _gameActions = Util.InputAction.Game;
-        _pauseMenuActions = Util.InputAction.PauseMenu;
-
-        _gameActions.Pause.performed += _ =>
-        {
-            if (!IsPaused) PauseGame();
-        };
-        
-        _pauseMenuActions.Resume.performed += _ =>
-        {
-            if (IsPaused) ResumeGame();
-        };
-        _gameActions.Enable();
-        _pauseMenuActions.Disable();
+    public PauseMenu() {
+        Instance = this;
     }
 
     public void PauseGame()
@@ -38,8 +20,8 @@ public class PauseMenu : MonoBehaviour
         pauseMenu.SetActive(true);
         Time.timeScale = 0f;
         IsPaused = true;
-        _gameActions.Disable();
-        _pauseMenuActions.Enable();
+        InputActions.DisableAll();
+        InputActions.PauseMenu.Enable();
     }
 
     public void ResumeGame()
@@ -47,8 +29,8 @@ public class PauseMenu : MonoBehaviour
         pauseMenu.SetActive(false);
         Time.timeScale = 1f;
         IsPaused = false;
-        _gameActions.Enable();
-        _pauseMenuActions.Disable();
+        InputActions.DisableAll();
+        InputActions.Game.Enable();
     }
 
     public void GoToSettingsMenu()
