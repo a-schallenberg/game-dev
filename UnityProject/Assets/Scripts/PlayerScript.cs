@@ -14,7 +14,6 @@ public class PlayerScript : MonoBehaviour {
 
 	public PlayerScript() {
 		Instance = this;
-		
 	}
 	
 	#region Unity Methods
@@ -25,10 +24,6 @@ public class PlayerScript : MonoBehaviour {
 
 	private void OnTriggerExit2D(Collider2D other) {
 		_trigger = null;
-
-		if (StructureInteractionMenu.Instance.gameObject.activeSelf) {
-			StructureInteractionMenu.Instance.Disable();
-		}
 	}
 
 	private void Awake() {
@@ -66,16 +61,16 @@ public class PlayerScript : MonoBehaviour {
 	public void LoadStartFoundations()
 	{
 		foreach (var foundation in foundations) {
-			BuildMenuScript.Instance.AddFoundationItem(foundation);
+			BuildMenu.Instance.AddFoundationItem(foundation);
 		}
 	}
 	
 	public bool AddFoundation(Structure structure) {
-		return BuildMenuScript.Instance.AddFoundationItem(structure);
+		return BuildMenu.Instance.AddFoundationItem(structure);
 	}
 
 	public bool RemoveFoundation(Structure structure) {
-		return BuildMenuScript.Instance.RemoveFoundationItem(structure);
+		return BuildMenu.Instance.RemoveFoundationItem(structure);
 	}
 
 	#endregion

@@ -120,7 +120,7 @@ public class StructureHandler : MonoBehaviour {
 
 	public void StartPlacing(GameObject gridComponent) {
 		_tempComponent = Instantiate(gridComponent, Vector3.zero, Quaternion.identity, structureParent).GetComponent<Structure>();
-		BuildMenuScript.Instance.RemoveFoundationItem(_tempComponent);
+		BuildMenu.Instance.RemoveFoundationItem(_tempComponent);
 		FollowBuilding();
 	}
 
@@ -128,7 +128,7 @@ public class StructureHandler : MonoBehaviour {
 		ClearArea();
 		if (!_tempComponent.Placed) {
 			Destroy(_tempComponent.gameObject);
-			BuildMenuScript.Instance.AddFoundationItem(_tempComponent);
+			BuildMenu.Instance.AddFoundationItem(_tempComponent);
 		}
 		
 		_tempComponent = null;
@@ -174,8 +174,8 @@ public class StructureHandler : MonoBehaviour {
 	#region Structure Tools
 
 	public void Move(Structure structure) {
-		if (!BuildMenuScript.Instance.gameObject.activeSelf) {
-			BuildMenuScript.Instance.gameObject.GetComponent<ActivityToggle>().ToggleActivity();
+		if (!BuildMenu.Instance.gameObject.activeSelf) {
+			BuildMenu.Instance.gameObject.GetComponent<ActivityToggle>().ToggleActivity();
 		}
 
 		SetTilesBlock(structure.area, TileType.White, mainTilemap);

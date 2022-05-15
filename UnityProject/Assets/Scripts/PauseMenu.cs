@@ -1,10 +1,8 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class PauseMenu : MonoBehaviour {
+public class PauseMenu : MonoBehaviour, IMenu{
     public static PauseMenu Instance { get; private set; }
     public static bool      IsPaused { get; private set; }
 
@@ -20,8 +18,6 @@ public class PauseMenu : MonoBehaviour {
         pauseMenu.SetActive(true);
         Time.timeScale = 0f;
         IsPaused = true;
-        InputActions.DisableAll();
-        InputActions.PauseMenu.Enable();
     }
 
     public void ResumeGame()
@@ -29,8 +25,6 @@ public class PauseMenu : MonoBehaviour {
         pauseMenu.SetActive(false);
         Time.timeScale = 1f;
         IsPaused = false;
-        InputActions.DisableAll();
-        InputActions.Game.Enable();
     }
 
     public void GoToSettingsMenu()
@@ -47,4 +41,24 @@ public class PauseMenu : MonoBehaviour {
     {
         Application.Quit();
     }
+
+    public void OnResumeButtonPressed() {
+        MenuHandler.DisableMenu();
+    }
+    
+    #region IMenu
+
+    [Obsolete(IMenu.EnableObsoleteMessage, true)]
+    public void Enable() {
+        InputActions.PauseMenu.Enable();
+        PauseGame();
+    }
+
+    [Obsolete(IMenu.DisableObsoleteMessage, true)]
+    public void Disable() {
+        InputActions.PauseMenu.Disable();
+        ResumeGame();
+    }
+
+    #endregion
 }

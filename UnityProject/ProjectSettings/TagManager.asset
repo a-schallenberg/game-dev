@@ -6,6 +6,7 @@ TagManager:
   tags:
   - BuildMenu
   - Structure
+  - MenuHandler
   layers:
   - Default
   - TransparentFX

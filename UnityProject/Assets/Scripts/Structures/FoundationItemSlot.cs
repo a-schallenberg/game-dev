@@ -10,7 +10,7 @@ public class FoundationItemSlot {
 
 	private readonly Button _button;
 
-	public int NumberOfStructures { get; private set; } // TODO show on Button
+	public int NumberOfStructures { get; private set; }
 
 	public FoundationItemSlot(Button buttonPrefab, Structure structurePrefab, Transform parent) {
 		_structurePrefab = structurePrefab;
@@ -19,6 +19,8 @@ public class FoundationItemSlot {
 		_button.image.sprite = _structurePrefab.gameObject.GetComponentInChildren<SpriteRenderer>().sprite;
 		_button.onClick.AddListener(() => StructureHandler.Instance.OnInstantiateButtonClicked(_structurePrefab.gameObject));
 	}
+
+	#region Slot Functions
 
 	public bool Add(int number = 1) {
 		var num = NumberOfStructures + number;
@@ -51,6 +53,8 @@ public class FoundationItemSlot {
 	public bool IsFull() {
 		return NumberOfStructures >= SlotCapacity;
 	}
+
+	#endregion
 
 	public void DestroyButton() {
 		Object.Destroy(_button.gameObject);

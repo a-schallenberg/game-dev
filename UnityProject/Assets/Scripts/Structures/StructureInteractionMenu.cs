@@ -2,7 +2,7 @@ using System;
 using TMPro;
 using UnityEngine;
 
-public class StructureInteractionMenu : MonoBehaviour {
+public class StructureInteractionMenu : MonoBehaviour, IMenu {
 	public static StructureInteractionMenu Instance { get; private set; }
 
 	[SerializeField] private TextMeshProUGUI structureName;
@@ -17,40 +17,17 @@ public class StructureInteractionMenu : MonoBehaviour {
 
 	public void Enable(Structure structure) {
 		_currentStructure      = structure;
-		_currentStructurePanel = Instantiate(structure.MenuPanel, structureSpecificPanel);
-
-		structureName.text = structure.StructureName;
-
-		gameObject.SetActive(true);
-		structure.OnMenuEnabled();
-		
-		InputActions.DisableAll();
-		InputActions.SIMenu.Enable();
+		MenuHandler.EnableMenu(this);
 	}
 
-	
-	public void Disable() {
-		Disable(() => {
-					InputActions.Game.Enable();
-					Reset();
-				});
-	}
-	private void Disable(Action action) {
-		gameObject.SetActive(false);
-		_currentStructure.OnMenuDisabled();
-
-		Destroy(_currentStructurePanel.gameObject);
-
-		InputActions.DisableAll();
-		action.Invoke();
+	public void OnExitClicked() {
+		MenuHandler.DisableMenu();
+		Reset();
 	}
 
 	public void OnMoveClicked() {
 		try {
-			Disable(() => {
-						InputActions.Building.Enable();
-						InputActions.Game.Movement.Enable();
-					});
+			MenuHandler.EnableMenu(BuildMenu.Instance);
 			_currentStructure.Move();
 			Reset();
 		} catch (NullReferenceException) { }
@@ -58,8 +35,9 @@ public class StructureInteractionMenu : MonoBehaviour {
 	
 	public void OnRemoveClicked() {
 		try {
+			MenuHandler.DisableMenu();
 			_currentStructure.Remove();
-			Disable();
+			Reset();
 		} catch (NullReferenceException) { }
 	}
 
@@ -67,4 +45,33 @@ public class StructureInteractionMenu : MonoBehaviour {
 		_currentStructure      = null;
 		_currentStructurePanel = null;
 	}
+	
+	#region IMenu
+	
+	[Obsolete(IMenu.EnableObsoleteMessage, true)]
+	public void Enable() {
+		if (_currentStructure == null) {
+			return;
+		}
+		
+		InputActions.SIMenu.Enable();
+		
+		_currentStructurePanel = Instantiate(_currentStructure.MenuPanel, structureSpecificPanel);
+		structureName.text     = _currentStructure.StructureName;
+
+		gameObject.SetActive(true);
+		_currentStructure.OnMenuEnabled();
+	}
+
+	[Obsolete(IMenu.DisableObsoleteMessage, true)]
+	public void Disable() {
+		InputActions.SIMenu.Disable();
+		
+		gameObject.SetActive(false);
+		_currentStructure.OnMenuDisabled();
+
+		Destroy(_currentStructurePanel.gameObject);
+	}
+
+	#endregion
 }

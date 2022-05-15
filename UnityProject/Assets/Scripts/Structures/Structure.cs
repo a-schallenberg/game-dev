@@ -42,7 +42,7 @@ public class Structure : MonoBehaviour {
 	public void Remove() {
 		StructureHandler.Instance.Remove(area);
 		Destroy(gameObject);
-		BuildMenuScript.Instance.AddFoundationItem(this); // TODO do we want this?
+		BuildMenu.Instance.AddFoundationItem(this); // TODO do we want this?
 	}
 
 	private BoundsInt GetTempArea() {

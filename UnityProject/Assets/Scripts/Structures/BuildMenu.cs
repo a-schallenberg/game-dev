@@ -1,12 +1,11 @@
 using System;
 using System.Collections.Generic;
-using System.Threading;
 using UnityEngine;
 using UnityEngine.UI;
 
 
-public class BuildMenuScript : MonoBehaviour {
-	public static BuildMenuScript Instance { get; private set; }
+public class BuildMenu : MonoBehaviour, IMenu {
+	public static BuildMenu Instance { get; private set; }
 
 	[SerializeField] private Button                button;
 	[SerializeField] private RectTransform         foundationView;
@@ -14,40 +13,19 @@ public class BuildMenuScript : MonoBehaviour {
 
 	private readonly Dictionary<Structure, FoundationItemSlot> _items = new();
 
-	public BuildMenuScript() {
+	public BuildMenu() {
 		Instance = this;
 	}
 
-	public void OnBuildMenuButtonPressed() {
-		if (gameObject.activeSelf) {
-			Disable(true);
-		} else {
-			Enable();
+	public void Disable(bool hard) {
+		if (!hard && StructureHandler.Instance.IsInPlacing()) {
+			return;
 		}
-	}
-	
-	public void Enable() {
-		gameObject.GetComponent<ActivityToggle>().SetActivity(true);
 		
-		InputActions.DisableAll();
-		InputActions.Building.Enable();
-		InputActions.Game.Movement.Enable();
+		MenuHandler.DisableMenu();
 	}
 
-	public void Disable(bool hard) {
-		if (StructureHandler.Instance.IsInPlacing()) {
-			if (hard) {
-				StructureHandler.Instance.StopPlacing();
-			} else {
-				return;
-			}
-		}
-		
-		gameObject.GetComponent<ActivityToggle>().SetActivity(false);
-		
-		InputActions.DisableAll();
-		InputActions.Game.Enable();
-	}
+	#region Foundations
 
 	private void UpdateFoundationViewSize() {
 		var buttonWidthSum = ((RectTransform) button.transform).rect.width * _items.Count;
@@ -79,4 +57,30 @@ public class BuildMenuScript : MonoBehaviour {
 		UpdateFoundationViewSize();
 		return _items[structure].Add();
 	}
+
+	#endregion
+	
+	#region IMenu
+	
+	[Obsolete(IMenu.EnableObsoleteMessage, true)]
+	public void Enable() {
+		gameObject.GetComponent<ActivityToggle>().SetActivity(true);
+		
+		InputActions.Building.Enable();
+		InputActions.Game.Movement.Enable();
+	}
+
+	[Obsolete(IMenu.DisableObsoleteMessage, true)]
+	public void Disable() {
+		InputActions.Building.Disable();
+		InputActions.Game.Movement.Disable();
+		
+		if (StructureHandler.Instance.IsInPlacing()) {
+			StructureHandler.Instance.StopPlacing();
+		}
+		
+		gameObject.GetComponent<ActivityToggle>().SetActivity(false);
+	}
+
+	#endregion
 }

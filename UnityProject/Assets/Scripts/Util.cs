@@ -1,5 +1,3 @@
 using UnityEngine;
 
-public static class Util {
-	public static readonly GameInputActions InputAction = new();
-}
+public static class Util {}
