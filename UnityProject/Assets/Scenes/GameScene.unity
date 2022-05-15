@@ -2741,14 +2741,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   foundations:
   - {fileID: 5986231148439214608, guid: 58b1f9e532008b8b7b87fb2780ecd6c6, type: 3}
-  - {fileID: 5695054573492537118, guid: c66f38280b35c3c199b9140481a2c13c, type: 3}
-  - {fileID: 5695054573492537118, guid: c66f38280b35c3c199b9140481a2c13c, type: 3}
   - {fileID: 6206660429389352291, guid: 089b0ba2da2913530b4bde6118ae9d49, type: 3}
   - {fileID: 6206660429389352291, guid: 089b0ba2da2913530b4bde6118ae9d49, type: 3}
   - {fileID: 6206660429389352291, guid: 089b0ba2da2913530b4bde6118ae9d49, type: 3}
   - {fileID: 5986231148439214608, guid: 58b1f9e532008b8b7b87fb2780ecd6c6, type: 3}
   - {fileID: 5986231148439214608, guid: 58b1f9e532008b8b7b87fb2780ecd6c6, type: 3}
   - {fileID: 5986231148439214608, guid: 58b1f9e532008b8b7b87fb2780ecd6c6, type: 3}
+  - {fileID: 5058679952366212095, guid: c66f38280b35c3c199b9140481a2c13c, type: 3}
+  - {fileID: 5058679952366212095, guid: c66f38280b35c3c199b9140481a2c13c, type: 3}
   movementSpeed: 5
 --- !u!4 &167225659
 Transform:

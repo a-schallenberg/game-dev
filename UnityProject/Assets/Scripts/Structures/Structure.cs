@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Events;
 
 /// <summary>
 /// Any structure that can be built within the gameplay needs this script.
@@ -53,9 +54,9 @@ public class Structure : MonoBehaviour {
 
 	#region Menu
 
-	public void OnMenuEnabled() { }
+	public virtual void OnMenuEnabled() { }
 
-	public void OnMenuDisabled() { }
+	public virtual void OnMenuDisabled() { }
 
 	#endregion
 
