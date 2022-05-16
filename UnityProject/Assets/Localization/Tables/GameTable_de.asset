@@ -22,6 +22,30 @@ MonoBehaviour:
     m_Localized: "Baumen\xFC"
     m_Metadata:
       m_Items: []
+  - m_Id: 92059137097728
+    m_Localized: Verschieben
+    m_Metadata:
+      m_Items: []
+  - m_Id: 92063482396672
+    m_Localized: "Abrei\xDFen"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 93466418364416
+    m_Localized: "Zur\xFCck"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 93423888121856
+    m_Localized: Beenden
+    m_Metadata:
+      m_Items: []
+  - m_Id: 93374290477056
+    m_Localized: Einstellungen
+    m_Metadata:
+      m_Items: []
+  - m_Id: 93311413665792
+    m_Localized: Fortsetzen
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

@@ -22,6 +22,30 @@ MonoBehaviour:
     m_Localized: Build Menu
     m_Metadata:
       m_Items: []
+  - m_Id: 92059137097728
+    m_Localized: Move
+    m_Metadata:
+      m_Items: []
+  - m_Id: 92063482396672
+    m_Localized: Remove
+    m_Metadata:
+      m_Items: []
+  - m_Id: 93466418364416
+    m_Localized: Back
+    m_Metadata:
+      m_Items: []
+  - m_Id: 93423888121856
+    m_Localized: Quit
+    m_Metadata:
+      m_Items: []
+  - m_Id: 93374290477056
+    m_Localized: Settings
+    m_Metadata:
+      m_Items: []
+  - m_Id: 93311413665792
+    m_Localized: Resume
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

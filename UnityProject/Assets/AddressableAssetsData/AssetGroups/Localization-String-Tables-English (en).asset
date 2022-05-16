@@ -18,7 +18,7 @@ MonoBehaviour:
   m_GUID: 3ac443d5c9082c86c8cebf6dda19879b
   m_SerializeEntries:
   - m_GUID: 60639f5f7b720732b99411476316a9e2
-    m_Address: GameTable_en
+    m_Address: Game_en
     m_ReadOnly: 1
     m_SerializedLabels:
     - Locale-en

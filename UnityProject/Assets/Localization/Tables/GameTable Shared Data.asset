@@ -12,11 +12,35 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b11a58205ec3474ca216360e9fa74a8, type: 3}
   m_Name: GameTable Shared Data
   m_EditorClassIdentifier: 
-  m_TableCollectionName: GameTable
+  m_TableCollectionName: Game
   m_TableCollectionNameGuidString: 8081116bef6b2c75292f93aacc13209c
   m_Entries:
   - m_Id: 16527368192
-    m_Key: build_menu_button
+    m_Key: overlay_build_menu_button
+    m_Metadata:
+      m_Items: []
+  - m_Id: 92059137097728
+    m_Key: player_simenu_move
+    m_Metadata:
+      m_Items: []
+  - m_Id: 92063482396672
+    m_Key: player_simenu_remove
+    m_Metadata:
+      m_Items: []
+  - m_Id: 93311413665792
+    m_Key: pausemenu_resume
+    m_Metadata:
+      m_Items: []
+  - m_Id: 93374290477056
+    m_Key: pausemenu_settings
+    m_Metadata:
+      m_Items: []
+  - m_Id: 93423888121856
+    m_Key: pausemenu_quit
+    m_Metadata:
+      m_Items: []
+  - m_Id: 93466418364416
+    m_Key: settingsmenu_back
     m_Metadata:
       m_Items: []
   m_Metadata:
