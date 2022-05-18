@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6513182779340403127}
   - component: {fileID: 3419402674925115658}
+  - component: {fileID: 4118484696486140153}
   - component: {fileID: 30148405568855741}
   - component: {fileID: 4213779590893782227}
   m_Layer: 0
@@ -67,6 +68,33 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 4118484696486140153}
+        m_TargetAssemblyTypeName: ResourceGenerator, Assembly-CSharp
+        m_MethodName: Generate
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &4118484696486140153
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6003651364756897603}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e8cf946ff613ed8da11f53ae269f138, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  resourceType: 0
+  minGeneratedAmount: 2
+  maxGeneratedAmount: 4
 --- !u!60 &30148405568855741
 PolygonCollider2D:
   m_ObjectHideFlags: 0

@@ -43,7 +43,7 @@ public class Structure : MonoBehaviour {
 
 	#endregion
 
-	public void OnPlayerInteract(Collider2D trigger) {
+	public virtual void OnPlayerInteract(Collider2D trigger) {
 		onPlayerInteract.Invoke(trigger);
 	}
 
