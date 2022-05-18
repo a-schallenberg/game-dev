@@ -4,9 +4,7 @@ using UnityEngine;
 
 public class PlayerScript : MonoBehaviour {
 	public static PlayerScript Instance { get; private set; }
-
-	[SerializeField] public List<Building> foundations;
-
+	
 	[SerializeField] private float          movementSpeed = 5f;
 
 	private                Vector2    _move = Vector2.zero;
@@ -24,10 +22,6 @@ public class PlayerScript : MonoBehaviour {
 
 	private void OnTriggerExit2D(Collider2D other) {
 		_trigger = null;
-	}
-
-	private void Awake() {
-		LoadStartFoundations();
 	}
 
 	private void Update() {
@@ -57,13 +51,6 @@ public class PlayerScript : MonoBehaviour {
 
 	#region Foundation handling
 
-	public void LoadStartFoundations()
-	{
-		foreach (var foundation in foundations) {
-			BuildMenu.Instance.AddFoundationItem(foundation);
-		}
-	}
-	
 	public bool AddFoundation(Building building) {
 		return BuildMenu.Instance.AddFoundationItem(building);
 	}

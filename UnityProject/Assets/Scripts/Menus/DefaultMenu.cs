@@ -7,10 +7,18 @@ using UnityEngine;
 public class DefaultMenu : MonoBehaviour, IMenu {
     public static DefaultMenu Instance { get; private set; }
 
+    [SerializeField] private ActivityToggle topBarToggle;
+
     public DefaultMenu() {
         Instance = this;
     }
     
+    public void SetTopBar(bool active) {
+		topBarToggle.SetActivity(active);
+    }
+
+    #region Buttons
+
     public void OnBuildMenuButtonPressed() {
         if (MenuHandler.IsActiveMenu(this)) {
             MenuHandler.EnableMenu(BuildMenu.Instance);
@@ -18,14 +26,34 @@ public class DefaultMenu : MonoBehaviour, IMenu {
             MenuHandler.DisableMenu();
         }
     }
+    
+    public void OnQuestsButtonPressed() {}
+    
+    public void OnPauseMenuPressed() {
+        MenuHandler.EnableMenu(PauseMenu.Instance);
+    }
+
+    #endregion
+
+    #region IMenu
 
     [Obsolete(IMenu.EnableObsoleteMessage, true)]
     public void Enable() {
+        foreach (var child in gameObject.GetComponentsInChildren<ActivityToggle>(true)) {
+            child.SetActivity(true);
+        }
+
         InputActions.Game.Enable();
     }
     
     [Obsolete(IMenu.DisableObsoleteMessage, true)]
     public void Disable() {
+        foreach (var child in gameObject.GetComponentsInChildren<ActivityToggle>()) {
+            child.SetActivity(false);
+        }
+        
         InputActions.Game.Disable();
     }
+    
+    #endregion
 }

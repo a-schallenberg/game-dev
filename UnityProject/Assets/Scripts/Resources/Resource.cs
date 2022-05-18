@@ -1,52 +1,59 @@
+using System;
+using UnityEngine;
+using UnityEngine.InputSystem.Interactions;
 
 public class Resource {
-    public readonly ResourceType Type;
-    public          int          Amount { get; private set; }
-    public          int          Limit;
+	public readonly ResourceType Type;
 
-    internal Resource(ResourceType type) {
-        Type = type;
-    }
+	public  int Amount { get; private set; }
+	private int _limit;
+	
+	public int Limit {
+		get { return _limit; }
+		set {
+			_limit = value;
+			if (_limit < Amount) {
+				ResourceHandler.UseResources(Type, Amount - _limit);
+			}
+		}
+	}
 
-    public bool Add(int amount) {
-        if (!CanAdd(amount)) {
-            return false;
-        }
+	internal Resource(ResourceType type) {
+		Type = type;
+	}
 
-        Amount += amount;
-        return true;
-    }
+	// ReSharper disable Unity.PerformanceAnalysis
+	public bool Add(int amount) {
+		if ((Amount + amount) <= _limit) {
+			Amount += amount;
+			return true;
+		}
+		Amount = _limit;
+		return false;
+	}
 
-    public bool Use(int amount) {
-        if (!CanUse(amount)) {
-            return false;
-        }
+	public bool Use(int amount) {
+		if ((Amount - amount) >= 0) {
+			Amount -= amount;
+			return true;
+		}
+		Amount = 0;
+		return false;
+	}
 
-        Amount -= amount;
-        return true;
-    }
+	public bool IsEmpty() {
+		return Amount <= 0;
+	}
 
-    public bool CanAdd(int amount) {
-        return !(amount < 0 || Amount + amount > Limit);
-    }
+	public bool IsFull() {
+		return Amount >= 0;
+	}
 
-    public bool CanUse(int amount) {
-        return !(amount < 0 || Amount - amount < 0);
-    }
+	public override bool Equals(object obj) {
+		return obj != null && obj.GetType() == typeof(Resource) && Type == ((Resource) obj).Type;
+	}
 
-    public bool IsEmpty() {
-        return Amount <= 0;
-    }
-
-    public bool IsFull() {
-        return Amount >= 0;
-    }
-
-    public override bool Equals(object obj) {
-        return obj != null && obj.GetType() == typeof(Resource) && Type == ((Resource) obj).Type;
-    }
-
-    public override int GetHashCode() {
-        return Type.GetHashCode();
-    }
+	public override int GetHashCode() {
+		return Type.GetHashCode();
+	}
 }

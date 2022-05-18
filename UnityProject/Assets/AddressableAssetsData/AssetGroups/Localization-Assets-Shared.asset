@@ -37,6 +37,10 @@ MonoBehaviour:
     m_Address: Assets/Localization/Tables/SIMenuStructures Shared Data.asset
     m_ReadOnly: 1
     m_SerializedLabels: []
+  - m_GUID: c0d61571ab06ed16ab9d2e081670a518
+    m_Address: Assets/Localization/Tables/BuildMenu Shared Data.asset
+    m_ReadOnly: 1
+    m_SerializedLabels: []
   m_ReadOnly: 1
   m_Settings: {fileID: 11400000, guid: d0e137f8b5ca6d4a38a23db1d86d5ffd, type: 2}
   m_SchemaSet:

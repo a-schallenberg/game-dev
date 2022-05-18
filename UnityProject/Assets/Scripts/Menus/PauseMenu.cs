@@ -2,7 +2,7 @@ using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class PauseMenu : MonoBehaviour, IMenu{
+public class PauseMenu : MonoBehaviour, IMenu {
     public static PauseMenu Instance { get; private set; }
     public static bool      IsPaused { get; private set; }
 

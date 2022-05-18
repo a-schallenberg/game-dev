@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEditor;
+using UnityEngine;
 
 public static class ResourceHandler {
 	public static Dictionary<ResourceType, Resource> Resources = new();
@@ -13,10 +14,26 @@ public static class ResourceHandler {
 	}
 
 	public static bool AddResources(ResourceType type, int amount) {
-		return Resources[type].Add(amount);
+		var complete =  Resources[type].Add(amount);
+		
+		OnUpdate(type);
+		return complete;
 	}
 	
 	public static bool UseResources(ResourceType type, int amount) {
-		return Resources[type].Use(amount);
+		var complete = Resources[type].Use(amount);
+
+		OnUpdate(type);
+		return complete;
+	}
+
+	private static void OnUpdate(ResourceType type) {
+		ResourceBar.Instance.SetResourceAmount(type, Resources[type].Amount);
+	}
+	
+	public static void Update() {
+		OnUpdate(ResourceType.Wood);
+		OnUpdate(ResourceType.Stone);
+		OnUpdate(ResourceType.Iron);
 	}
 }

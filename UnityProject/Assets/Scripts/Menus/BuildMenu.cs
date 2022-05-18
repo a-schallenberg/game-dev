@@ -59,12 +59,21 @@ public class BuildMenu : MonoBehaviour, IMenu {
 	}
 
 	#endregion
+
+	#region Buttons
+
+	public void OnBackButtonPressed() {
+		MenuHandler.DisableMenu();
+	}
+
+	#endregion
 	
 	#region IMenu
 	
 	[Obsolete(IMenu.EnableObsoleteMessage, true)]
 	public void Enable() {
 		gameObject.GetComponent<ActivityToggle>().SetActivity(true);
+		DefaultMenu.Instance.SetTopBar(true);
 		
 		InputActions.Building.Enable();
 		InputActions.Game.Movement.Enable();
@@ -79,6 +88,7 @@ public class BuildMenu : MonoBehaviour, IMenu {
 			StructureHandler.Instance.StopPlacing();
 		}
 		
+		DefaultMenu.Instance.SetTopBar(false);
 		gameObject.GetComponent<ActivityToggle>().SetActivity(false);
 	}
 
