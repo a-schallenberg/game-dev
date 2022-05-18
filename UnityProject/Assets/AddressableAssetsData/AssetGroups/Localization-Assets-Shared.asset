@@ -21,6 +21,22 @@ MonoBehaviour:
     m_Address: Assets/Localization/Tables/GameTable Shared Data.asset
     m_ReadOnly: 1
     m_SerializedLabels: []
+  - m_GUID: 4723a9920095fc89cba914603460a148
+    m_Address: Assets/Localization/Tables/SIMenu Shared Data.asset
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+  - m_GUID: b2a37ae47bcab89a68ad69281f601257
+    m_Address: Assets/Localization/Tables/PauseMenu Shared Data.asset
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+  - m_GUID: 1a84cbbbc636cc55b8f00bfb867022c0
+    m_Address: Assets/Localization/Tables/SettingsMenu Shared Data.asset
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+  - m_GUID: e84112cea92674a40a2236995a12ccee
+    m_Address: Assets/Localization/Tables/SIMenuStructures Shared Data.asset
+    m_ReadOnly: 1
+    m_SerializedLabels: []
   m_ReadOnly: 1
   m_Settings: {fileID: 11400000, guid: d0e137f8b5ca6d4a38a23db1d86d5ffd, type: 2}
   m_SchemaSet:

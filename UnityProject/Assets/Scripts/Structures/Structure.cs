@@ -1,3 +1,4 @@
+using System.Runtime.CompilerServices;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -8,9 +9,9 @@ using UnityEngine.Events;
 /// </summary>
 public class Structure : MonoBehaviour {
 	
-	public BoundsInt area;
+	public                   BoundsInt area;
 
-	[SerializeField] private  bool      placed;
+	[SerializeField] private bool      placed;
 	[SerializeField] private string    id;
 	[SerializeField] private string    structureName;
 	[SerializeField] private Transform menuPanel;
@@ -54,9 +55,9 @@ public class Structure : MonoBehaviour {
 
 	#region Menu
 
-	public virtual void OnMenuEnabled() { }
+	public virtual void OnMenuEnable() { }
 
-	public virtual void OnMenuDisabled() { }
+	public virtual void OnMenuDisable() { }
 
 	#endregion
 
@@ -91,6 +92,7 @@ public class Structure : MonoBehaviour {
 
 	public string StructureName {
 		get { return structureName; }
+		set { structureName = value; }
 	}
 
 	public Transform MenuPanel {

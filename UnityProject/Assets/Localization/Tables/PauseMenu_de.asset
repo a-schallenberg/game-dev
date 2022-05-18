@@ -10,16 +10,24 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e9620f8c34305754d8cc9a7e49e852d9, type: 3}
-  m_Name: GameTable_de
+  m_Name: PauseMenu_de
   m_EditorClassIdentifier: 
   m_LocaleId:
     m_Code: de
-  m_SharedData: {fileID: 11400000, guid: 8081116bef6b2c75292f93aacc13209c, type: 2}
+  m_SharedData: {fileID: 11400000, guid: b2a37ae47bcab89a68ad69281f601257, type: 2}
   m_Metadata:
     m_Items: []
   m_TableData:
-  - m_Id: 16527368192
-    m_Localized: "Baumen\xFC"
+  - m_Id: 378625826816
+    m_Localized: Beenden
+    m_Metadata:
+      m_Items: []
+  - m_Id: 343947321344
+    m_Localized: Einstellungen
+    m_Metadata:
+      m_Items: []
+  - m_Id: 331448295424
+    m_Localized: Fortsetzen
     m_Metadata:
       m_Items: []
   references:

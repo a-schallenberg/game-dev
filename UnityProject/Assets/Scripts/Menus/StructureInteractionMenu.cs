@@ -1,6 +1,7 @@
 using System;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Localization.Settings;
 
 public class StructureInteractionMenu : MonoBehaviour, IMenu {
 	public static StructureInteractionMenu Instance { get; private set; }
@@ -16,6 +17,7 @@ public class StructureInteractionMenu : MonoBehaviour, IMenu {
 	}
 
 	public void Enable(Structure structure) {
+		
 		_currentStructure      = structure;
 		MenuHandler.EnableMenu(this);
 	}
@@ -53,23 +55,24 @@ public class StructureInteractionMenu : MonoBehaviour, IMenu {
 		if (_currentStructure == null) {
 			return;
 		}
-		
+
+		_currentStructure.OnMenuEnable();
 		InputActions.SIMenu.Enable();
 		
 		_currentStructurePanel = Instantiate(_currentStructure.MenuPanel, structureSpecificPanel);
-		structureName.text     = _currentStructure.StructureName;
+		structureName.text = _currentStructure.StructureName;
 
 		gameObject.SetActive(true);
-		_currentStructure.OnMenuEnabled();
+		
 	}
 
 	[Obsolete(IMenu.DisableObsoleteMessage, true)]
 	public void Disable() {
+		_currentStructure.OnMenuDisable();
 		InputActions.SIMenu.Disable();
 		
 		gameObject.SetActive(false);
-		_currentStructure.OnMenuDisabled();
-
+		
 		Destroy(_currentStructurePanel.gameObject);
 	}
 

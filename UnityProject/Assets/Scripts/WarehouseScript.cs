@@ -3,7 +3,7 @@ using TMPro;
 
 public class WarehouseScript : Structure {
     
-    public override void OnMenuEnabled() {
+    public override void OnMenuEnable() {
         var woodAmount  = ResourceHandler.Resources[ResourceType.Wood].Amount;
         var woodLimit   = ResourceHandler.Resources[ResourceType.Wood].Limit;
         var stoneAmount = ResourceHandler.Resources[ResourceType.Stone].Amount;

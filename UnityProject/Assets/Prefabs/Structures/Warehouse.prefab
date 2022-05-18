@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 2539600661824949773}
   - component: {fileID: 7812790216651774345}
   - component: {fileID: 6100878725693352846}
+  - component: {fileID: 961322057563878628}
   m_Layer: 0
   m_Name: Warehouse
   m_TagString: Structure
@@ -137,6 +138,46 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.8, y: 0.4}
   m_EdgeRadius: 0
+--- !u!114 &961322057563878628
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3943553502653941047}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56eb0353ae6e5124bb35b17aff880f16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_StringReference:
+    m_TableReference:
+      m_TableCollectionName: GUID:e84112cea92674a40a2236995a12ccee
+    m_TableEntryReference:
+      m_KeyId: 109502504960
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  m_FormatArguments: []
+  m_UpdateString:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 5058679952366212095}
+        m_TargetAssemblyTypeName: Structure, Assembly-CSharp
+        m_MethodName: set_StructureName
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  references:
+    version: 2
+    RefIds: []
 --- !u!1 &4384212562687321858
 GameObject:
   m_ObjectHideFlags: 0

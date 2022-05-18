@@ -4,7 +4,6 @@ using UnityEditor;
 /// This class organizes all menus. Every menu can be enabled by executing the EnableMenu method.
 /// DisableMenu will disable the current menu and enable the default menu.
 /// </summary>
-[InitializeOnLoad]
 public static class MenuHandler {
 	public static IMenu ActiveMenu { get; private set; }
 

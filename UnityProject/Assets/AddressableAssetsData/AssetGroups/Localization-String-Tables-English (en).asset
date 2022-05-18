@@ -18,7 +18,31 @@ MonoBehaviour:
   m_GUID: 3ac443d5c9082c86c8cebf6dda19879b
   m_SerializeEntries:
   - m_GUID: 60639f5f7b720732b99411476316a9e2
-    m_Address: Game_en
+    m_Address: Overlay_en
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-en
+    - Preload
+  - m_GUID: 306e8512a2248b66c99b810bb2d439ef
+    m_Address: SIMenu_en
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-en
+    - Preload
+  - m_GUID: cd8fb8f87245d82578b7a3f684ff081a
+    m_Address: PauseMenu_en
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-en
+    - Preload
+  - m_GUID: 60e9e792cac606253a8e9de73c994ddd
+    m_Address: SettingsMenu_en
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-en
+    - Preload
+  - m_GUID: 3a51024f9e86d08c889aa58548fc64d3
+    m_Address: SIMenuStructures_en
     m_ReadOnly: 1
     m_SerializedLabels:
     - Locale-en

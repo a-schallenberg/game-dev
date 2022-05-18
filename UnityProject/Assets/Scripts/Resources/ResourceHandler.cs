@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using UnityEditor;
 
-[InitializeOnLoad]
 public static class ResourceHandler {
 	public static Dictionary<ResourceType, Resource> Resources = new();
 

@@ -97,6 +97,7 @@ GameObject:
   - component: {fileID: 1498903204284929478}
   - component: {fileID: 4824985207431089522}
   - component: {fileID: 1830882768880424967}
+  - component: {fileID: -1909227650595314280}
   m_Layer: 0
   m_Name: CharacterHouse
   m_TagString: Structure
@@ -132,10 +133,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 748fef3c38cb843d883c8c192c7190a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  placed: 0
   area:
     m_Position: {x: 0, y: 0, z: 0}
     m_Size: {x: 2, y: 2, z: 1}
+  placed: 0
   id: character_house
   structureName: CharacterHouse
   menuPanel: {fileID: 9005709574178899881, guid: e3d5769ac8e5d0cd998c5f96d9182f41, type: 3}
@@ -221,3 +222,43 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 0.5}
   m_EdgeRadius: 0
+--- !u!114 &-1909227650595314280
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5986231148439214615}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56eb0353ae6e5124bb35b17aff880f16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_StringReference:
+    m_TableReference:
+      m_TableCollectionName: GUID:e84112cea92674a40a2236995a12ccee
+    m_TableEntryReference:
+      m_KeyId: 6452649984
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  m_FormatArguments: []
+  m_UpdateString:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 5986231148439214608}
+        m_TargetAssemblyTypeName: Structure, Assembly-CSharp
+        m_MethodName: set_StructureName
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  references:
+    version: 2
+    RefIds: []
