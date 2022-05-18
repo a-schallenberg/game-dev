@@ -1,20 +1,15 @@
-using System.Runtime.CompilerServices;
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-/// <summary>
-/// Any structure that can be built within the gameplay needs this script.
-/// An area is required for this. In this game, the z-coordinate must always be set to 1.
-/// X and Y are for the length and width of the structure in tiles.
-/// </summary>
 public class Structure : MonoBehaviour {
-	
-	public                   BoundsInt area;
+    public                   BoundsInt area;
 
-	[SerializeField] private bool      placed;
-	[SerializeField] private string    id;
-	[SerializeField] private string    structureName;
-	[SerializeField] private Transform menuPanel;
+	[SerializeField] protected bool   placed;
+	[SerializeField] protected string id;
+
+	[SerializeField] private UnityEvent<Collider2D> onPlayerInteract;
 
 	#region Unity Methods
 
@@ -37,34 +32,25 @@ public class Structure : MonoBehaviour {
 		StructureHandler.Instance.TakeArea(GetTempArea());
 	}
 
-	public void Move() {
-		Placed = false;
-		StructureHandler.Instance.Move(this);
-	}
 	public void Remove() {
 		StructureHandler.Instance.Remove(area);
 		Destroy(gameObject);
-		BuildMenu.Instance.AddFoundationItem(this); // TODO do we want this?
 	}
 
-	private BoundsInt GetTempArea() {
+	protected BoundsInt GetTempArea() {
 		return new BoundsInt(StructureHandler.Instance.gridLayout.LocalToCell(transform.position), area.size);
 	}
 
 	#endregion
 
-	#region Menu
-
-	public virtual void OnMenuEnable() { }
-
-	public virtual void OnMenuDisable() { }
-
-	#endregion
+	public void OnPlayerInteract(Collider2D trigger) {
+		onPlayerInteract.Invoke(trigger);
+	}
 
 	#region Operators
 
 	public override bool Equals(object obj) {
-		return obj != null && obj.GetType() == typeof(Structure) && ID == ((Structure) obj).ID;
+		return obj != null && obj.GetType() == typeof(Building) && ID == ((Building) obj).ID;
 	}
 
 	public override int GetHashCode() {
@@ -77,7 +63,7 @@ public class Structure : MonoBehaviour {
 
 	public bool Placed {
 		get { return placed; }
-		private set {
+		protected set {
 			placed = value; 
 			foreach (var col in GetComponentsInChildren<Collider2D>()) {
 				col.enabled = value;
@@ -87,16 +73,7 @@ public class Structure : MonoBehaviour {
 
 	public string ID {
 		get { return id; }
-		private set { id = value; }
-	}
-
-	public string StructureName {
-		get { return structureName; }
-		set { structureName = value; }
-	}
-
-	public Transform MenuPanel {
-		get { return menuPanel; }
+		protected set { id = value; }
 	}
 
 	#endregion

@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &3943553502653941047
+--- !u!1 &6003651364756897603
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,87 +8,72 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 3489762500417594363}
-  - component: {fileID: 5058679952366212095}
-  - component: {fileID: 2539600661824949773}
-  - component: {fileID: 7812790216651774345}
-  - component: {fileID: 6100878725693352846}
-  - component: {fileID: 961322057563878628}
+  - component: {fileID: 6513182779340403127}
+  - component: {fileID: 3419402674925115658}
+  - component: {fileID: 30148405568855741}
+  - component: {fileID: 4213779590893782227}
   m_Layer: 0
-  m_Name: Warehouse
-  m_TagString: Structure
+  m_Name: Pinetree
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &3489762500417594363
+--- !u!4 &6513182779340403127
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3943553502653941047}
+  m_GameObject: {fileID: 6003651364756897603}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 7667116559210000326}
+  - {fileID: 6059152064269595572}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5058679952366212095
+--- !u!114 &3419402674925115658
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3943553502653941047}
+  m_GameObject: {fileID: 6003651364756897603}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d7170d3d6b73e51cca1dca836b1377c1, type: 3}
+  m_Script: {fileID: 11500000, guid: a9bd4a82b75646258bda796094b2832f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   area:
     m_Position: {x: 0, y: 0, z: 0}
     m_Size: {x: 2, y: 2, z: 1}
-  placed: 0
-  id: warehouse
-  structureName: Warehouse
-  menuPanel: {fileID: 7767080227306837736, guid: 5b2e48142f4a6dd5082296c0f63854e1, type: 3}
---- !u!61 &2539600661824949773
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3943553502653941047}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0.5, y: 0.2}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 1.55, y: 1}
-  m_EdgeRadius: 0
---- !u!60 &7812790216651774345
+  placed: 1
+  id: pinetree
+  onPlayerInteract:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 3419402674925115658}
+        m_TargetAssemblyTypeName: Structure, Assembly-CSharp
+        m_MethodName: Remove
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!60 &30148405568855741
 PolygonCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3943553502653941047}
+  m_GameObject: {fileID: 6003651364756897603}
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
@@ -107,25 +92,43 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: 0.5, y: 1.3}
-      - {x: -0.35, y: 0.93}
-      - {x: -0.35, y: 0.51}
-      - {x: 1.35, y: 0.51}
-      - {x: 1.35, y: 0.93}
---- !u!61 &6100878725693352846
+    - - {x: 0.3146184, y: 0.870435}
+      - {x: 0.709175, y: 0.49619865}
+      - {x: 0.43378657, y: 0.48854083}
+      - {x: 0.92732334, y: 0.03207493}
+      - {x: 0.549308, y: 0.0037209392}
+      - {x: 0.5949683, y: -0.082885504}
+      - {x: 1.153576, y: -0.6697689}
+      - {x: 0.3130793, y: -0.6536223}
+      - {x: 0.2769768, y: -0.80035686}
+      - {x: 0.3511004, y: -0.90829754}
+      - {x: 0.73344874, y: -1.1344044}
+      - {x: -0.74875826, y: -1.129153}
+      - {x: -0.28490573, y: -0.8217597}
+      - {x: -0.25871366, y: -0.6621548}
+      - {x: -1.1033207, y: -0.6534298}
+      - {x: -0.5185558, y: 0.023650408}
+      - {x: -0.9217793, y: 0.0030843616}
+      - {x: -0.37993944, y: 0.50291955}
+      - {x: -0.64432985, y: 0.5316189}
+      - {x: -0.28860727, y: 0.8726141}
+      - {x: -0.49368358, y: 0.8942192}
+      - {x: -0.0059964657, y: 1.2421844}
+      - {x: 0.45374602, y: 0.916167}
+--- !u!61 &4213779590893782227
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3943553502653941047}
+  m_GameObject: {fileID: 6003651364756897603}
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.5, y: -0.5}
+  m_Offset: {x: 0, y: -1.44}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -136,49 +139,9 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.8, y: 0.4}
+  m_Size: {x: 1.54, y: 0.82}
   m_EdgeRadius: 0
---- !u!114 &961322057563878628
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3943553502653941047}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 56eb0353ae6e5124bb35b17aff880f16, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_StringReference:
-    m_TableReference:
-      m_TableCollectionName: GUID:e84112cea92674a40a2236995a12ccee
-    m_TableEntryReference:
-      m_KeyId: 109502504960
-      m_Key: 
-    m_FallbackState: 0
-    m_WaitForCompletion: 0
-    m_LocalVariables: []
-  m_FormatArguments: []
-  m_UpdateString:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 5058679952366212095}
-        m_TargetAssemblyTypeName: Structure, Assembly-CSharp
-        m_MethodName: set_BuildingName
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  references:
-    version: 2
-    RefIds: []
---- !u!1 &4384212562687321858
+--- !u!1 &7979242185205423518
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -186,37 +149,37 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 7667116559210000326}
-  - component: {fileID: 8196336518972745185}
+  - component: {fileID: 6059152064269595572}
+  - component: {fileID: 3414896253361899923}
   m_Layer: 0
-  m_Name: Sprite
+  m_Name: pinetree
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &7667116559210000326
+--- !u!4 &6059152064269595572
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4384212562687321858}
+  m_GameObject: {fileID: 7979242185205423518}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.5, y: 0.6, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 3489762500417594363}
+  m_Father: {fileID: 6513182779340403127}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!212 &8196336518972745185
+--- !u!212 &3414896253361899923
 SpriteRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4384212562687321858}
+  m_GameObject: {fileID: 7979242185205423518}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
@@ -251,7 +214,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 004dd0fe1439d0376ac56c4dff791c9d, type: 3}
+  m_Sprite: {fileID: 21300000, guid: af24fac46c964a0a29a25f2e04968c65, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

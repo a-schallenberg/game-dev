@@ -249,7 +249,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 5986231148439214608}
         m_TargetAssemblyTypeName: Structure, Assembly-CSharp
-        m_MethodName: set_StructureName
+        m_MethodName: set_BuildingName
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

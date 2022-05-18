@@ -6,18 +6,18 @@ public class FoundationItemSlot {
 	private const int SlotCapacity = 100;
 
 	private readonly Button    _buttonPrefab;
-	private readonly Structure _structurePrefab;
+	private readonly Building _buildingPrefab;
 
 	private readonly Button _button;
 
 	public int NumberOfStructures { get; private set; }
 
-	public FoundationItemSlot(Button buttonPrefab, Structure structurePrefab, Transform parent) {
-		_structurePrefab = structurePrefab;
+	public FoundationItemSlot(Button buttonPrefab, Building buildingPrefab, Transform parent) {
+		_buildingPrefab = buildingPrefab;
 
 		_button              = Object.Instantiate(buttonPrefab, parent);
-		_button.image.sprite = _structurePrefab.gameObject.GetComponentInChildren<SpriteRenderer>().sprite;
-		_button.onClick.AddListener(() => StructureHandler.Instance.OnInstantiateButtonClicked(_structurePrefab.gameObject));
+		_button.image.sprite = _buildingPrefab.gameObject.GetComponentInChildren<SpriteRenderer>().sprite;
+		_button.onClick.AddListener(() => StructureHandler.Instance.OnInstantiateButtonClicked(_buildingPrefab.gameObject));
 	}
 
 	#region Slot Functions

@@ -1,7 +1,7 @@
 using System.Linq;
 using TMPro;
 
-public class WarehouseScript : Structure {
+public class WarehouseScript : Building {
     
     public override void OnMenuEnable() {
         var woodAmount  = ResourceHandler.Resources[ResourceType.Wood].Amount;

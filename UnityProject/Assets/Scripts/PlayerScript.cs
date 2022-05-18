@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerScript : MonoBehaviour {
 	public static PlayerScript Instance { get; private set; }
 
-	[SerializeField] public List<Structure> foundations;
+	[SerializeField] public List<Building> foundations;
 
 	[SerializeField] private float          movementSpeed = 5f;
 
@@ -49,9 +49,8 @@ public class PlayerScript : MonoBehaviour {
 		if (_trigger == null) {
 			return;
 		}
-
-		var structure = _trigger.gameObject.GetComponent<Structure>();
-		StructureInteractionMenu.Instance.Enable(structure);
+		
+		_trigger.gameObject.GetComponent<Structure>().OnPlayerInteract(_trigger);
 	}
 
 	#endregion
@@ -65,12 +64,12 @@ public class PlayerScript : MonoBehaviour {
 		}
 	}
 	
-	public bool AddFoundation(Structure structure) {
-		return BuildMenu.Instance.AddFoundationItem(structure);
+	public bool AddFoundation(Building building) {
+		return BuildMenu.Instance.AddFoundationItem(building);
 	}
 
-	public bool RemoveFoundation(Structure structure) {
-		return BuildMenu.Instance.RemoveFoundationItem(structure);
+	public bool RemoveFoundation(Building building) {
+		return BuildMenu.Instance.RemoveFoundationItem(building);
 	}
 
 	#endregion

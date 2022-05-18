@@ -21,7 +21,7 @@ public class StructureHandler : MonoBehaviour {
 	[SerializeField] private TileBase   redTile;
 
 
-	private Structure _tempComponent;
+	private Building _tempComponent;
 	private Vector3   _prevMousePos;
 	private BoundsInt _prevArea;
 
@@ -119,7 +119,7 @@ public class StructureHandler : MonoBehaviour {
 	}
 
 	public void StartPlacing(GameObject gridComponent) {
-		_tempComponent = Instantiate(gridComponent, Vector3.zero, Quaternion.identity, structureParent).GetComponent<Structure>();
+		_tempComponent = Instantiate(gridComponent, Vector3.zero, Quaternion.identity, structureParent).GetComponent<Building>();
 		BuildMenu.Instance.RemoveFoundationItem(_tempComponent);
 		FollowBuilding();
 	}
@@ -173,13 +173,13 @@ public class StructureHandler : MonoBehaviour {
 
 	#region Structure Tools
 
-	public void Move(Structure structure) {
+	public void Move(Building building) {
 		if (!BuildMenu.Instance.gameObject.activeSelf) {
 			BuildMenu.Instance.gameObject.GetComponent<ActivityToggle>().ToggleActivity();
 		}
 
-		SetTilesBlock(structure.area, TileType.White, mainTilemap);
-		_tempComponent = structure;
+		SetTilesBlock(building.area, TileType.White, mainTilemap);
+		_tempComponent = building;
 	}
 
 	public void Remove(BoundsInt area) {

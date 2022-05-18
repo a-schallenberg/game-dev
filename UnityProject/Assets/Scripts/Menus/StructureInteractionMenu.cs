@@ -9,16 +9,16 @@ public class StructureInteractionMenu : MonoBehaviour, IMenu {
 	[SerializeField] private TextMeshProUGUI structureName;
 	[SerializeField] private Transform       structureSpecificPanel;
 
-	private Structure _currentStructure;
+	private Building _currentBuilding;
 	private Transform _currentStructurePanel;
 
 	public StructureInteractionMenu() {
 		Instance = this;
 	}
 
-	public void Enable(Structure structure) {
+	public void Enable(Building building) {
 		
-		_currentStructure      = structure;
+		_currentBuilding      = building;
 		MenuHandler.EnableMenu(this);
 	}
 
@@ -30,7 +30,7 @@ public class StructureInteractionMenu : MonoBehaviour, IMenu {
 	public void OnMoveClicked() {
 		try {
 			MenuHandler.EnableMenu(BuildMenu.Instance);
-			_currentStructure.Move();
+			_currentBuilding.Move();
 			Reset();
 		} catch (NullReferenceException) { }
 	}
@@ -38,13 +38,13 @@ public class StructureInteractionMenu : MonoBehaviour, IMenu {
 	public void OnRemoveClicked() {
 		try {
 			MenuHandler.DisableMenu();
-			_currentStructure.Remove();
+			_currentBuilding.Remove();
 			Reset();
 		} catch (NullReferenceException) { }
 	}
 
 	private void Reset() {
-		_currentStructure      = null;
+		_currentBuilding      = null;
 		_currentStructurePanel = null;
 	}
 	
@@ -52,15 +52,15 @@ public class StructureInteractionMenu : MonoBehaviour, IMenu {
 	
 	[Obsolete(IMenu.EnableObsoleteMessage, true)]
 	public void Enable() {
-		if (_currentStructure == null) {
+		if (_currentBuilding == null) {
 			return;
 		}
 
-		_currentStructure.OnMenuEnable();
+		_currentBuilding.OnMenuEnable();
 		InputActions.SIMenu.Enable();
 		
-		_currentStructurePanel = Instantiate(_currentStructure.MenuPanel, structureSpecificPanel);
-		structureName.text = _currentStructure.StructureName;
+		_currentStructurePanel = Instantiate(_currentBuilding.MenuPanel, structureSpecificPanel);
+		structureName.text = _currentBuilding.BuildingName;
 
 		gameObject.SetActive(true);
 		
@@ -68,7 +68,7 @@ public class StructureInteractionMenu : MonoBehaviour, IMenu {
 
 	[Obsolete(IMenu.DisableObsoleteMessage, true)]
 	public void Disable() {
-		_currentStructure.OnMenuDisable();
+		_currentBuilding.OnMenuDisable();
 		InputActions.SIMenu.Disable();
 		
 		gameObject.SetActive(false);

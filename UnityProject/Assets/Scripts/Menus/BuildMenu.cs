@@ -49,13 +49,13 @@ public class BuildMenu : MonoBehaviour, IMenu {
 		return success;
 	}
 
-	public bool AddFoundationItem(Structure structure) {
-		if (!_items.ContainsKey(structure)) {
-			_items.Add(structure, new FoundationItemSlot(button, structure, foundationView));
+	public bool AddFoundationItem(Building building) {
+		if (!_items.ContainsKey(building)) {
+			_items.Add(building, new FoundationItemSlot(button, building, foundationView));
 		}
 		
 		UpdateFoundationViewSize();
-		return _items[structure].Add();
+		return _items[building].Add();
 	}
 
 	#endregion
