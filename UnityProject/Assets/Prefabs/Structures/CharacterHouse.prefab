@@ -114,7 +114,7 @@ Transform:
   m_GameObject: {fileID: 5986231148439214615}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -12.166509, y: -2.5543728, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5986231147003315277}
@@ -135,11 +135,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   area:
     m_Position: {x: 0, y: 0, z: 0}
-    m_Size: {x: 2, y: 2, z: 1}
+    m_Size: {x: 4, y: 4, z: 1}
   placed: 0
   id: character_house
-  structureName: CharacterHouse
+  onPlayerInteract:
+    m_PersistentCalls:
+      m_Calls: []
   menuPanel: {fileID: 9005709574178899881, guid: e3d5769ac8e5d0cd998c5f96d9182f41, type: 3}
+  buildingName: 
 --- !u!61 &1498903204284929478
 BoxCollider2D:
   m_ObjectHideFlags: 0

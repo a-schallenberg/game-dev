@@ -46,18 +46,6 @@ public static class InputActions {
 		DisableAll();
 		action.Invoke();
 	}
-	
-	#region Enable Actions // @formatter:off
-
-	public static void EnableGame() => EnableAction(() => Game.Enable());
-	
-	public static void EnableBuilding() => EnableAction(() => { Building.Enable(); Game.Movement.Enable(); });
-	
-	public static void EnablePauseMenu() => EnableAction(() => PauseMenu.Enable());
-	
-	public static void EnableSIMenu() => EnableAction(() => SIMenu.Enable());
-
-	#endregion // @formatter:on
 }
 
 public class GameAction {}
