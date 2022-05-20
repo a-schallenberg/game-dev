@@ -18,6 +18,7 @@ public class PauseMenu : MonoBehaviour, IMenu {
         pauseMenu.SetActive(true);
         Time.timeScale = 0f;
         IsPaused = true;
+        transform.GetChild(0).gameObject.SetActive(true);
     }
 
     public void ResumeGame()
@@ -25,16 +26,7 @@ public class PauseMenu : MonoBehaviour, IMenu {
         pauseMenu.SetActive(false);
         Time.timeScale = 1f;
         IsPaused = false;
-    }
-
-    public void GoToSettingsMenu()
-    {
-        SceneManager.LoadScene("SettingsMenu");
-    }
-    
-    public void GoToPauseMenu()
-    {
-        SceneManager.LoadScene("PauseMenuUI");
+        transform.GetChild(1).gameObject.SetActive(false);
     }
 
     public void QuitGame()
@@ -42,7 +34,8 @@ public class PauseMenu : MonoBehaviour, IMenu {
         Application.Quit();
     }
 
-    public void OnResumeButtonPressed() {
+    public void OnResumeButtonPressed()
+    {
         MenuHandler.DisableMenu();
     }
     
