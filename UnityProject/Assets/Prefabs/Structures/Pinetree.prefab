@@ -63,9 +63,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 8589675766312056962}
-        m_TargetAssemblyTypeName: Structure, Assembly-CSharp
-        m_MethodName: Remove
+      - m_Target: {fileID: 8569924051381391308}
+        m_TargetAssemblyTypeName: StateScript, Assembly-CSharp
+        m_MethodName: Reset
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

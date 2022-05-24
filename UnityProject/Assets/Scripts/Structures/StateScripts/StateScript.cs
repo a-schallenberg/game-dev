@@ -16,6 +16,11 @@ public abstract class StateScript : MonoBehaviour {
 
     public abstract void NextState();
 
+    public virtual void Reset() {
+
+        InitState();
+    }
+
     protected void DisableStates() {
         states.ForEach(state => state.SetActive(false));
     }
