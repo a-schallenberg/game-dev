@@ -17,7 +17,7 @@ public abstract class StateScript : MonoBehaviour {
     public abstract void NextState();
 
     public virtual void Reset() {
-
+        StateIndex = 0;
         InitState();
     }
 

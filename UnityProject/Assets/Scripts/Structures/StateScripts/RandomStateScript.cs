@@ -44,6 +44,11 @@ public class RandomStateScript : StateScript {
 		}
 	}
 
+	public override void Reset() {
+		base.Reset();
+		_finalState = false;
+	}
+
 	private DateTime NewNextStageChange() {
 		return DateTime.Now.AddSeconds(RandomInt(minStateChangeSeconds, maxStateChangeSeconds));
 	}
