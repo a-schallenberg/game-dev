@@ -24,7 +24,8 @@ public class Building : Structure {
 
 	#endregion
 
-	public override void OnPlayerInteract(Collider2D trigger) {
+	public override void Interact(Collider2D trigger) {
+		base.Interact(trigger);
 		StructureInteractionMenu.Instance.Enable(this);
 	}
 	

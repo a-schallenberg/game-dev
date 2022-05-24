@@ -44,7 +44,7 @@ public class PlayerScript : MonoBehaviour {
 			return;
 		}
 		
-		_trigger.gameObject.GetComponent<Structure>().OnPlayerInteract(_trigger);
+		_trigger.gameObject.GetComponent<Interactable>().Interact(_trigger);
 	}
 
 	#endregion

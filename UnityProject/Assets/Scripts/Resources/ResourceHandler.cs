@@ -9,17 +9,17 @@ public static class ResourceHandler {
 		Resources.Add(ResourceType.Wood, new Resource(ResourceType.Wood));
 		Resources.Add(ResourceType.Stone, new Resource(ResourceType.Stone));
 		Resources.Add(ResourceType.Iron, new Resource(ResourceType.Iron));
-
-		Resources[ResourceType.Wood].Limit = 10;
 	}
 
+	// ReSharper disable Unity.PerformanceAnalysis
 	public static bool AddResources(ResourceType type, int amount) {
 		var complete =  Resources[type].Add(amount);
-		
+
 		OnUpdate(type);
 		return complete;
 	}
 	
+	// ReSharper disable Unity.PerformanceAnalysis
 	public static bool UseResources(ResourceType type, int amount) {
 		var complete = Resources[type].Use(amount);
 
@@ -27,6 +27,7 @@ public static class ResourceHandler {
 		return complete;
 	}
 
+	// ReSharper disable Unity.PerformanceAnalysis
 	private static void OnUpdate(ResourceType type) {
 		ResourceBar.Instance.SetResourceAmount(type, Resources[type].Amount);
 	}

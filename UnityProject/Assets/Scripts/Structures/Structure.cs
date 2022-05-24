@@ -3,13 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class Structure : MonoBehaviour {
+public class Structure : Interactable {
     public                   BoundsInt area;
 
 	[SerializeField] protected bool   placed;
 	[SerializeField] protected string id;
-
-	[SerializeField] private UnityEvent<Collider2D> onPlayerInteract;
 
 	#region Unity Methods
 
@@ -42,10 +40,6 @@ public class Structure : MonoBehaviour {
 	}
 
 	#endregion
-
-	public virtual void OnPlayerInteract(Collider2D trigger) {
-		onPlayerInteract.Invoke(trigger);
-	}
 
 	#region Operators
 

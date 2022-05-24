@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Tester : MonoBehaviour {
+public class ResourceTester : MonoBehaviour {
 	[SerializeField] private int woodAmount;
 	[SerializeField] private int woodLimit;
 	[SerializeField] private int stoneAmount;
@@ -11,38 +11,12 @@ public class Tester : MonoBehaviour {
 	[SerializeField] private int ironAmount;
 	[SerializeField] private int ironLimit;
 
-	[SerializeField]                  private float          maxLifePoints;
-	[SerializeField, Range(0f, 100f)] private float          lifePoints;
-	[SerializeField]                  public  List<Building> foundations;
-
-	private void Awake() {
-		LoadStartFoundations();
-	}
-
 	private void Start() {
 		ResourceHandler.Update();
 	}
 
 	private void Update() {
-		UpdateLifeBar();
 		UpdateResources();
-	}
-
-	public void LoadStartFoundations() {
-		foreach (var foundation in foundations) {
-			BuildMenu.Instance.AddFoundationItem(foundation);
-		}
-	}
-
-	public void UpdateLifeBar() {
-		var points = Lifebar.Instance.Points;
-		if (points < lifePoints) {
-			Lifebar.Instance.AddPoints(lifePoints - points);
-		} else if (points > lifePoints) {
-			Lifebar.Instance.RemovePoints(points - lifePoints);
-		}
-		
-		Lifebar.Instance.maxPoints = maxLifePoints;
 	}
 
 	private void UpdateResources() {
