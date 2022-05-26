@@ -2,16 +2,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor.VersionControl;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class BuildingStateScript : StateScript
 {
     [SerializeField] private float startingTime;            //Von wie viel Sekunden Runter gezählt wird
+    [SerializeField] private Slider progressSlider;
 
     private float currentTime;
 
     // Start is called before the first frame update
     void Start()
     {
+        progressSlider.gameObject.SetActive(false);
+        progressSlider.maxValue = startingTime;
         currentTime = startingTime;
     }
 
@@ -22,6 +26,7 @@ public class BuildingStateScript : StateScript
         {
             if (StateIndex == 0)                        //Der erste State muss das fertige Gebäude sein damit es auch fertig im BuildMenu angezeigt wird
             {                                           //Deshalb direkt auf den nächsten State wenn placed
+                progressSlider.gameObject.SetActive(true);
                 NextState();
             }
             if (currentTime <= 0)
@@ -31,6 +36,7 @@ public class BuildingStateScript : StateScript
             else
             {
                 currentTime -= 1 * Time.deltaTime;
+                progressSlider.value = startingTime - currentTime;
             }
         }
     }
@@ -50,6 +56,7 @@ public class BuildingStateScript : StateScript
             states[++StateIndex].SetActive(true);
             if (StateIndex + 1 == states.Count)         //Wenn man am letzten State ist, bzw das Gebäude fertig ist, kann man damit interagieren
             {
+                progressSlider.gameObject.SetActive(false);
                 gameObject.GetComponent<Building>().setCanInteract(true);
             }
         }
