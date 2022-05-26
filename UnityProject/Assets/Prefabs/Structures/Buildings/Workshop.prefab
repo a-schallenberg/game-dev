@@ -223,7 +223,7 @@ GameObject:
   - component: {fileID: 5477703598488764404}
   m_Layer: 0
   m_Name: State0
-  m_TagString: Structure_InProgess
+  m_TagString: Structure_InProgress
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -236,8 +236,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2813484109842450819}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.5, y: 1.6, z: 0}
-  m_LocalScale: {x: 5, y: 5, z: 1}
+  m_LocalPosition: {x: 1.5, y: 1, z: 0}
+  m_LocalScale: {x: 0.75, y: 0.75, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8888995866789325980}
@@ -284,7 +284,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 70c42c4732d031f86ba97994af6006fb, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 08b1261b7e254d2ef9c7d9b0fcb3460d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -307,7 +307,7 @@ GameObject:
   - component: {fileID: 6828680460658353025}
   m_Layer: 0
   m_Name: Display
-  m_TagString: Untagged
+  m_TagString: Structure_InProgress
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -560,7 +560,7 @@ MonoBehaviour:
   - {fileID: 1016639043834357242}
   startingTime: 5
   progressSlider: {fileID: 4913342772360178692}
-  building: {fileID: 0}
+  building: {fileID: 6206660429389352291}
 --- !u!1 &5370035469742735858
 GameObject:
   m_ObjectHideFlags: 0

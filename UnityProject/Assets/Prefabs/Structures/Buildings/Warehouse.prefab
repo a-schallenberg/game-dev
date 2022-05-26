@@ -74,7 +74,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 2, y: 2}
+  m_AnchoredPosition: {x: 2, y: 3}
   m_SizeDelta: {x: 5, y: 5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!223 &3432082530010099316
@@ -258,7 +258,7 @@ Transform:
   m_GameObject: {fileID: 3943553502653941047}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.75, y: 0.75, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7161144669444135585}
@@ -289,7 +289,7 @@ MonoBehaviour:
   placed: 0
   id: warehouse
   menuPanel: {fileID: 7767080227306837736, guid: 5b2e48142f4a6dd5082296c0f63854e1, type: 3}
-  buildingName: Warehouse
+  buildingName: Lagerhaus
   canInteract: 0
 --- !u!60 &7812790216651774345
 PolygonCollider2D:
@@ -409,7 +409,7 @@ MonoBehaviour:
   - {fileID: 5139898110851102502}
   startingTime: 5
   progressSlider: {fileID: 2066636397278428063}
-  building: {fileID: 0}
+  building: {fileID: 5058679952366212095}
 --- !u!1 &4384212562687321858
 GameObject:
   m_ObjectHideFlags: 0
@@ -422,7 +422,7 @@ GameObject:
   - component: {fileID: 8196336518972745185}
   m_Layer: 0
   m_Name: Display
-  m_TagString: Untagged
+  m_TagString: Structure_InProgress
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -666,7 +666,7 @@ GameObject:
   - component: {fileID: 8231273704055274752}
   m_Layer: 0
   m_Name: State0
-  m_TagString: Structure_InProgess
+  m_TagString: Structure_InProgress
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -679,8 +679,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7246369737363323077}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2, y: 2, z: 0}
-  m_LocalScale: {x: 5, y: 5, z: 1}
+  m_LocalPosition: {x: 2, y: 1.46, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3489762500417594363}
@@ -727,7 +727,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 70c42c4732d031f86ba97994af6006fb, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 08b1261b7e254d2ef9c7d9b0fcb3460d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

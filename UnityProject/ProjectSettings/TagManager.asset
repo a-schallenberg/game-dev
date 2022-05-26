@@ -7,8 +7,8 @@ TagManager:
   - BuildMenu
   - Structure
   - MenuHandler
-  - Structure_InProgess
   - Structure_Finished
+  - Structure_InProgress
   layers:
   - Default
   - TransparentFX
