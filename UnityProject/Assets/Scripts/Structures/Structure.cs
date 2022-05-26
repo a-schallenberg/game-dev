@@ -9,16 +9,6 @@ public class Structure : Interactable {
 	[SerializeField] protected bool   placed;
 	[SerializeField] protected string id;
 
-	#region Unity Methods
-
-	private void Awake() {
-		foreach (var col in GetComponentsInChildren<Collider2D>()) {
-			col.enabled = Placed;
-		}
-	}
-
-	#endregion
-
 	#region Building Tools
 
 	public bool CanBePlaced() {
@@ -58,10 +48,7 @@ public class Structure : Interactable {
 	public bool Placed {
 		get { return placed; }
 		protected set {
-			placed = value; 
-			foreach (var col in GetComponentsInChildren<Collider2D>()) {
-				col.enabled = value;
-			}
+			placed = value;
 		}
 	}
 

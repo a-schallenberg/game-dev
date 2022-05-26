@@ -9,7 +9,6 @@ public class Building : Structure {
 	
 	[SerializeField] protected Transform menuPanel;
 	[SerializeField] protected string    buildingName;
-	[SerializeField] protected bool canInteract;		//Um zu wissen ob man schon interagieren kann oder nicht, falls es noch nicht fertig gebaut ist
 
 	#region Building Tools
 	
@@ -26,7 +25,7 @@ public class Building : Structure {
 	#endregion
 
 	public override void Interact(Collider2D trigger) {
-		if (canInteract)
+		// TODO if (canInteract)
 		{
 			base.Interact(trigger);
 			StructureInteractionMenu.Instance.Enable(this);
@@ -62,15 +61,6 @@ public class Building : Structure {
 	
 	public Transform MenuPanel {
 		get { return menuPanel; }
-	}
-
-	#endregion
-
-	#region Setter
-
-	public void setCanInteract(bool status)
-	{
-		canInteract = status;
 	}
 
 	#endregion

@@ -8242,7 +8242,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 2.1091955, y: 1}
+    m_SensorSize: {x: 2.0071814, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -9403,11 +9403,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b3ae2c8661c2ee90aa0cf27fecac6fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  woodAmount: 5
+  woodAmount: 0
   woodLimit: 10
-  stoneAmount: 5
+  stoneAmount: 0
   stoneLimit: 10
-  ironAmount: 5
+  ironAmount: 0
   ironLimit: 10
 --- !u!114 &1810137276
 MonoBehaviour:
@@ -9440,7 +9440,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxLifePoints: 100
-  lifePoints: 0
+  lifePoints: 100
 --- !u!1 &1817138117
 GameObject:
   m_ObjectHideFlags: 0

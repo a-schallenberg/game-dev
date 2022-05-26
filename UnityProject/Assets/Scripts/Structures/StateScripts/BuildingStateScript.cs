@@ -61,10 +61,7 @@ public class BuildingStateScript : StateScript
             if (states[StateIndex].tag.Equals(tagFinished))         //Wenn man am letzten State ist, bzw das Gebäude fertig ist, kann man damit interagieren
             {
                 progressSlider.gameObject.SetActive(false);
-                building.setCanInteract(true);
             }
-            
-            //states[StateIndex].tag
         }
     }
 }
