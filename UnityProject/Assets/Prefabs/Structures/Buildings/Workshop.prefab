@@ -623,9 +623,12 @@ MonoBehaviour:
     m_Size: {x: 4, y: 4, z: 1}
   placed: 0
   id: workshop
-  menuPanel: {fileID: 9005709574178899881, guid: 6eee6759af47254f9bea1ac0cbd274db, type: 3}
+  menuPanel: {fileID: 507538541532236854, guid: 6eee6759af47254f9bea1ac0cbd274db, type: 3}
   buildingName: Werkstatt
-  canInteract: 0
+  costs:
+    wood: 7
+    stone: 0
+    iron: 0
 --- !u!114 &1135024304246101041
 MonoBehaviour:
   m_ObjectHideFlags: 0

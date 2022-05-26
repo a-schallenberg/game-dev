@@ -9,6 +9,7 @@ public class Building : Structure {
 	
 	[SerializeField] protected Transform menuPanel;
 	[SerializeField] protected string    buildingName;
+	[SerializeField] protected Costs     costs;
 
 	#region Building Tools
 	
@@ -61,6 +62,10 @@ public class Building : Structure {
 	
 	public Transform MenuPanel {
 		get { return menuPanel; }
+	}
+
+	public Costs Costs {
+		get { return costs; }
 	}
 
 	#endregion

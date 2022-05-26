@@ -288,7 +288,10 @@ MonoBehaviour:
   id: warehouse
   menuPanel: {fileID: 7767080227306837736, guid: 5b2e48142f4a6dd5082296c0f63854e1, type: 3}
   buildingName: Lagerhaus
-  canInteract: 0
+  costs:
+    wood: 10
+    stone: 0
+    iron: 0
 --- !u!114 &961322057563878628
 MonoBehaviour:
   m_ObjectHideFlags: 0
