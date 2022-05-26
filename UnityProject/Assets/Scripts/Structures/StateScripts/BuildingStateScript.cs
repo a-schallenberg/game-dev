@@ -6,8 +6,11 @@ using UnityEngine.UI;
 
 public class BuildingStateScript : StateScript
 {
-    [SerializeField] private float startingTime;            //Von wie viel Sekunden Runter gezählt wird
-    [SerializeField] private Slider progressSlider;
+    // private const string tagInProgress = "";
+    
+    [SerializeField] private float    startingTime; //Von wie viel Sekunden Runter gezählt wird
+    [SerializeField] private Slider   progressSlider;
+    [SerializeField] private Building building;
 
     private float currentTime;
 
@@ -22,7 +25,7 @@ public class BuildingStateScript : StateScript
     // Update is called once per frame
     void Update()
     {
-        if (gameObject.GetComponent<Building>().Placed)
+        if (building.Placed)
         {
             if (StateIndex == 0)                        //Der erste State muss das fertige Gebäude sein damit es auch fertig im BuildMenu angezeigt wird
             {                                           //Deshalb direkt auf den nächsten State wenn placed
@@ -57,8 +60,10 @@ public class BuildingStateScript : StateScript
             if (StateIndex + 1 == states.Count)         //Wenn man am letzten State ist, bzw das Gebäude fertig ist, kann man damit interagieren
             {
                 progressSlider.gameObject.SetActive(false);
-                gameObject.GetComponent<Building>().setCanInteract(true);
+                building.setCanInteract(true);
             }
+            
+            //states[StateIndex].tag
         }
     }
 }
