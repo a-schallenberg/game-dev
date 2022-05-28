@@ -14,19 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_TableCollectionName: Overlay
   m_TableCollectionNameGuidString: 8081116bef6b2c75292f93aacc13209c
-  m_Entries:
-  - m_Id: 16527368192
-    m_Key: build_menu
-    m_Metadata:
-      m_Items: []
-  - m_Id: 930536346066944
-    m_Key: quests
-    m_Metadata:
-      m_Items: []
-  - m_Id: 930602607681536
-    m_Key: pause_menu
-    m_Metadata:
-      m_Items: []
+  m_Entries: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:
