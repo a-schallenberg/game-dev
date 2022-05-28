@@ -68,7 +68,7 @@ public struct SGame {
 	}
 
 	public static void Pause() {
-		MenuHandler.EnableMenu(PauseMenu.Instance);
+		MenuHandler.EnableMenu(PauseMenu.Instance, false);
 	}
 }
 

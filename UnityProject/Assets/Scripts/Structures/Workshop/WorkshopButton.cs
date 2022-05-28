@@ -1,22 +1,22 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class WorkshopButton : MonoBehaviour {
 
-	[SerializeField] private Building  prefab;
-	[SerializeField] private Transform costs;
-	
-	[SerializeField] private GameObject woodPanel;
-	[SerializeField] private GameObject stonePanel;
-	[SerializeField] private GameObject ironPanel;
+	private Building  _prefab;
 
-	public void Init() {
-		if (prefab.Costs.wood >= 0) {
-			GameObject panel = Instantiate(woodPanel, costs);
-			
-			// TODO add text to woodPanel
-		} 
-		// TODO do this for all resoruces
+	public void Init(Building prefab) {
+		_prefab = prefab;
+	}
+
+	public void OnHoverEnter() {
+		Costbar.Instance.Enable(-_prefab.Costs.wood, -_prefab.Costs.stone, -_prefab.Costs.iron);
+	}
+	
+	public void OnHoverExit() {
+		Costbar.Instance.Disable();
 	}
 }

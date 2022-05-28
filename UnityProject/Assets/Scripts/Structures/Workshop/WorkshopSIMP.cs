@@ -20,6 +20,7 @@ public class WorkshopSIMP : MonoBehaviour {
         foreach (var building in prefabs) {
             Button button = Instantiate(buttonPrefab, group);
             button.image.sprite = building.gameObject.GetComponentInChildren<SpriteRenderer>().sprite;
+            button.GetComponent<WorkshopButton>().Init(building);
         }
     }
 }

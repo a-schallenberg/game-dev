@@ -7,14 +7,8 @@ using UnityEngine;
 public class DefaultMenu : MonoBehaviour, IMenu {
     public static DefaultMenu Instance { get; private set; }
 
-    [SerializeField] private ActivityToggle topBarToggle;
-
     public DefaultMenu() {
         Instance = this;
-    }
-    
-    public void SetTopBar(bool active) {
-		topBarToggle.SetActivity(active);
     }
 
     #region Buttons
@@ -30,7 +24,7 @@ public class DefaultMenu : MonoBehaviour, IMenu {
     public void OnQuestsButtonPressed() {}
     
     public void OnPauseMenuPressed() {
-        MenuHandler.EnableMenu(PauseMenu.Instance);
+        MenuHandler.EnableMenu(PauseMenu.Instance, false);
     }
 
     #endregion

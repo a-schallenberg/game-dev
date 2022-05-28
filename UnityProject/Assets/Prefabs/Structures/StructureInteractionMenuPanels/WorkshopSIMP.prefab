@@ -297,7 +297,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -394,7 +394,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &204403659347895976
 RectTransform:
   m_ObjectHideFlags: 0
@@ -772,7 +772,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   group: {fileID: 6575125372343495785}
-  buttonPrefab: {fileID: 1969468458577146128, guid: 24268d7bca3c078cd883c541fad19703, type: 3}
+  buttonPrefab: {fileID: 395370732188555485, guid: bba5751cfbfd906eab743f32aab0d486, type: 3}
   prefabs:
   - {fileID: 5986231148439214608, guid: 58b1f9e532008b8b7b87fb2780ecd6c6, type: 3}
   - {fileID: 6206660429389352291, guid: 089b0ba2da2913530b4bde6118ae9d49, type: 3}
