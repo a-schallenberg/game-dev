@@ -19,4 +19,10 @@ public class WorkshopButton : MonoBehaviour {
 	public void OnHoverExit() {
 		Costbar.Instance.Disable();
 	}
+
+	public void OnClick() {
+		if (!ResourceHandler.UseResources(_prefab.Costs)) return;
+
+		BuildMenu.Instance.AddFoundationItem(_prefab);
+	}
 }

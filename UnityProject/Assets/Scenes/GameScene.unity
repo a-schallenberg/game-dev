@@ -9929,18 +9929,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   foundations:
-  - {fileID: 5986231148439214608, guid: 58b1f9e532008b8b7b87fb2780ecd6c6, type: 3}
-  - {fileID: 5986231148439214608, guid: 58b1f9e532008b8b7b87fb2780ecd6c6, type: 3}
-  - {fileID: 5986231148439214608, guid: 58b1f9e532008b8b7b87fb2780ecd6c6, type: 3}
-  - {fileID: 5058679952366212095, guid: c66f38280b35c3c199b9140481a2c13c, type: 3}
-  - {fileID: 5058679952366212095, guid: c66f38280b35c3c199b9140481a2c13c, type: 3}
-  - {fileID: 5058679952366212095, guid: c66f38280b35c3c199b9140481a2c13c, type: 3}
-  - {fileID: 5058679952366212095, guid: c66f38280b35c3c199b9140481a2c13c, type: 3}
-  - {fileID: 6206660429389352291, guid: 089b0ba2da2913530b4bde6118ae9d49, type: 3}
-  - {fileID: 6206660429389352291, guid: 089b0ba2da2913530b4bde6118ae9d49, type: 3}
-  - {fileID: 6206660429389352291, guid: 089b0ba2da2913530b4bde6118ae9d49, type: 3}
-  - {fileID: 6206660429389352291, guid: 089b0ba2da2913530b4bde6118ae9d49, type: 3}
-  - {fileID: 6206660429389352291, guid: 089b0ba2da2913530b4bde6118ae9d49, type: 3}
   - {fileID: 6206660429389352291, guid: 089b0ba2da2913530b4bde6118ae9d49, type: 3}
 --- !u!4 &1810137274
 Transform:
@@ -9969,7 +9957,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b3ae2c8661c2ee90aa0cf27fecac6fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  woodAmount: 0
+  woodAmount: 9
   woodLimit: 10
   stoneAmount: 0
   stoneLimit: 10
