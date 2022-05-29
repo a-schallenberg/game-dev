@@ -3,6 +3,10 @@ using TMPro;
 using UnityEngine;
 
 namespace Game.UI {
+	
+	/// <summary>
+	/// Manages the resource bar
+	/// </summary>
 	public class ResourceBar : MonoBehaviour {
 		[SerializeField] private TextMeshProUGUI wood;
 		[SerializeField] private TextMeshProUGUI stone;

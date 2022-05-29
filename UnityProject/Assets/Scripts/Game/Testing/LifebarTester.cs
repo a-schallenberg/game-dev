@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Game.Testing {
 	public class LifebarTester : MonoBehaviour {
-		[SerializeField]                  private float maxLifePoints;
+		[SerializeField]                  private int maxLifePoints;
 		[SerializeField, Range(0f, 100f)] private float lifePoints;
 
 		private void Update() {

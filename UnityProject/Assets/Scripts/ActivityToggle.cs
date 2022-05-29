@@ -12,11 +12,20 @@ using UnityEngine.Events;
 public class ActivityToggle : MonoBehaviour {
 	[SerializeField] private UnityEvent onToggle;
 
+	/// <summary>
+	/// Toggles activity of the <c>GameObject</c>.
+	/// Triggers onToggle.
+	/// </summary>
 	public void ToggleActivity() {
 		gameObject.SetActive(!gameObject.activeSelf);
 		onToggle.Invoke();
 	}
 
+	/// <summary>
+	/// Sets activity of the <c>GameObject</c>.
+	/// Triggers onToggle.
+	/// </summary>
+	/// <param name="active">True, to enable the <c>GameObject</c>, false to disable.</param>
 	public void SetActivity(bool active) {
 		gameObject.SetActive(active);
 		onToggle.Invoke();
