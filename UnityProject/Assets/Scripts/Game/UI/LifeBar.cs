@@ -19,7 +19,7 @@ namespace Game.UI {
 		/// <summary>
 		/// The maximum life points the player can get.
 		/// </summary>
-		public int maxPoints;
+		[SerializeField] private int maxPoints;
 
 		/// <summary>
 		/// Speed of the filling animation of the bar.
@@ -61,8 +61,9 @@ namespace Game.UI {
 		public void AddPoints(float points) {
 			var start = Points;
 			Points = Math.Min(Points + points, maxPoints);
-			
-			StartCoroutine(Lerp(start));
+
+			//StartCoroutine(Lerp(start));
+			UpdateBar();
 		}
 
 		/// <summary>
@@ -74,13 +75,14 @@ namespace Game.UI {
 			var start = Points;
 			Points = Math.Max(Points - points, 0f);
 
-			StartCoroutine(Lerp(start));
+			//StartCoroutine(Lerp(start));
+			UpdateBar();
 
 			if (Points <= 0f) {
 				OnDie();
 			}
 		}
-		
+
 		/// <summary>
 		/// Is triggered, if the life points are equal to (or less then) zero
 		/// </summary>
@@ -110,5 +112,22 @@ namespace Game.UI {
 
 			_lerpFlag = false; // Open mutex
 		}
+
+		private void UpdateBar() {
+			slider.value = Points / maxPoints;
+			text.text    = $"{((int) Points).ToString()} / {maxPoints.ToString()}";
+		}
+		
+		#region Getter
+		
+		public int MaxPoints {
+			get { return maxPoints; }
+			set {
+				maxPoints = value;
+				UpdateBar();
+			}
+		}
+		
+		#endregion
 	}
 }

@@ -11,14 +11,14 @@ namespace Game.Testing {
 		}
 
 		public void UpdateLifeBar() {
+			LifeBar.Instance.MaxPoints = maxLifePoints;
+			
 			var points = LifeBar.Instance.Points;
 			if (points < lifePoints) {
 				LifeBar.Instance.AddPoints(lifePoints - points);
 			} else if (points > lifePoints) {
 				LifeBar.Instance.RemovePoints(points - lifePoints);
 			}
-
-			LifeBar.Instance.maxPoints = maxLifePoints;
 		}
 	}
 }

@@ -3677,6 +3677,7 @@ MonoBehaviour:
   lerpSpeed: 2
   slider: {fileID: 295191272}
   text: {fileID: 2018710411}
+  fill: {fileID: 1454766193}
 --- !u!1 &315337271
 GameObject:
   m_ObjectHideFlags: 0
@@ -11333,7 +11334,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxLifePoints: 100
-  lifePoints: 100
+  lifePoints: 0
 --- !u!1 &1817138117
 GameObject:
   m_ObjectHideFlags: 0
