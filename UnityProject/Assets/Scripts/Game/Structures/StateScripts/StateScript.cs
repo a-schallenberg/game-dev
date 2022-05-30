@@ -19,7 +19,7 @@ namespace Game.Structures.StateScripts {
 		public abstract void InitState();
 
 		public abstract void NextState();
-
+		
 		protected void DisableStates() {
 			states.ForEach(state => state.SetActive(false));
 		}

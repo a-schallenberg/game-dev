@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using Game.Structures.StateScripts;
 using Game.UI.MenuHandling.Menus;
 using UnityEngine;
 using UnityEngine.Tilemaps;
@@ -175,12 +176,13 @@ namespace Game.Structures {
 		#region Structure Tools
 
 		public void Move(Building building) {
-			if (!BuildMenu.Instance.gameObject.activeSelf) {
+			if (!BuildMenu.Instance.gameObject.activeSelf) { // Enable build menu, if disabled
 				BuildMenu.Instance.gameObject.GetComponent<ActivityToggle>().ToggleActivity();
 			}
 
-			SetTilesBlock(building.area, TileType.White, mainTilemap);
+			SetTilesBlock(building.area, TileType.White, mainTilemap); // Reset area on tilemap
 			_tempComponent = building;
+			building.GetComponent<StateScript>().Reset();
 		}
 
 		public void Remove(BoundsInt area) {

@@ -9847,7 +9847,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 2.1213872, y: 1}
+    m_SensorSize: {x: 2.1091955, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -11332,7 +11332,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b95051ae61a139a8b9cb15f8566d3e84, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxLifePoints: 0
+  maxLifePoints: 100
   lifePoints: 100
 --- !u!1 &1817138117
 GameObject:
@@ -12599,7 +12599,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 2.1213872, y: 1}
+    m_SensorSize: {x: 2.1091955, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
