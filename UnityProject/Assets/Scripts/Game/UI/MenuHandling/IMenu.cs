@@ -20,12 +20,29 @@ namespace Game.UI.MenuHandling {
 	///     </example>
 	/// </summary>
 	public interface IMenu {
+		/// <summary>
+		/// Default obsolete message for <c>Enable()</c>
+		/// </summary>
 		protected const string EnableObsoleteMessage  = "Do not enable the menu here. Use 'MenuHandler.EnableMenu(this) instead.";
+		
+		/// <summary>
+		/// Default obsolete message for <c>Disable()</c>
+		/// </summary>
 		protected const string DisableObsoleteMessage = "Do not disable the menu here. Use 'MenuHandler.DisableMenu() instead.";
 
+		/// <summary>
+		/// Method for enabling the menu.
+		/// Here only the functionality has to be implemented.
+		/// Enable the menu using <c>MenuHandler.EnableMenu(this)</c>
+		/// </summary>
 		[Obsolete(EnableObsoleteMessage, false)]
 		public void Enable();
 
+		/// <summary>
+		/// Method for disabling the menu.
+		/// Here only the functionality has to be implemented.
+		/// Disable the menu using <c>MenuHandler.DisableMenu(this)</c>
+		/// </summary>
 		[Obsolete(DisableObsoleteMessage, false)]
 		public void Disable();
 	}
