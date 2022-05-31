@@ -9,6 +9,8 @@ namespace Game.UI {
 	/// <c>MonoBehavior</c> for the LifeBar in the Overlay. Manges life points.
 	/// </summary>
 	public class LifeBar : MonoBehaviour {
+		public const bool DoLerp = true;
+		
 		public static LifeBar Instance { get; private set; }
 
 		/// <summary>
@@ -61,9 +63,8 @@ namespace Game.UI {
 		public void AddPoints(float points) {
 			var start = Points;
 			Points = Math.Min(Points + points, maxPoints);
-
-			//StartCoroutine(Lerp(start));
-			UpdateBar();
+			
+			UpdateBar(start);
 		}
 
 		/// <summary>
@@ -74,9 +75,8 @@ namespace Game.UI {
 		public void RemovePoints(float points) {
 			var start = Points;
 			Points = Math.Max(Points - points, 0f);
-
-			//StartCoroutine(Lerp(start));
-			UpdateBar();
+			
+			UpdateBar(start);
 
 			if (Points <= 0f) {
 				OnDie();
@@ -113,9 +113,13 @@ namespace Game.UI {
 			_lerpFlag = false; // Open mutex
 		}
 
-		private void UpdateBar() {
-			slider.value = Points / maxPoints;
-			text.text    = $"{((int) Points).ToString()} / {maxPoints.ToString()}";
+		private void UpdateBar(float start = float.NaN) {
+			if (!float.IsNaN(start) && DoLerp) {
+				StartCoroutine(Lerp(start));
+			} else {
+				slider.value = Points / maxPoints;
+				text.text    = $"{((int) Points).ToString()} / {maxPoints.ToString()}";
+			}
 		}
 		
 		#region Getter
