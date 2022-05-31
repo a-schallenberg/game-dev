@@ -5,7 +5,6 @@ using UnityEditor;
 using UnityEngine;
 
 namespace Game.UI.MenuHandling {
-	[InitializeOnLoad]
 	public static class InputActions {
 		public static readonly GameInputActions InputAction = new();
 
@@ -20,7 +19,9 @@ namespace Game.UI.MenuHandling {
 			Game.Enable();
 		}
 
-		public static void RegisterActions() {
+		public static void Load() {}
+
+		private static void RegisterActions() {
 			Game.Movement.performed    += ctx => SGame.MovePerformed(ctx.ReadValue<Vector2>());
 			Game.Movement.canceled     += _ => SGame.MoveCanceled();
 			Game.BuildMenu.performed   += _ => SGame.BuildMenu();
@@ -38,20 +39,13 @@ namespace Game.UI.MenuHandling {
 			SIMenu.Close.performed += _ => SSIMenu.Close();
 		}
 
-		public static void DisableAll() {
+		private static void DisableAll() {
 			Building.Disable();
 			Game.Disable();
 			PauseMenu.Disable();
 			SIMenu.Disable();
 		}
-
-		public static void EnableAction(Action action) {
-			DisableAll();
-			action.Invoke();
-		}
 	}
-
-	public class GameAction {}
 
 	public struct SGame {
 		public static void MovePerformed(Vector2 vec) {

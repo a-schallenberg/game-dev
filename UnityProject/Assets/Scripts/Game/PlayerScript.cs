@@ -1,5 +1,6 @@
 using System;
 using Game.Structures;
+using Game.UI.MenuHandling;
 using Game.UI.MenuHandling.Menus;
 using UnityEngine;
 
@@ -71,6 +72,7 @@ namespace Game {
 		private void Awake()
 		{
 			_animator = GetComponentInChildren<Animator>();
+			InputActions.Load();
 		}
 
 		#endregion
