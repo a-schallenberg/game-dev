@@ -26,6 +26,10 @@ MonoBehaviour:
     m_Localized: "Abrei\xDFen"
     m_Metadata:
       m_Items: []
+  - m_Id: 5177388625010688
+    m_Localized: Ausbauen
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

@@ -1,36 +1,39 @@
 using Game.Resources;
+using Game.Structures.StateScripts;
 using Game.UI.MenuHandling.Menus;
 using UnityEngine;
 
-namespace Game.Structures {
+namespace Game.Structures
+{
 	/// <summary>
 	///     Any structure that can be built within the gameplay needs this script.
 	///     An area is required for this. In this game, the z-coordinate must always be set to 1.
 	///     X and Y are for the length and width of the structure in tiles.
 	/// </summary>
-	public class Building : Structure {
-		[SerializeField] protected Transform menuPanel;
-		[SerializeField] protected string    buildingName;
-		[SerializeField] protected Costs     costs;
+	public class Building : Structure, IUpgradable
+	{
+		[SerializeField] protected Transform   menuPanel;
+		[SerializeField] protected string      buildingName;
+		[SerializeField] protected StateScript stateScript;
 
-		public override void Interact(Collider2D col) {
-			// TODO if (canInteract)
-			{
-				base.Interact(col);
-				StructureInteractionMenu.Instance.Enable(this);
-			}
+		public override void Interact(Collider2D col)
+		{
+			base.Interact(col);
+			StructureInteractionMenu.Instance.Enable(this);
 		}
 
 		#region Building Tools
 
-		public void Move() {
+		public void Move()
+		{
 			Placed = false;
 			StructureHandler.Instance.Move(this);
 		}
 
-		public new void Remove() {
+		public new void Remove()
+		{
 			base.Remove();
-			BuildMenu.Instance.AddFoundationItem(this); // TODO do we want this?
+			//BuildMenu.Instance.AddFoundationItem(this); // TODO do we want this?
 		}
 
 		#endregion
@@ -45,11 +48,13 @@ namespace Game.Structures {
 
 		#region Operators
 
-		public override bool Equals(object obj) {
+		public override bool Equals(object obj)
+		{
 			return obj != null && obj.GetType() == typeof(Building) && ID == ((Building) obj).ID;
 		}
 
-		public override int GetHashCode() {
+		public override int GetHashCode()
+		{
 			return ID.GetHashCode();
 		}
 
@@ -57,19 +62,42 @@ namespace Game.Structures {
 
 		#region Getter
 
-		public string BuildingName {
+		public string BuildingName
+		{
 			get { return buildingName; }
 			set { buildingName = value; }
 		}
 
-		public Transform MenuPanel {
+		public Transform MenuPanel
+		{
 			get { return menuPanel; }
 		}
 
-		public Costs Costs {
-			get { return costs; }
+		public Costs Costs
+		{
+			get { return stateScript.GetNextBuiltState().Costs; }
 		}
 
 		#endregion
+
+		public void Upgrade()
+		{
+			if (IsMaxUpgraded())
+			{
+				return;
+			}
+
+			if (!ResourceHandler.UseResources(Costs))
+			{
+				return;
+			}
+
+			stateScript.NextState();
+		}
+
+		public bool IsMaxUpgraded()
+		{
+			return stateScript.IsInFinalState();
+		}
 	}
 }

@@ -29,7 +29,7 @@ namespace Game.Structures.StateScripts {
 			}
 
 			DisableStates();
-			states[StateIndex].SetActive(true);
+			states[StateIndex].gameObject.SetActive(true);
 
 			if (states.Count == 1) {
 				_finalState = true;
@@ -39,8 +39,8 @@ namespace Game.Structures.StateScripts {
 		}
 
 		public override void NextState() {
-			states[StateIndex].SetActive(false);
-			states[++StateIndex].SetActive(true);
+			states[StateIndex].gameObject.SetActive(false);
+			states[++StateIndex].gameObject.SetActive(true);
 
 			if (StateIndex + 1 >= states.Count) {
 				_finalState = true;

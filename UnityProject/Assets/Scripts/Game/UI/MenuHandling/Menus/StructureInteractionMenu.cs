@@ -2,11 +2,14 @@ using System;
 using Game.Structures;
 using TMPro;
 using UnityEngine;
+using UnityEngine.InputSystem.HID;
+using UnityEngine.UI;
 
 namespace Game.UI.MenuHandling.Menus {
 	public class StructureInteractionMenu : MonoBehaviour, IMenu {
 		[SerializeField] private TextMeshProUGUI structureName;
 		[SerializeField] private Transform       structureSpecificPanel;
+		[SerializeField] private Button      upgradeButton;
 
 		private Building  _currentBuilding;
 		private Transform _currentStructurePanel;
@@ -47,6 +50,14 @@ namespace Game.UI.MenuHandling.Menus {
 				Reset();
 			} catch (NullReferenceException) {}
 		}
+		
+		public void OnUpgradeClicked() {
+			try {
+				MenuHandler.DisableMenu();
+				_currentBuilding.Upgrade();
+				Reset();
+			} catch (NullReferenceException) {}
+		}
 
 		#region IMenu
 
@@ -62,6 +73,11 @@ namespace Game.UI.MenuHandling.Menus {
 			_currentStructurePanel = Instantiate(_currentBuilding.MenuPanel, structureSpecificPanel);
 			structureName.text     = _currentBuilding.BuildingName;
 
+			if (_currentBuilding.IsMaxUpgraded())
+			{
+				upgradeButton.gameObject.SetActive(false);
+			}
+
 			gameObject.SetActive(true);
 		}
 
@@ -72,6 +88,11 @@ namespace Game.UI.MenuHandling.Menus {
 
 			gameObject.SetActive(false);
 
+			if (_currentBuilding.IsMaxUpgraded())
+			{
+				upgradeButton.gameObject.SetActive(true);
+			}
+			
 			Destroy(_currentStructurePanel.gameObject);
 		}
 

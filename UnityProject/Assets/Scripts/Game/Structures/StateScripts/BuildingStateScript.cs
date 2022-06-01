@@ -3,9 +3,6 @@ using UnityEngine.UI;
 
 namespace Game.Structures.StateScripts {
 	public class BuildingStateScript : StateScript {
-		private const string TagInProgress = "Structure_InProgress";
-		private const string TagFinished   = "Structure_Finished";
-
 		[SerializeField] private float    startingTime; //Von wie viel Sekunden Runter gezählt wird
 		[SerializeField] private Slider   progressSlider;
 		[SerializeField] private Building building;
@@ -39,14 +36,14 @@ namespace Game.Structures.StateScripts {
 
 		public override void InitState() {
 			DisableStates();
-			states[StateIndex].SetActive(true);
+			states[StateIndex].gameObject.SetActive(true);
 		}
 
 		public override void NextState() {
 			if (states[StateIndex].tag.Equals(TagInProgress)) {
 				_currentTime = startingTime;
-				states[StateIndex].SetActive(false);
-				states[++StateIndex].SetActive(true);
+				states[StateIndex].gameObject.SetActive(false);
+				states[++StateIndex].gameObject.SetActive(true);
 				if (states[StateIndex].tag.Equals(TagFinished)) //Wenn man am letzten State ist, bzw das Gebäude fertig ist, kann man damit interagieren
 				{
 					progressSlider.gameObject.SetActive(false);

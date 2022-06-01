@@ -23,6 +23,10 @@ MonoBehaviour:
     m_Key: remove
     m_Metadata:
       m_Items: []
+  - m_Id: 5177388625010688
+    m_Key: upgrade
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

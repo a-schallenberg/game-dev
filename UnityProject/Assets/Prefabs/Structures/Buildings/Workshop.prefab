@@ -11,8 +11,9 @@ GameObject:
   - component: {fileID: 6237976089308337173}
   - component: {fileID: 2940654394943412353}
   - component: {fileID: 5788602083289798067}
+  - component: {fileID: 8283008301891185491}
   m_Layer: 0
-  m_Name: Finished
+  m_Name: Built1
   m_TagString: Structure_Finished
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -129,6 +130,22 @@ PolygonCollider2D:
       - {x: 0.790848, y: -0.09351325}
       - {x: 0.8334677, y: -0.0686692}
       - {x: 0.85630023, y: -0.08236888}
+--- !u!114 &8283008301891185491
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1016639043834357242}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 183e5040a6cf617caaf34379736808ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  costs:
+    wood: 7
+    stone: 0
+    iron: 0
 --- !u!1 &1883941203982338180
 GameObject:
   m_ObjectHideFlags: 0
@@ -267,8 +284,9 @@ GameObject:
   - component: {fileID: 1395460149144128732}
   - component: {fileID: 5477703598488764404}
   - component: {fileID: 4690086994613766446}
+  - component: {fileID: 2942465873484157613}
   m_Layer: 0
-  m_Name: State0
+  m_Name: Construction1
   m_TagString: Structure_InProgress
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -490,6 +508,18 @@ PolygonCollider2D:
       - {x: 1.41, y: -0.26}
       - {x: 1.3, y: -0.29}
       - {x: 1.3199999, y: -0.32}
+--- !u!114 &2942465873484157613
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2813484109842450819}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 950fb08dcbe62deaa833f6ecf6d590cd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3173863491370421590
 GameObject:
   m_ObjectHideFlags: 0
@@ -500,6 +530,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6176290833572895434}
   - component: {fileID: 6828680460658353025}
+  - component: {fileID: 791702206681396650}
   m_Layer: 0
   m_Name: Display
   m_TagString: Structure_InProgress
@@ -574,6 +605,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &791702206681396650
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3173863491370421590}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 58d39961c169d021286c447c99f18ff8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3376638403439710640
 GameObject:
   m_ObjectHideFlags: 0
@@ -634,10 +677,7 @@ MonoBehaviour:
   id: workshop
   menuPanel: {fileID: 507538541532236854, guid: 6eee6759af47254f9bea1ac0cbd274db, type: 3}
   buildingName: Werkstatt
-  costs:
-    wood: 7
-    stone: 0
-    iron: 0
+  stateScript: {fileID: 8759634574035639984}
 --- !u!114 &1135024304246101041
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -691,9 +731,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   states:
-  - {fileID: 3173863491370421590}
-  - {fileID: 2813484109842450819}
-  - {fileID: 1016639043834357242}
+  - {fileID: 791702206681396650}
+  - {fileID: 2942465873484157613}
+  - {fileID: 8283008301891185491}
   startingTime: 5
   progressSlider: {fileID: 4913342772360178692}
   building: {fileID: 6206660429389352291}

@@ -238,6 +238,7 @@ GameObject:
   m_Component:
   - component: {fileID: 281333210619004907}
   - component: {fileID: 3743448573284435285}
+  - component: {fileID: 189400215350736687}
   m_Layer: 0
   m_Name: Display
   m_TagString: Structure_InProgress
@@ -312,6 +313,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &189400215350736687
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4382473602419357496}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 58d39961c169d021286c447c99f18ff8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5359922406097197214
 GameObject:
   m_ObjectHideFlags: 0
@@ -323,8 +336,9 @@ GameObject:
   - component: {fileID: 1238794083476108273}
   - component: {fileID: 1684589688858048383}
   - component: {fileID: 2009565545145223757}
+  - component: {fileID: 4931478872840967364}
   m_Layer: 0
-  m_Name: State0
+  m_Name: Construction1
   m_TagString: Structure_InProgress
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -546,6 +560,18 @@ PolygonCollider2D:
       - {x: 1.41, y: -0.26}
       - {x: 1.3, y: -0.29}
       - {x: 1.3199999, y: -0.32}
+--- !u!114 &4931478872840967364
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5359922406097197214}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 950fb08dcbe62deaa833f6ecf6d590cd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5986231147003315276
 GameObject:
   m_ObjectHideFlags: 0
@@ -557,8 +583,9 @@ GameObject:
   - component: {fileID: 5986231147003315277}
   - component: {fileID: 5986231147003315278}
   - component: {fileID: 8544106626055893983}
+  - component: {fileID: 8488871538345856152}
   m_Layer: 0
-  m_Name: Finished
+  m_Name: Built1
   m_TagString: Structure_Finished
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -673,6 +700,22 @@ PolygonCollider2D:
       - {x: 0.68943405, y: -0.20382282}
       - {x: 0.79999995, y: -0.28}
       - {x: 0.83, y: -0.26999998}
+--- !u!114 &8488871538345856152
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5986231147003315276}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 183e5040a6cf617caaf34379736808ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  costs:
+    wood: 5
+    stone: 0
+    iron: 0
 --- !u!1 &5986231148439214615
 GameObject:
   m_ObjectHideFlags: 0
@@ -733,10 +776,7 @@ MonoBehaviour:
   id: character_house
   menuPanel: {fileID: 9005709574178899881, guid: e3d5769ac8e5d0cd998c5f96d9182f41, type: 3}
   buildingName: Dein Heim
-  costs:
-    wood: 5
-    stone: 0
-    iron: 0
+  stateScript: {fileID: 110471572395323456}
 --- !u!114 &-1909227650595314280
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -790,9 +830,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   states:
-  - {fileID: 4382473602419357496}
-  - {fileID: 5359922406097197214}
-  - {fileID: 5986231147003315276}
+  - {fileID: 189400215350736687}
+  - {fileID: 4931478872840967364}
+  - {fileID: 8488871538345856152}
   startingTime: 5
   progressSlider: {fileID: 4730267227969767051}
   building: {fileID: 5986231148439214608}
