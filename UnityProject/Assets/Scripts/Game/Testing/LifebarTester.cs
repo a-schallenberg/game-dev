@@ -7,6 +7,10 @@ namespace Game.Testing
 	{
 		[SerializeField]                private int maxLifePoints;
 		[SerializeField, Range(0, 100)] private int lifePoints;
+		
+		private int _maxLifePoints;
+		private int _lifePoints;
+
 
 		private void Update()
 		{
@@ -15,15 +19,22 @@ namespace Game.Testing
 
 		public void UpdateLifeBar()
 		{
-			LifeBar.Instance.MaxPoints = maxLifePoints;
+			if (maxLifePoints != _maxLifePoints)
+			{
+				_maxLifePoints             = maxLifePoints;
+				LifeBar.Instance.MaxPoints = maxLifePoints;
+			}
 
-			var points = LifeBar.Instance.Points;
-			if (points < lifePoints)
+			if (lifePoints != _lifePoints)
 			{
-				LifeBar.Instance.AddPoints(lifePoints - points);
-			} else if (points > lifePoints)
-			{
-				LifeBar.Instance.RemovePoints(points - lifePoints);
+				var points = LifeBar.Instance.Points;
+				if (points < lifePoints)
+				{
+					LifeBar.Instance.AddPoints(lifePoints - points);
+				} else if (points > lifePoints)
+				{
+					LifeBar.Instance.RemovePoints(points - lifePoints);
+				}
 			}
 		}
 	}

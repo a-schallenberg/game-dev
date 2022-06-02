@@ -3660,8 +3660,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lifePoints: {fileID: 281462793}
-  lerpGoal: 0
-  lerpSpeed: 0.01
+  lerpStep: 1.5
 --- !u!1 &315337271
 GameObject:
   m_ObjectHideFlags: 0
@@ -10160,7 +10159,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.9107143, y: 1}
+    m_SensorSize: {x: 2.0812855, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -11611,7 +11610,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxLifePoints: 100
-  lifePoints: 0
+  lifePoints: 100
 --- !u!1 &1817138117
 GameObject:
   m_ObjectHideFlags: 0
@@ -12801,7 +12800,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.9107143, y: 1}
+    m_SensorSize: {x: 2.0812855, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
