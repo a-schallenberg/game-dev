@@ -27,8 +27,8 @@ namespace Game.Testing
 
 			if (lifePoints != _lifePoints)
 			{
+				_lifePoints = lifePoints;
 				LifeBar.Instance.UpdatePoints(lifePoints - LifeBar.Instance.Points);
-				print("Tester");
 			}
 
 		}

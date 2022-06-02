@@ -139,7 +139,6 @@ namespace Game
 
 		public void UpdateLifePoints(int addend)
 		{
-			print($"Addend: {addend}");
 			LifeBar.Instance.UpdatePoints(addend);
 		}
 

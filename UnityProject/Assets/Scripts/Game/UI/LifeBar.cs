@@ -13,24 +13,6 @@ namespace Game.UI
 	{
 		public static LifeBar Instance { get; private set; }
 
-		private int _points;
-		
-		/// <summary>
-		/// The current life points of the player.
-		/// </summary>
-		public int Points
-		{
-			get
-			{
-				return _points;
-			}
-			private set
-			{
-				print($"Points: Old: {_points}, New: {value}");
-				_points = value;
-			}
-		}
-
 		/// <summary>
 		/// The maximum life points the player can get.
 		/// </summary>
@@ -46,6 +28,11 @@ namespace Game.UI
 		/// </summary>
 		[SerializeField] private TextMeshProUGUI text;
 
+		/// <summary>
+		/// The current life points of the player.
+		/// </summary>
+		public int Points { get; private set; }
+		
 
 		public LifeBar()
 		{
@@ -66,13 +53,9 @@ namespace Game.UI
 		/// <param name="addend">Life point value that has to be added</param>
 		public void UpdatePoints(int addend)
 		{
-			
-			print($"Points before: {Points}");
 			Points = Util.LimitInt(Points + addend, 0, MaxPoints);
 			UpdateBar();
 			if (Points <= 0f) OnDie();
-			
-			print($"Points after: {Points}");
 		}
 
 		/// <summary>
