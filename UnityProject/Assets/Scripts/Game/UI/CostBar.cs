@@ -1,14 +1,16 @@
+using Game.Resources;
 using TMPro;
 using UnityEngine;
 
-namespace Game.UI {
-	
+namespace Game.UI
+{
 	/// <summary>
 	/// <c>MonoBehavior</c> for the <c>GameObject</c> CostBar in the Overlay placed under the <c>ResourceBar</c>.
 	/// </summary>
-	public class CostBar : MonoBehaviour {
+	public class CostBar : MonoBehaviour
+	{
 		public static CostBar Instance { get; private set; }
-		
+
 		/// <summary>
 		/// Textfield for the deduction of wood 
 		/// </summary>
@@ -25,7 +27,8 @@ namespace Game.UI {
 		[SerializeField] private TextMeshProUGUI ironText;
 
 
-		public CostBar() {
+		public CostBar()
+		{
 			Instance = this;
 		}
 
@@ -35,7 +38,8 @@ namespace Game.UI {
 		/// <param name="wood">Deduction of wood</param>
 		/// <param name="stone">Deduction of stone</param>
 		/// <param name="iron">Deduction of iron</param>
-		public void Enable(int wood, int stone, int iron) {
+		public void Enable(int wood, int stone, int iron)
+		{
 			woodText.text  = wood == 0 ? "" : wood.ToString();
 			stoneText.text = stone == 0 ? "" : stone.ToString();
 			ironText.text  = iron == 0 ? "" : iron.ToString();
@@ -43,10 +47,19 @@ namespace Game.UI {
 			gameObject.SetActive(true);
 		}
 
+		public void Enable(Costs costs, bool negate = false)
+		{
+			if (negate)
+				Enable(-costs.wood, -costs.stone, -costs.iron);
+			else
+				Enable(costs.wood, costs.stone, costs.iron);
+		}
+
 		/// <summary>
 		/// Disables the CostBar with the following values.
 		/// </summary>
-		public void Disable() {
+		public void Disable()
+		{
 			gameObject.SetActive(false);
 		}
 	}

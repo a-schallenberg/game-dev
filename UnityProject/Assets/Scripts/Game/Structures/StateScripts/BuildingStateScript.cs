@@ -1,8 +1,11 @@
+using Game.Structures.StateScripts.States;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Game.Structures.StateScripts {
-	public class BuildingStateScript : StateScript {
+namespace Game.Structures.StateScripts
+{
+	public class BuildingStateScript : StateScript
+	{
 		[SerializeField] private float    startingTime; //Von wie viel Sekunden Runter gezählt wird
 		[SerializeField] private Slider   progressSlider;
 		[SerializeField] private Building building;
@@ -10,45 +13,53 @@ namespace Game.Structures.StateScripts {
 		private float _currentTime;
 
 		// Start is called before the first frame update
-		private void Start() {
+		private void Start()
+		{
 			progressSlider.gameObject.SetActive(false);
 			progressSlider.maxValue = startingTime;
 			_currentTime            = startingTime;
 		}
 
 		// Update is called once per frame
-		private void Update() {
-			if (building.Placed) {
-				if (StateIndex == 0) //Der erste State muss das fertige Gebäude sein damit es auch fertig im BuildMenu angezeigt wird
-				{                    //Deshalb direkt auf den nächsten State wenn placed
-					progressSlider.gameObject.SetActive(true);
+		private void Update()
+		{
+			if (!building.Placed) return;
+			
+			switch (CurrentState)
+			{
+				case DisplayState: //Der erste State muss das fertige Gebäude sein damit es auch fertig im BuildMenu angezeigt wird
+					NextState();   //Deshalb direkt auf den nächsten State wenn placed
+					break;
+				case ConstructionState when _currentTime <= 0f: // If construction is finished
+					progressSlider.gameObject.SetActive(false);
 					NextState();
-				}
-
-				if (_currentTime <= 0) {
-					NextState();
-				} else {
+					break;
+				case ConstructionState:               // If is in construction
+					if (_currentTime >= startingTime) // If construction has not started yet
+						progressSlider.gameObject.SetActive(true);
+					
 					_currentTime         -= 1 * Time.deltaTime;
 					progressSlider.value =  startingTime - _currentTime;
-				}
+					break;
 			}
 		}
 
-		public override void InitState() {
+		public override void InitState()
+		{
 			DisableStates();
 			states[StateIndex].gameObject.SetActive(true);
 		}
 
-		public override void NextState() {
-			if (states[StateIndex].tag.Equals(TagInProgress)) {
+		public override void NextState()
+		{
+			if (IsInFinalState()) return;
+
+			CurrentState.gameObject.SetActive(false);
+			StateIndex++; // Next State
+			CurrentState.gameObject.SetActive(true);
+			
+			if (CurrentState is ConstructionState)
 				_currentTime = startingTime;
-				states[StateIndex].gameObject.SetActive(false);
-				states[++StateIndex].gameObject.SetActive(true);
-				if (states[StateIndex].tag.Equals(TagFinished)) //Wenn man am letzten State ist, bzw das Gebäude fertig ist, kann man damit interagieren
-				{
-					progressSlider.gameObject.SetActive(false);
-				}
-			}
 		}
 	}
 }

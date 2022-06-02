@@ -82,12 +82,7 @@ namespace Game.Structures
 
 		public void Upgrade()
 		{
-			if (IsMaxUpgraded())
-			{
-				return;
-			}
-
-			if (!ResourceHandler.UseResources(Costs))
+			if (!CanBeUpgraded())
 			{
 				return;
 			}
@@ -98,6 +93,11 @@ namespace Game.Structures
 		public bool IsMaxUpgraded()
 		{
 			return stateScript.IsInFinalState();
+		}
+
+		public bool CanBeUpgraded()
+		{
+			return !IsMaxUpgraded() && ResourceHandler.Available(Costs);
 		}
 	}
 }

@@ -10,6 +10,10 @@ namespace Game.Structures.StateScripts {
 		[SerializeField] protected List<State> states;
 
 		protected int StateIndex;
+		protected State CurrentState
+		{
+			get { return states[StateIndex]; }
+		}
 
 		private void Awake() {
 			InitState();

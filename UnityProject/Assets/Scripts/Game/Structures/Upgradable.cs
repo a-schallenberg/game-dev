@@ -5,5 +5,7 @@ namespace Game.Structures
 		public void Upgrade();
 
 		public bool IsMaxUpgraded();
+
+		public bool CanBeUpgraded();
 	}
 }

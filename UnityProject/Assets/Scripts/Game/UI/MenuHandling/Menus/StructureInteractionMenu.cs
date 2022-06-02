@@ -52,12 +52,27 @@ namespace Game.UI.MenuHandling.Menus {
 		}
 		
 		public void OnUpgradeClicked() {
+			if (!_currentBuilding.CanBeUpgraded())
+			{
+				return;
+			}
+			
 			try {
+				CostBar.Instance.Disable();
 				MenuHandler.DisableMenu();
 				_currentBuilding.Upgrade();
 				Reset();
 			} catch (NullReferenceException) {}
 		}
+		
+		public void OnUpgradeHoverEnter() {
+			CostBar.Instance.Enable(_currentBuilding.Costs, true);
+		}
+		
+		public void OnUpgradeHoverExit() {
+			CostBar.Instance.Disable();
+		}
+
 
 		#region IMenu
 
