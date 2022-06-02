@@ -11,14 +11,25 @@ namespace Game.UI
 	/// </summary>
 	public class LifeBar : MonoBehaviour
 	{
-		public const bool DoLerp = true;
-
 		public static LifeBar Instance { get; private set; }
 
+		private int _points;
+		
 		/// <summary>
 		/// The current life points of the player.
 		/// </summary>
-		public int Points { get; private set; }
+		public int Points
+		{
+			get
+			{
+				return _points;
+			}
+			private set
+			{
+				print($"Points: Old: {_points}, New: {value}");
+				_points = value;
+			}
+		}
 
 		/// <summary>
 		/// The maximum life points the player can get.
@@ -50,37 +61,27 @@ namespace Game.UI
 		}
 
 		/// <summary>
-		/// Adds life points to the bar. Starts the filling animation starting at the old life point value.
+		/// Adds (positive values) or removes (negative values) life points to the bar. Starts the filling animation starting at the old life point value.
 		/// </summary>
-		/// <param name="points">Life point value that has to be added</param>
-		public void AddPoints(int points)
+		/// <param name="addend">Life point value that has to be added</param>
+		public void UpdatePoints(int addend)
 		{
-			Points = Math.Min(Points + points, maxPoints);
-
+			
+			print($"Points before: {Points}");
+			Points = Util.LimitInt(Points + addend, 0, MaxPoints);
 			UpdateBar();
-		}
-
-		/// <summary>
-		/// Removes life points to the bar. Starts the filling animation starting at the old life point value.
-		/// Triggers the OnDie method, if the life points are equal to (or less then)  zero.
-		/// </summary>
-		/// <param name="points">Life point value that has to be removed</param>
-		public void RemovePoints(int points)
-		{
-			Points = Math.Max(Points - points, 0);
-
-			UpdateBar();
-
-			if (Points <= 0f)
-			{
-				OnDie();
-			}
+			if (Points <= 0f) OnDie();
+			
+			print($"Points after: {Points}");
 		}
 
 		/// <summary>
 		/// Is triggered, if the life points are equal to (or less then) zero
 		/// </summary>
-		private void OnDie() {}
+		private void OnDie()
+		{
+			PlayerScript.Instance.OnDie();
+		}
 
 		private void UpdateBar()
 		{

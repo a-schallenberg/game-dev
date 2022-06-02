@@ -27,15 +27,10 @@ namespace Game.Testing
 
 			if (lifePoints != _lifePoints)
 			{
-				var points = LifeBar.Instance.Points;
-				if (points < lifePoints)
-				{
-					LifeBar.Instance.AddPoints(lifePoints - points);
-				} else if (points > lifePoints)
-				{
-					LifeBar.Instance.RemovePoints(points - lifePoints);
-				}
+				LifeBar.Instance.UpdatePoints(lifePoints - LifeBar.Instance.Points);
+				print("Tester");
 			}
+
 		}
 	}
 }
