@@ -618,7 +618,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   costs:
-    wood: 0
+    wood: 10
     stone: 0
     iron: 0
 --- !u!1 &6998626397172178995
