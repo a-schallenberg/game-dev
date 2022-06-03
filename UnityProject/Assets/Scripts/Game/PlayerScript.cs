@@ -147,8 +147,8 @@ namespace Game
 
 		public void OnDie()
 		{
-			// TODO death screen
 			print("Dead");
+			MenuHandler.EnableMenu(DeathMenu.Instance);
 		}
 
 		#endregion
