@@ -16,6 +16,7 @@ namespace Game
 		public static PlayerScript Instance { get; private set; }
 
 		[SerializeField] private float movementSpeed   = 5f;
+		[SerializeField] private GameObject showIfInteractable; //Wenn man mit etwas Interagieren kann kommt ein Text
 
 		private Vector2    _move = Vector2.zero;
 		private Collider2D _trigger; // null if the player isn't in a trigger
@@ -40,11 +41,13 @@ namespace Game
 
 		private void OnTriggerEnter2D(Collider2D col)
 		{
+			showIfInteractable.gameObject.SetActive(true);
 			_trigger = col;
 		}
 
 		private void OnTriggerExit2D(Collider2D other)
 		{
+			showIfInteractable.gameObject.SetActive(false);
 			_trigger = null;
 		}
 
