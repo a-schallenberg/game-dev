@@ -12,7 +12,7 @@ namespace Game.UI.MenuHandling {
 
 		public static IMenu ActiveMenu    { get; private set; }
 		public static bool  OverlayActive { get; private set; }
-
+		
 		public static void EnableMenu(IMenu menu, bool overlay = true) {
 		#pragma warning disable CS0618
 			ActiveMenu?.Disable();
